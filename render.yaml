@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: worldcup-predictor
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --timeout 120 --workers 2
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ODDS_API_KEY
+        sync: false
+    disk:
+      name: data
+      mountPath: /opt/render/project/src/output
+      sizeGB: 1
