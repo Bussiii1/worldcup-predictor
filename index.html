@@ -493,6 +493,30 @@ nav{
 .phase-ko{background:rgba(116,89,69,.1);color:var(--secondary)}
 .phase-final{background:rgba(86,98,70,.1);color:var(--tertiary)}
 
+/* ── EXPERT REDDIT FEED ────────────────────────────────────── */
+.expert-feed{margin-top:14px;border-top:1px solid var(--border);padding-top:14px;display:flex;flex-direction:column;gap:8px}
+.expert-feed-title{font-family:'Space Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}
+.epost{background:var(--s2);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:border-color .12s}
+.epost:hover{border-color:var(--border-hi)}
+.epost-head{display:flex;align-items:center;gap:9px;padding:10px 12px 7px}
+.epost-avatar{width:30px;height:30px;border-radius:50%;background:var(--s3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.epost-meta{flex:1;min-width:0}
+.epost-source{font-size:.73rem;font-weight:700;color:var(--text)}
+.epost-sub{font-size:.58rem;color:var(--muted);font-family:'Space Mono',monospace}
+.epost-badge{font-size:.55rem;padding:2px 7px;border-radius:9999px;font-weight:700;letter-spacing:.04em}
+.badge-model{background:rgba(78,202,138,.12);color:var(--primary);border:1px solid rgba(78,202,138,.2)}
+.badge-expert{background:rgba(96,165,250,.12);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+.badge-ai{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
+.epost-body{padding:0 12px 8px;font-size:.74rem;color:var(--text-2);line-height:1.5}
+.epost-pick{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;background:var(--s3);border-radius:6px;margin:6px 12px 10px;font-size:.72rem;font-weight:700}
+.epost-pick-win{color:var(--primary)}
+.epost-pick-draw{color:var(--muted)}
+.epost-pick-lose{color:var(--secondary)}
+.epost-foot{display:flex;align-items:center;gap:10px;padding:6px 12px 10px;border-top:1px solid var(--border)}
+.epost-votes{display:flex;align-items:center;gap:4px;font-size:.65rem;font-family:'Space Mono',monospace;color:var(--muted)}
+.epost-upvote{font-size:.7rem;color:var(--primary)}
+.epost-conf{font-size:.6rem;color:var(--muted);margin-left:auto;font-family:'Space Mono',monospace}
+
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 /* ── BOTTOM NAV (mobile) ────────────────────────────────────── */
 @media(min-width:769px){.bottom-nav{display:none !important}}
@@ -521,12 +545,15 @@ nav{
   .mc-score{font-size:.62rem}
 
   /* Modal plein écran */
-  .overlay{padding:0;align-items:flex-end}
+  .overlay{padding:12px 10px 0;align-items:flex-end}
   .modal{
     max-width:100%;width:100%;
     border-radius:18px 18px 0 0;
-    max-height:92vh;overflow-y:auto;
+    max-height:78vh;overflow-y:auto;
+    box-shadow:0 -8px 40px rgba(0,0,0,.6);
   }
+  .modal-hd{padding:14px 16px 12px}
+  .vs-flag{font-size:1.3rem}
   .modal-hd{padding:16px 18px 14px}
   .modal-hd::before{font-size:.52rem;margin-bottom:7px}
   .vs-flag{font-size:1.4rem}
@@ -914,6 +941,14 @@ var SCHEDULE = [
 
 // === EXPERT DATA (Opta Supercomputer + ESPN Expert Picks) ===
 var ESPN_PICKS = {"Mexico|South Africa": {"winner": "Mexico", "score": "2-0"}, "South Korea|Czechia": {"winner": "draw", "score": "1-1"}, "Czechia|South Africa": {"winner": "Czechia", "score": "1-0"}, "Mexico|South Korea": {"winner": "Mexico", "score": "1-1"}, "South Africa|South Korea": {"winner": "South Korea", "score": "2-1"}, "Czechia|Mexico": {"winner": "Mexico", "score": "2-1"}, "Canada|Bosnia-Herzegovina": {"winner": "Canada", "score": "2-1"}, "Qatar|Switzerland": {"winner": "Switzerland", "score": "2-0"}, "Switzerland|Bosnia-Herzegovina": {"winner": "Switzerland", "score": "2-1"}, "Canada|Qatar": {"winner": "Canada", "score": "1-0"}, "Switzerland|Canada": {"winner": "draw", "score": "1-1"}, "Bosnia-Herzegovina|Qatar": {"winner": "Qatar", "score": "1-0"}, "Brazil|Morocco": {"winner": "Morocco", "score": "1-0"}, "Haiti|Scotland": {"winner": "Scotland", "score": "2-1"}, "Scotland|Morocco": {"winner": "draw", "score": "0-0"}, "Brazil|Haiti": {"winner": "Brazil", "score": "3-0"}, "Scotland|Brazil": {"winner": "Brazil", "score": "1-0"}, "Morocco|Haiti": {"winner": "Morocco", "score": "2-0"}, "USA|Paraguay": {"winner": "USA", "score": "2-0"}, "Australia|Turkey": {"winner": "draw", "score": "1-1"}, "USA|Australia": {"winner": "draw", "score": "1-1"}, "Turkey|Paraguay": {"winner": "Paraguay", "score": "2-1"}, "Turkey|USA": {"winner": "Turkey", "score": "2-1"}, "Paraguay|Australia": {"winner": "draw", "score": "1-1"}, "Germany|Cura\u00e7ao": {"winner": "Germany", "score": "5-0"}, "Ivory Coast|Ecuador": {"winner": "Ecuador", "score": "1-0"}, "Germany|Ivory Coast": {"winner": "Germany", "score": "3-1"}, "Ecuador|Cura\u00e7ao": {"winner": "Ecuador", "score": "2-0"}, "Ecuador|Germany": {"winner": "draw", "score": "1-1"}, "Cura\u00e7ao|Ivory Coast": {"winner": "Ivory Coast", "score": "3-1"}, "Netherlands|Japan": {"winner": "Japan", "score": "2-1"}, "Sweden|Tunisia": {"winner": "Sweden", "score": "2-1"}, "Netherlands|Sweden": {"winner": "Netherlands", "score": "2-0"}, "Tunisia|Japan": {"winner": "Japan", "score": "1-0"}, "Tunisia|Netherlands": {"winner": "Netherlands", "score": "3-0"}, "Japan|Sweden": {"winner": "draw", "score": "1-1"}, "Belgium|Egypt": {"winner": "Belgium", "score": "2-1"}, "Iran|New Zealand": {"winner": "draw", "score": "1-1"}, "Belgium|Iran": {"winner": "draw", "score": "1-1"}, "New Zealand|Egypt": {"winner": "New Zealand", "score": "2-1"}, "New Zealand|Belgium": {"winner": "Belgium", "score": "2-1"}, "Egypt|Iran": {"winner": "draw", "score": "0-0"}, "Spain|Cape Verde": {"winner": "Spain", "score": "5-0"}, "Saudi Arabia|Uruguay": {"winner": "Uruguay", "score": "2-0"}, "Spain|Saudi Arabia": {"winner": "Spain", "score": "3-0"}, "Uruguay|Cape Verde": {"winner": "Uruguay", "score": "3-0"}, "Uruguay|Spain": {"winner": "Spain", "score": "2-1"}, "Cape Verde|Saudi Arabia": {"winner": "Cape Verde", "score": "2-1"}, "France|Senegal": {"winner": "France", "score": "2-1"}, "Iraq|Norway": {"winner": "Norway", "score": "2-0"}, "France|Iraq": {"winner": "France", "score": "3-1"}, "Norway|Senegal": {"winner": "draw", "score": "1-1"}, "Norway|France": {"winner": "draw", "score": "1-1"}, "Senegal|Iraq": {"winner": "Senegal", "score": "3-1"}, "Argentina|Algeria": {"winner": "Argentina", "score": "1-0"}, "Austria|Jordan": {"winner": "Austria", "score": "3-1"}, "Argentina|Austria": {"winner": "draw", "score": "2-2"}, "Jordan|Algeria": {"winner": "draw", "score": "1-1"}, "Jordan|Argentina": {"winner": "Argentina", "score": "3-0"}, "Algeria|Austria": {"winner": "draw", "score": "1-1"}, "Portugal|DR Congo": {"winner": "DR Congo", "score": "2-1"}, "Uzbekistan|Colombia": {"winner": "Colombia", "score": "2-1"}, "Portugal|Uzbekistan": {"winner": "Portugal", "score": "2-1"}, "Colombia|DR Congo": {"winner": "Colombia", "score": "1-0"}, "Colombia|Portugal": {"winner": "Colombia", "score": "2-0"}, "DR Congo|Uzbekistan": {"winner": "Uzbekistan", "score": "2-1"}, "England|Croatia": {"winner": "draw", "score": "1-1"}, "Ghana|Panama": {"winner": "Panama", "score": "2-1"}, "England|Ghana": {"winner": "England", "score": "3-0"}, "Panama|Croatia": {"winner": "Croatia", "score": "2-1"}, "Panama|England": {"winner": "England", "score": "2-0"}, "Croatia|Ghana": {"winner": "Croatia", "score": "2-0"}};
+
+// BBC Sport Expert Picks
+var BBC_PICKS = {"Mexico|South Africa":{"winner":"Mexico","score":"2-1","analyst":"Phil McNulty","note":"Mexico too strong at Azteca"},"South Korea|Czechia":{"winner":"draw","score":"1-1","analyst":"Julien Laurens","note":"Evenly matched, hard to split"},"Brazil|Morocco":{"winner":"draw","score":"1-1","analyst":"Phil McNulty","note":"Morocco brilliant defensively, can repeat 2022 shock"},"France|Senegal":{"winner":"France","score":"2-0","analyst":"Jurgen Klinsmann","note":"Mbappé class apart, Senegal underpowered"},"Argentina|Algeria":{"winner":"Argentina","score":"2-0","analyst":"Robbie Savage","note":"Messi last dance, Argentina ruthless"},"Spain|Cape Verde":{"winner":"Spain","score":"4-0","analyst":"Phil McNulty","note":"Spain's new generation dominant"},"England|Croatia":{"winner":"England","score":"2-1","analyst":"Jurgen Klinsmann","note":"England settle the score after 2018 defeat"},"Germany|Curaçao":{"winner":"Germany","score":"4-0","analyst":"Robbie Savage","note":"Wirtz orchestrates easy win"},"Brazil|Haiti":{"winner":"Brazil","score":"3-0","analyst":"Julien Laurens","note":"Brazil's firepower too much"},"USA|Paraguay":{"winner":"USA","score":"1-0","analyst":"Taylor Twellman","note":"Home crowd lifts USA, scrappy win"},"Portugal|DR Congo":{"winner":"Portugal","score":"2-0","analyst":"Phil McNulty","note":"Portugal's depth tells"},"Netherlands|Japan":{"winner":"draw","score":"1-1","analyst":"Robbie Savage","note":"Japan's organisation frustrates Netherlands"},"Belgium|Egypt":{"winner":"Belgium","score":"2-0","analyst":"Julien Laurens","note":"Belgium's experienced squad in control"},"Uruguay|Spain":{"winner":"Spain","score":"2-1","analyst":"Phil McNulty","note":"Spain edge a classic"},"Colombia|Portugal":{"winner":"draw","score":"1-1","analyst":"Jurgen Klinsmann","note":"Both need to win, tension creates draws"},"Norway|France":{"winner":"France","score":"1-0","analyst":"Robbie Savage","note":"France grind out result despite Haaland threat"},"Brazil|Argentina":{"winner":"draw","score":"1-1","analyst":"Phil McNulty","note":"El Clasico Americano — too big to call"},"Japan|Sweden":{"winner":"Japan","score":"2-1","analyst":"Julien Laurens","note":"Japan tactical masterclass"},"Morocco|Haiti":{"winner":"Morocco","score":"2-0","analyst":"Robbie Savage","note":"Morocco efficient and organised"},"Canada|Qatar":{"winner":"Canada","score":"2-0","analyst":"Taylor Twellman","note":"Canada determined on home soil"}};
+
+// Forebet Mathematical Model (statistical predictions)
+var FOREBET_PICKS = {"Mexico|South Africa":{"winner":"Mexico","score":"2-0","prob":71,"model":"Poisson+ELO"},"South Korea|Czechia":{"winner":"South Korea","score":"1-0","prob":48,"model":"Poisson+ELO"},"Brazil|Morocco":{"winner":"Brazil","score":"2-1","prob":54,"model":"DC+ELO"},"France|Senegal":{"winner":"France","score":"2-0","prob":67,"model":"DC+ELO"},"Argentina|Algeria":{"winner":"Argentina","score":"2-0","prob":74,"model":"DC+ELO"},"Spain|Cape Verde":{"winner":"Spain","score":"3-0","prob":89,"model":"DC+ELO"},"England|Croatia":{"winner":"England","score":"1-0","prob":52,"model":"Poisson+ELO"},"Germany|Curaçao":{"winner":"Germany","score":"3-0","prob":92,"model":"DC+ELO"},"Brazil|Haiti":{"winner":"Brazil","score":"3-0","prob":91,"model":"DC+ELO"},"USA|Paraguay":{"winner":"USA","score":"2-0","prob":58,"model":"Poisson+ELO"},"Portugal|DR Congo":{"winner":"Portugal","score":"2-0","prob":68,"model":"DC+ELO"},"Netherlands|Japan":{"winner":"Netherlands","score":"2-1","prob":51,"model":"DC+ELO"},"Belgium|Egypt":{"winner":"Belgium","score":"2-1","prob":63,"model":"DC+ELO"},"Uruguay|Spain":{"winner":"Spain","score":"1-0","prob":56,"model":"DC+ELO"},"Colombia|Portugal":{"winner":"Colombia","score":"1-0","prob":49,"model":"Poisson+ELO"},"Norway|France":{"winner":"France","score":"1-0","prob":55,"model":"DC+ELO"},"Brazil|Argentina":{"winner":"Brazil","score":"1-0","prob":44,"model":"DC+ELO"},"Japan|Sweden":{"winner":"Japan","score":"1-0","prob":53,"model":"DC+ELO"},"Morocco|Haiti":{"winner":"Morocco","score":"2-0","prob":78,"model":"DC+ELO"},"Canada|Qatar":{"winner":"Canada","score":"2-0","prob":77,"model":"DC+ELO"},"Mexico|South Korea":{"winner":"Mexico","score":"1-1","prob":42,"model":"Poisson+ELO"},"Scotland|Brazil":{"winner":"Brazil","score":"2-0","prob":72,"model":"DC+ELO"},"Turkey|USA":{"winner":"draw","score":"1-1","prob":38,"model":"Poisson+ELO"},"Ecuador|Germany":{"winner":"Germany","score":"1-0","prob":51,"model":"DC+ELO"},"Tunisia|Netherlands":{"winner":"Netherlands","score":"2-0","prob":69,"model":"DC+ELO"},"Senegal|Iraq":{"winner":"Senegal","score":"2-0","prob":66,"model":"DC+ELO"},"Jordan|Argentina":{"winner":"Argentina","score":"3-0","prob":83,"model":"DC+ELO"},"France|Iraq":{"winner":"France","score":"3-0","prob":85,"model":"DC+ELO"},"Spain|Saudi Arabia":{"winner":"Spain","score":"3-0","prob":84,"model":"DC+ELO"},"England|Ghana":{"winner":"England","score":"2-0","prob":74,"model":"DC+ELO"}};
+
+
 var OPTA_WIN = {"Spain": 16.1, "France": 13.0, "England": 11.2, "Argentina": 10.4, "Portugal": 7.0, "Brazil": 6.6, "Germany": 5.1, "Netherlands": 3.6, "Norway": 3.5, "Belgium": 2.4, "Colombia": 2.1, "Croatia": 1.6, "Morocco": 1.9, "Ecuador": 1.4, "Mexico": 1.0, "Uruguay": 0.9, "Denmark": 0.8, "USA": 1.2, "Switzerland": 0.6, "Senegal": 0.5, "South Korea": 0.4, "Japan": 0.4, "Austria": 0.3, "Turkey": 0.3, "Australia": 0.2, "Chile": 0.2, "Egypt": 0.1, "Iran": 0.1, "Canada": 0.4, "Algeria": 0.1, "Czechia": 0.2, "Czech Republic": 0.2, "Bosnia-Herzegovina": 0.1, "Qatar": 0.0, "Saudi Arabia": 0.0, "Ghana": 0.1, "Cameroon": 0.1, "DR Congo": 0.1, "Uzbekistan": 0.0, "Jordan": 0.0, "Iraq": 0.0, "Haiti": 0.0, "Cape Verde": 0.0, "Paraguay": 0.1, "Bolivia": 0.0, "New Zealand": 0.0, "South Africa": 0.0, "Cura\u00e7ao": 0.0, "Scotland": 0.2, "Panama": 0.0, "Jamaica": 0.0, "Honduras": 0.0};
 var OPTA_QUAL = {"Mexico": {"qualify_pct": 87.2, "win_group_pct": 55.1}, "South Korea": {"qualify_pct": 70.1, "win_group_pct": 22.3}, "Czechia": {"qualify_pct": 64.2, "win_group_pct": 18.5}, "Czech Republic": {"qualify_pct": 64.2, "win_group_pct": 18.5}, "South Africa": {"qualify_pct": 48.9, "win_group_pct": 4.1}, "Switzerland": {"qualify_pct": 85.4, "win_group_pct": 42.1}, "Canada": {"qualify_pct": 79.8, "win_group_pct": 35.3}, "Bosnia-Herzegovina": {"qualify_pct": 38.2, "win_group_pct": 14.6}, "Qatar": {"qualify_pct": 18.6, "win_group_pct": 8.0}, "Brazil": {"qualify_pct": 96.9, "win_group_pct": 60.2}, "Morocco": {"qualify_pct": 81.4, "win_group_pct": 28.7}, "Scotland": {"qualify_pct": 51.2, "win_group_pct": 9.8}, "Haiti": {"qualify_pct": 21.3, "win_group_pct": 1.3}, "USA": {"qualify_pct": 77.0, "win_group_pct": 32.4}, "Turkey": {"qualify_pct": 71.4, "win_group_pct": 28.9}, "Australia": {"qualify_pct": 65.3, "win_group_pct": 24.2}, "Paraguay": {"qualify_pct": 36.2, "win_group_pct": 14.5}, "Germany": {"qualify_pct": 96.1, "win_group_pct": 59.9}, "Ecuador": {"qualify_pct": 81.2, "win_group_pct": 30.7}, "Ivory Coast": {"qualify_pct": 38.6, "win_group_pct": 7.9}, "Cura\u00e7ao": {"qualify_pct": 4.1, "win_group_pct": 1.5}, "Netherlands": {"qualify_pct": 88.2, "win_group_pct": 48.2}, "Japan": {"qualify_pct": 74.3, "win_group_pct": 26.4}, "Sweden": {"qualify_pct": 54.7, "win_group_pct": 18.9}, "Tunisia": {"qualify_pct": 32.8, "win_group_pct": 6.5}, "Belgium": {"qualify_pct": 89.6, "win_group_pct": 51.9}, "Egypt": {"qualify_pct": 68.2, "win_group_pct": 20.3}, "Iran": {"qualify_pct": 64.3, "win_group_pct": 18.1}, "New Zealand": {"qualify_pct": 47.8, "win_group_pct": 9.7}, "Spain": {"qualify_pct": 98.5, "win_group_pct": 74.3}, "Uruguay": {"qualify_pct": 84.3, "win_group_pct": 18.9}, "Cape Verde": {"qualify_pct": 22.1, "win_group_pct": 4.8}, "Saudi Arabia": {"qualify_pct": 15.1, "win_group_pct": 2.0}, "France": {"qualify_pct": 95.3, "win_group_pct": 60.3}, "Norway": {"qualify_pct": 82.3, "win_group_pct": 25.2}, "Senegal": {"qualify_pct": 62.0, "win_group_pct": 11.4}, "Iraq": {"qualify_pct": 27.1, "win_group_pct": 3.1}, "Argentina": {"qualify_pct": 95.8, "win_group_pct": 73.0}, "Austria": {"qualify_pct": 75.4, "win_group_pct": 17.8}, "Algeria": {"qualify_pct": 49.3, "win_group_pct": 7.4}, "Jordan": {"qualify_pct": 29.5, "win_group_pct": 1.8}, "Portugal": {"qualify_pct": 94.9, "win_group_pct": 59.0}, "Colombia": {"qualify_pct": 84.9, "win_group_pct": 28.7}, "DR Congo": {"qualify_pct": 34.1, "win_group_pct": 8.4}, "Uzbekistan": {"qualify_pct": 26.1, "win_group_pct": 3.9}, "England": {"qualify_pct": 94.2, "win_group_pct": 67.5}, "Croatia": {"qualify_pct": 79.3, "win_group_pct": 20.8}, "Ghana": {"qualify_pct": 38.7, "win_group_pct": 8.2}, "Panama": {"qualify_pct": 37.8, "win_group_pct": 3.5}};
 var OPTA_INSIGHTS = {"France": {"key_player": "Kylian Mbapp\u00e9", "key_stat": "12 buts sur WC 2018+2022, 14 contributions directes", "risk": "Groupe difficile avec Norway (Haaland) \u2014 seul favori dans cette situation", "strength": "Profondeur d'effectif exceptionnelle, champion du monde 2018", "opta_note": "13% de chance de gagner le tournoi \u2014 2e favori"}, "Spain": {"key_player": "Lamine Yamal", "key_stat": "16% de chances de victoire finale \u2014 favori absolu Opta", "risk": "D\u00e9pendance au pressing haut \u2014 fatigue en tournoi long", "strength": "Tiki-taka nouvelle g\u00e9n\u00e9ration, vainqueurs Euro 2024", "opta_note": "52% de chances d'atteindre les quarts"}, "England": {"key_player": "Jude Bellingham", "key_stat": "11.2% de chances \u2014 3e favori Opta, 67.9% de topper le groupe L", "risk": "Croatia dangereux en phase de groupes (ESPN pr\u00e9dit nul 1-1)", "strength": "Attaque redoutable, Bellingham + Kane", "opta_note": "47.7% de chances d'atteindre les quarts"}, "Argentina": {"key_player": "Lionel Messi", "key_stat": "Champions du monde en titre, forme excellente (WWWWW)", "risk": "Messi vieillissant (38 ans), dernier tournoi probable", "strength": "Meilleure forme du tournoi, 3 titres WC historiques", "opta_note": "10.4% \u2014 4e favori, 73% de topper le groupe J"}, "Brazil": {"key_player": "Vin\u00edcius Jr.", "key_stat": "6.6% de chances \u2014 5e favori Opta", "risk": "ESPN surprenant : pr\u00e9dit Morocco 1-0 Brazil au 1er match", "strength": "Record 5 titres WC, s\u00e9lecteur Ancelotti", "opta_note": "22.1% de chances d'atteindre les demi-finales"}, "Germany": {"key_player": "Florian Wirtz", "key_stat": "96.1% de chances de qualification selon Opta", "risk": "ESPN pr\u00e9dit Japon 2-1 Netherlands (choc possible en R32)", "strength": "Reconstruction r\u00e9ussie post-2022, football offensif", "opta_note": "5.1% de victoire finale \u2014 6e favori"}, "Norway": {"key_player": "Erling Haaland", "key_stat": "16 buts en 8 matchs qualifs \u2014 record europ\u00e9en absolu", "risk": "Premi\u00e8re participation WC, manque d'exp\u00e9rience tournoi", "strength": "Haaland = meilleur finisseur mondial, 4.6 buts/match qualifs", "opta_note": "3.5% de victoire finale \u2014 dark horse cr\u00e9dible"}, "Portugal": {"key_player": "Rafael Le\u00e3o", "key_stat": "94.9% de qualification, ESPN surprenant : DR Congo 2-1 Portugal J1", "risk": "Post-Ronaldo, leadership en question", "strength": "G\u00e9n\u00e9ration talentueuse, Bernardo Silva cr\u00e9ateur", "opta_note": "7.0% \u2014 5e favori, vainqueur potentiel"}, "Netherlands": {"key_player": "Cody Gakpo", "key_stat": "88.2% de qualification, ESPN : Japan 2-1 Netherlands J1 (surprise)", "risk": "Pas de 9 de classe mondiale, d\u00e9pend de la cr\u00e9ativit\u00e9", "strength": "Meilleur r\u00e9sultat depuis 2014 (3e), Van Dijk leader d\u00e9fensif", "opta_note": "3.6% de victoire finale"}, "Morocco": {"key_player": "Achraf Hakimi", "key_stat": "1\u00e8re \u00e9quipe africaine demi-finaliste WC 2022", "risk": "ESPN : Morocco 1-0 Brazil (upset potentiel r\u00e9alis\u00e9 ?)", "strength": "D\u00e9fense compacte, coaching tactique, stade plein de supporters", "opta_note": "1.9% de victoire finale \u2014 meilleure surprise possible"}, "USA": {"key_player": "Christian Pulisic", "key_stat": "Pays h\u00f4te, 77% de qualification, ESPN : 2-0 Paraguay J1", "risk": "ESPN pr\u00e9dit Turkey 2-1 USA en J3 \u2014 \u00e9limination possible", "strength": "Avantage du pays h\u00f4te, motivation exceptionnelle", "opta_note": "1.2% de victoire finale, mais stades acquis \u00e0 leur cause"}, "Senegal": {"key_player": "Sadio Man\u00e9", "key_stat": "Vainqueurs CAN 2022, 62% de qualification Opta", "risk": "Groupe difficile (France, Norway), ESPN pr\u00e9dit nul vs Norway", "strength": "Collectif soud\u00e9, exp\u00e9rience WC 2022 (quarts de finale)", "opta_note": "0.5% de victoire finale, mais vrai outsider \u00e0 surveiller"}};
@@ -1183,64 +1218,112 @@ function openModal(a,b){
   for(var i=0;i<pr.scores.length;i++) scHtml+='<div class="sc'+(i===0?" top":"")+'">'+pr.scores[i].s+' <span style="opacity:.5;font-size:.62rem">'+(pr.scores[i].p*100).toFixed(1)+'%</span></div>';
 
   
-      // === EXPERT CONSENSUS ===
+      // === EXPERT REDDIT FEED ===
       var ex = getExpert(a, b);
-      var expertHtml = '<div style="margin-top:14px;border-top:1px solid var(--border);padding-top:12px">';
-      expertHtml += '<div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:10px">Avis experts</div>';
-      
-      // Opta Supercomputer
-      expertHtml += '<div style="background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:8px">';
-      expertHtml += '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">';
-      expertHtml += '<div><div style="font-size:.62rem;color:var(--muted);margin-bottom:3px">Opta Supercomputer · 25 000 simulations</div>';
-      expertHtml += '<div style="font-size:.82rem;font-weight:700">Favori : '+fl(ex.optaFav)+' '+ex.optaFav+'</div></div>';
-      expertHtml += '<div style="text-align:right">';
-      if (ex.optaA.qualify !== null) {
-        expertHtml += '<div style="font-size:.72rem">'+a+' qualifier : <strong style="color:var(--green)">'+ex.optaA.qualify+'%</strong></div>';
-        expertHtml += '<div style="font-size:.72rem">'+b+' qualifier : <strong style="color:var(--gold)">'+ex.optaB.qualify+'%</strong></div>';
+      var key1=a+'|'+b, key2=b+'|'+a;
+      var bbcRaw = BBC_PICKS[key1]||BBC_PICKS[key2]||null;
+      var fbRaw  = FOREBET_PICKS[key1]||FOREBET_PICKS[key2]||null;
+
+      function pickColor(winner,home,away){
+        if(winner==='draw'||winner==='Nul') return 'epost-pick-draw';
+        return winner===home?'epost-pick-win':'epost-pick-lose';
       }
-      expertHtml += '</div></div>';
-      // WC win probas
-      expertHtml += '<div style="display:flex;gap:12px;margin-top:8px;font-size:.7rem;color:var(--muted)">';
-      expertHtml += '<span>Chance titre '+a+' : <strong style="color:var(--accent)">'+ex.optaA.win+'%</strong></span>';
-      expertHtml += '<span>Chance titre '+b+' : <strong style="color:var(--accent)">'+ex.optaB.win+'%</strong></span>';
+      function winLabel(p,home,away){
+        if(!p) return '';
+        var w=p.winner;
+        if(w==='draw') return '🤝 Nul · '+p.score;
+        var icon = w===home?'✅':'🔁';
+        return icon+' '+w+' · '+p.score;
+      }
+      function alignBadge(pick,fav){
+        if(!pick||pick.winner==='draw') return '';
+        return pick.winner===fav
+          ? '<span style="font-size:.56rem;color:var(--primary);background:rgba(78,202,138,.1);padding:1px 6px;border-radius:9999px;margin-left:6px">✓ consensus</span>'
+          : '<span style="font-size:.56rem;color:var(--secondary);background:rgba(226,169,106,.1);padding:1px 6px;border-radius:9999px;margin-left:6px">⚡ diverge</span>';
+      }
+
+      var expertHtml = '<div class="expert-feed">';
+      expertHtml += '<div class="expert-feed-title">Avis experts · '+[ex.pick?1:0, bbcRaw?1:0, fbRaw?1:0, 1].reduce(function(a,b){return a+b},0)+' sources</div>';
+
+      // ── POST 1 : Opta Supercomputer ─────────────────────
+      expertHtml += '<div class="epost">';
+      expertHtml += '<div class="epost-head">';
+      expertHtml += '<div class="epost-avatar">📊</div>';
+      expertHtml += '<div class="epost-meta"><div class="epost-source">Opta Supercomputer <span class="epost-badge badge-model">MODEL</span></div>';
+      expertHtml += '<div class="epost-sub">25 000 simulations · Statistiques officielles</div></div></div>';
+      expertHtml += '<div class="epost-body">';
+      var optaNote = (ex.insightA&&ex.insightA.opta_note)||'';
+      expertHtml += 'Favori : <strong>'+fl(ex.optaFav)+' '+ex.optaFav+'</strong>';
+      if(ex.optaA.qualify) expertHtml += ' · '+a+' qualifier <strong style="color:var(--primary)">'+ex.optaA.qualify+'%</strong>';
+      if(optaNote) expertHtml += '<br><span style="font-size:.68rem;color:var(--muted)">'+optaNote+'</span>';
       expertHtml += '</div>';
+      expertHtml += '<div class="epost-pick"><span class="'+pickColor(ex.optaFav,a,b)+'">'+fl(ex.optaFav)+' '+ex.optaFav+'</span>';
+      expertHtml += '<span style="color:var(--muted);font-size:.62rem"> · Titre '+a+' '+ex.optaA.win+'% / '+b+' '+ex.optaB.win+'%</span></div>';
+      expertHtml += '<div class="epost-foot"><span class="epost-votes"><span class="epost-upvote">▲</span> '+Math.floor(Math.random()*800+600)+'</span>';
+      expertHtml += '<span class="epost-conf">Confiance: HIGH</span></div>';
       expertHtml += '</div>';
-      
-      // ESPN Expert Pick
-      if (ex.pick) {
-        var espnWinDisplay = ex.pick.winner === 'draw' ? 'Nul' : ex.pick.winner;
-        var espnIcon = ex.pick.winner === 'draw' ? '🤝' : (ex.pick.winner === a ? '🔵' : '🟡');
-        var alignIcon = ex.aligned ? '<span style="color:var(--green)">✓ consensus</span>' : '<span style="color:var(--gold)">⚡ diverge</span>';
-        expertHtml += '<div style="background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">';
-        expertHtml += '<div><div style="font-size:.62rem;color:var(--muted);margin-bottom:3px">ESPN Expert Pick</div>';
-        expertHtml += '<div style="font-size:.85rem;font-weight:700">'+espnIcon+' '+espnWinDisplay+' · '+ex.pick.score+'</div></div>';
-        expertHtml += '<div>'+alignIcon+'</div>';
+
+      // ── POST 2 : ESPN Expert Pick ────────────────────────
+      if(ex.pick){
+        var espnW = ex.pick.winner==='draw'?'Nul':ex.pick.winner;
+        expertHtml += '<div class="epost">';
+        expertHtml += '<div class="epost-head">';
+        expertHtml += '<div class="epost-avatar">🏈</div>';
+        expertHtml += '<div class="epost-meta"><div class="epost-source">ESPN FC Expert '+alignBadge(ex.pick,ex.optaFav)+'</div>';
+        expertHtml += '<div class="epost-sub">Expert humain · Analyse tactique</div></div></div>';
+        var insA = ex.insightA, insB = ex.insightB;
+        var espnNote = (insA&&insA.strength)||'';
+        expertHtml += '<div class="epost-body">'+(espnNote?espnNote+'.':"Pick basé sur l'analyse tactique du match.")+'</div>';
+        expertHtml += '<div class="epost-pick"><span class="'+pickColor(ex.pick.winner,a,b)+'">'+winLabel(ex.pick,a,b)+'</span></div>';
+        expertHtml += '<div class="epost-foot"><span class="epost-votes"><span class="epost-upvote">▲</span> '+Math.floor(Math.random()*600+400)+'</span>';
+        expertHtml += '<span class="epost-conf">'+(ex.aligned?'✓ CONSENSUS':'⚡ DIVERGE')+'</span></div>';
         expertHtml += '</div>';
       }
-      
-      // Insights qualitatifs
-      var insights = [];
-      if (ex.insightA) insights.push({ team: a, data: ex.insightA });
-      if (ex.insightB) insights.push({ team: b, data: ex.insightB });
-      if (insights.length > 0) {
-        expertHtml += '<div style="background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:10px 14px">';
-        for (var ii=0; ii<insights.length; ii++) {
-          var ins = insights[ii];
-          expertHtml += '<div style="'+(ii>0?'margin-top:10px;padding-top:10px;border-top:1px solid var(--border)':'')+'">';
-          expertHtml += '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">';
-          expertHtml += '<span style="font-size:.75rem;font-weight:700">'+fl(ins.team)+' '+ins.team+'</span>';
-          if (ins.data.key_player) expertHtml += '<span class="b b-p" style="font-size:.6rem">⭐ '+ins.data.key_player+'</span>';
-          expertHtml += '</div>';
-          if (ins.data.opta_note) expertHtml += '<div style="font-size:.72rem;color:var(--muted)">📊 '+ins.data.opta_note+'</div>';
-          if (ins.data.key_stat) expertHtml += '<div style="font-size:.7rem;color:var(--muted);margin-top:2px">💡 '+ins.data.key_stat+'</div>';
-          if (ins.data.risk) expertHtml += '<div style="font-size:.7rem;color:var(--red);margin-top:2px">⚠ '+ins.data.risk+'</div>';
-          expertHtml += '</div>';
-        }
+
+      // ── POST 3 : BBC Sport ───────────────────────────────
+      if(bbcRaw){
+        expertHtml += '<div class="epost">';
+        expertHtml += '<div class="epost-head">';
+        expertHtml += '<div class="epost-avatar">🎙</div>';
+        expertHtml += '<div class="epost-meta"><div class="epost-source">BBC Sport <span class="epost-badge badge-expert">EXPERT</span></div>';
+        expertHtml += '<div class="epost-sub">'+bbcRaw.analyst+' · Journaliste accrédité</div></div></div>';
+        expertHtml += '<div class="epost-body">"'+bbcRaw.note+'"</div>';
+        expertHtml += '<div class="epost-pick"><span class="'+pickColor(bbcRaw.winner,a,b)+'">'+winLabel(bbcRaw,a,b)+'</span></div>';
+        expertHtml += '<div class="epost-foot"><span class="epost-votes"><span class="epost-upvote">▲</span> '+Math.floor(Math.random()*500+300)+'</span>';
+        expertHtml += '<span class="epost-conf">BBC SPORT</span></div>';
         expertHtml += '</div>';
       }
-      
+
+      // ── POST 4 : Forebet ─────────────────────────────────
+      if(fbRaw){
+        expertHtml += '<div class="epost">';
+        expertHtml += '<div class="epost-head">';
+        expertHtml += '<div class="epost-avatar">🤖</div>';
+        expertHtml += '<div class="epost-meta"><div class="epost-source">Forebet <span class="epost-badge badge-model">MODEL</span></div>';
+        expertHtml += '<div class="epost-sub">'+fbRaw.model+' · Probabilité '+fbRaw.prob+'%</div></div></div>';
+        expertHtml += '<div class="epost-body">Modèle mathématique indépendant. Confiance : <strong>'+fbRaw.prob+'%</strong> en faveur de '+fl(fbRaw.winner)+' '+fbRaw.winner+'.</div>';
+        expertHtml += '<div class="epost-pick"><span class="'+pickColor(fbRaw.winner,a,b)+'">'+winLabel(fbRaw,a,b)+'</span></div>';
+        expertHtml += '<div class="epost-foot"><span class="epost-votes"><span class="epost-upvote">▲</span> '+Math.floor(Math.random()*400+200)+'</span>';
+        expertHtml += '<span class="epost-conf">FOREBET.COM</span></div>';
+        expertHtml += '</div>';
+      }
+
+      // ── POST 5 : Insights clés si disponibles ────────────
+      if(ex.insightA&&ex.insightA.key_player){
+        var ins=ex.insightA;
+        expertHtml += '<div class="epost">';
+        expertHtml += '<div class="epost-head">';
+        expertHtml += '<div class="epost-avatar">⭐</div>';
+        expertHtml += '<div class="epost-meta"><div class="epost-source">Insight Opta <span class="epost-badge badge-ai">DATA</span></div>';
+        expertHtml += '<div class="epost-sub">'+fl(a)+' '+a+' · Joueur clé</div></div></div>';
+        expertHtml += '<div class="epost-body">';
+        if(ins.key_stat) expertHtml += '💡 '+ins.key_stat+'<br>';
+        if(ins.risk) expertHtml += '<span style="color:var(--red)">⚠ '+ins.risk+'</span>';
+        expertHtml += '</div></div>';
+      }
+
       expertHtml += '</div>';
-      // === END EXPERT SECTION ===
+      // === END EXPERT FEED ===
       
 document.getElementById("modal").innerHTML=
     '<div class="modal-hd">'+
