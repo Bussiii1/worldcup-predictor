@@ -484,9 +484,9 @@ nav{
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 /* ── BOTTOM NAV (mobile) ────────────────────────────────────── */
-.bottom-nav{display:none}
+@media(min-width:769px){.bottom-nav{display:none !important}}
 
-@media(max-width:640px){
+@media(max-width:768px){
   /* Cache les onglets desktop */
   .nav-tabs{display:none}
   .countdown{display:none}
@@ -501,7 +501,7 @@ nav{
 
   /* Grilles 1 colonne */
   .g2,.g3,.g4{grid-template-columns:1fr}
-  .page{padding:14px 10px 90px}
+  .page{padding:14px 10px 100px}
 
   /* Match row compact */
   .match-row{padding:8px 10px}
@@ -548,28 +548,38 @@ nav{
   .ai-lbl{min-width:72px;font-size:.54rem}
   .ai-val{font-size:.72rem}
 
-  /* Bottom nav */
+  /* Bottom nav — pilule flottante */
   .bottom-nav{
-    display:flex;
-    position:fixed;bottom:0;left:0;right:0;
-    height:64px;z-index:200;
-    background:rgba(20,27,38,.96);
-    backdrop-filter:blur(16px);
-    border-top:1px solid var(--border);
+    display:flex !important;
+    position:fixed !important;
+    bottom:20px !important;
+    left:20px !important;
+    right:20px !important;
+    height:62px;
+    z-index:99999;
+    background:rgba(18,24,36,.95);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(78,202,138,.2);
+    border-radius:9999px;
+    box-shadow:0 8px 32px rgba(0,0,0,.6),0 2px 8px rgba(0,0,0,.4);
     justify-content:space-around;align-items:center;
     padding:0 8px;
   }
   .bn-item{
     display:flex;flex-direction:column;align-items:center;
-    gap:3px;padding:6px 12px;border-radius:10px;
+    gap:2px;padding:7px 10px;border-radius:9999px;
     cursor:pointer;border:none;background:none;
     font-family:'Space Mono',monospace;
-    font-size:.5rem;color:var(--muted);letter-spacing:.04em;
-    text-transform:uppercase;transition:color .1s,background .1s;
-    flex:1;
+    font-size:.44rem;color:var(--muted);letter-spacing:.03em;
+    text-transform:uppercase;transition:color .15s,background .15s;
+    flex:1;min-width:0;
   }
-  .bn-item.on{color:var(--primary);background:rgba(78,202,138,.1)}
-  .bn-icon{font-size:1.2rem;line-height:1}
+  .bn-item.on{
+    color:var(--primary);
+    background:rgba(78,202,138,.12);
+  }
+  .bn-icon{font-size:1.25rem;line-height:1}
 
   /* Cache les sections section title sur mobile */
   .sec{font-size:.54rem;margin:18px 0 10px}
