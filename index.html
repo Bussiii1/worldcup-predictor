@@ -483,12 +483,96 @@ nav{
 .phase-final{background:rgba(86,98,70,.1);color:var(--tertiary)}
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
-@media(max-width:580px){
+/* ── BOTTOM NAV (mobile) ────────────────────────────────────── */
+.bottom-nav{display:none}
+
+@media(max-width:640px){
+  /* Cache les onglets desktop */
+  .nav-tabs{display:none}
+  .countdown{display:none}
+  .brand img{height:36px}
+
+  /* Hero compact */
+  .hero{padding:20px 14px 16px}
+  .hero h1{font-size:1.5rem}
+  .hero-sub{font-size:.72rem}
+  .hero-pills{gap:5px}
+  .pill{font-size:.58rem;padding:2px 9px}
+
+  /* Grilles 1 colonne */
   .g2,.g3,.g4{grid-template-columns:1fr}
-  .bk{min-width:700px}
-  .vs-row{flex-direction:column}
-  .cal-match{grid-template-columns:1fr 80px 1fr}
-  .modal{transform:none}
+  .page{padding:14px 10px 90px}
+
+  /* Match row compact */
+  .match-row{padding:8px 10px}
+  .mt{font-size:.72rem}
+  .mc-pct{font-size:.7rem}
+  .mc-score{font-size:.62rem}
+
+  /* Modal plein écran */
+  .overlay{padding:0;align-items:flex-end}
+  .modal{
+    max-width:100%;width:100%;
+    border-radius:18px 18px 0 0;
+    max-height:92vh;overflow-y:auto;
+  }
+  .modal-hd{padding:16px 18px 14px}
+  .modal-hd::before{font-size:.52rem;margin-bottom:7px}
+  .vs-flag{font-size:1.4rem}
+  .vs-name{font-size:.82rem}
+  .vs-score{font-size:1.7rem}
+  .modal-bd{padding:14px 16px}
+
+  /* Stats grid 2→2 compact */
+  .sg{grid-template-columns:1fr 1fr;gap:5px}
+  .sg-item{padding:8px}
+  .sg-v{font-size:.95rem}
+  .sg-l{font-size:.5rem}
+
+  /* Prob bar labels */
+  .prob-labels{font-size:.58rem}
+
+  /* Score chips */
+  .sc{font-size:.66rem;padding:3px 7px}
+
+  /* Calendrier */
+  .cal-match{grid-template-columns:1fr 70px 1fr;padding:8px 10px}
+  .cm-team{font-size:.72rem}
+  .cm-time{font-size:.58rem}
+  .cm-pred{font-size:.58rem}
+
+  /* Bracket scroll */
+  .bk{min-width:600px}
+
+  /* AI panel */
+  .ai-lbl{min-width:72px;font-size:.54rem}
+  .ai-val{font-size:.72rem}
+
+  /* Bottom nav */
+  .bottom-nav{
+    display:flex;
+    position:fixed;bottom:0;left:0;right:0;
+    height:64px;z-index:200;
+    background:rgba(20,27,38,.96);
+    backdrop-filter:blur(16px);
+    border-top:1px solid var(--border);
+    justify-content:space-around;align-items:center;
+    padding:0 8px;
+  }
+  .bn-item{
+    display:flex;flex-direction:column;align-items:center;
+    gap:3px;padding:6px 12px;border-radius:10px;
+    cursor:pointer;border:none;background:none;
+    font-family:'Space Mono',monospace;
+    font-size:.5rem;color:var(--muted);letter-spacing:.04em;
+    text-transform:uppercase;transition:color .1s,background .1s;
+    flex:1;
+  }
+  .bn-item.on{color:var(--primary);background:rgba(78,202,138,.1)}
+  .bn-icon{font-size:1.2rem;line-height:1}
+
+  /* Cache les sections section title sur mobile */
+  .sec{font-size:.54rem;margin:18px 0 10px}
 }
 </style>
 
@@ -593,6 +677,25 @@ nav{
 <div class="overlay" id="overlay" onclick="overlayClick(event)">
   <div class="modal" id="modal"></div>
 </div>
+
+<!-- BOTTOM NAV (mobile only) -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="bn-item on" id="bn-groups" onclick="goToMobile('groups',this)">
+    <span class="bn-icon">⚽</span>Groupes
+  </button>
+  <button class="bn-item" id="bn-calendar" onclick="goToMobile('calendar',this)">
+    <span class="bn-icon">📅</span>Calendrier
+  </button>
+  <button class="bn-item" id="bn-rankings" onclick="goToMobile('rankings',this)">
+    <span class="bn-icon">📊</span>ELO
+  </button>
+  <button class="bn-item" id="bn-simulator" onclick="goToMobile('simulator',this)">
+    <span class="bn-icon">🎲</span>Sim
+  </button>
+  <button class="bn-item" id="bn-weather" onclick="goToMobile('weather',this)">
+    <span class="bn-icon">🌤</span>Météo
+  </button>
+</nav>
 
 <script>
 // =============== ELO DATA (World Football ELO Ratings) ===============
@@ -1290,10 +1393,24 @@ function goTo(id,btn){
   document.querySelectorAll(".page").forEach(function(p){p.classList.remove("on");});
   document.querySelectorAll(".tab").forEach(function(b){b.classList.remove("on");});
   document.getElementById("page-"+id).classList.add("on");
-  btn.classList.add("on");
+  if(btn) btn.classList.add("on");
+  // Sync bottom nav
+  document.querySelectorAll(".bn-item").forEach(function(b){b.classList.remove("on");});
+  var bn=document.getElementById("bn-"+id);
+  if(bn) bn.classList.add("on");
   if(id==="rankings") renderRankings();
   if(id==="weather") fetchWeather();
   if(id==="calendar") renderCalendar();
+  window.scrollTo(0,0);
+}
+function goToMobile(id,btn){
+  // Trouve le tab desktop correspondant
+  var tabs=document.querySelectorAll(".tab");
+  var matchTab=null;
+  tabs.forEach(function(t){
+    if(t.getAttribute("onclick") && t.getAttribute("onclick").indexOf("'"+id+"'")!==-1) matchTab=t;
+  });
+  goTo(id,matchTab);
 }
 
 // =============== COUNTDOWN ===============
