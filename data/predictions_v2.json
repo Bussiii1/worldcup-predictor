@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-06T13:48:55.974257",
+  "generated_at": "2026-06-06T14:45:22.454792",
   "version": "v2",
   "total_matches": 72,
-  "matches_with_odds": 72,
+  "matches_with_odds": 67,
   "matches": [
     {
       "home": "Mexico",
@@ -2300,7 +2300,7 @@
       "over25": 47.6,
       "btts": 52.1,
       "avg_goals": 2.58,
-      "confidence_score": 68,
+      "confidence_score": 62,
       "confidence_level": "medium",
       "top_scores": [
         {
@@ -2604,7 +2604,7 @@
       "over25": 51.2,
       "btts": 46.3,
       "avg_goals": 2.73,
-      "confidence_score": 85,
+      "confidence_score": 88,
       "confidence_level": "high",
       "top_scores": [
         {
@@ -2635,7 +2635,7 @@
         "xg_b": true,
         "h2h": true,
         "wc_history": true,
-        "squad_value": true,
+        "squad_value": false,
         "injuries": true,
         "news_nlp": true,
         "fatigue": true,
@@ -5102,43 +5102,43 @@
       "date": "2026-06-17",
       "stadium": "BMO Field",
       "group": "L",
-      "p_home": 34.7,
-      "p_draw": 28.9,
-      "p_away": 36.4,
+      "p_home": 20.1,
+      "p_draw": 28.1,
+      "p_away": 51.7,
       "winner": "Panama",
       "score": "0-1",
-      "xg_home": 0.883,
-      "xg_away": 1.193,
-      "over25": 34.4,
-      "btts": 40.9,
+      "xg_home": 0.729,
+      "xg_away": 1.354,
+      "over25": 34.6,
+      "btts": 38.4,
       "avg_goals": 2.08,
-      "confidence_score": 78,
-      "confidence_level": "high",
+      "confidence_score": 58,
+      "confidence_level": "medium",
       "top_scores": [
         {
           "score": "0-1",
-          "prob": 14.96
-        },
-        {
-          "score": "1-1",
-          "prob": 13.21
+          "prob": 16.87
         },
         {
           "score": "0-0",
-          "prob": 12.54
+          "prob": 12.46
         },
         {
-          "score": "1-0",
-          "prob": 11.07
+          "score": "1-1",
+          "prob": 12.29
+        },
+        {
+          "score": "0-2",
+          "prob": 11.42
         }
       ],
-      "bayesian_blend": true,
+      "bayesian_blend": false,
       "signals": {
         "elo": true,
         "dixon_coles": true,
         "form_a": true,
         "form_b": true,
-        "odds": true,
+        "odds": false,
         "xg_a": true,
         "xg_b": true,
         "h2h": false,
@@ -5160,10 +5160,10 @@
       "opta_qual_home": 38.7,
       "opta_qual_away": 37.8,
       "consensus": false,
-      "odds_home": 2.033,
-      "odds_draw": 3.38,
-      "odds_away": 3.553,
-      "odds_ok": true,
+      "odds_home": null,
+      "odds_draw": null,
+      "odds_away": null,
+      "odds_ok": false,
       "weather_temp": 26.6,
       "weather_rain": 0.6,
       "weather_cond": "ideal",
@@ -5178,43 +5178,43 @@
       "date": "2026-06-23",
       "stadium": "Gillette Stadium",
       "group": "L",
-      "p_home": 81.2,
-      "p_draw": 13.1,
-      "p_away": 5.6,
+      "p_home": 86.9,
+      "p_draw": 10.0,
+      "p_away": 3.1,
       "winner": "England",
       "score": "2-0",
       "xg_home": 2.8,
-      "xg_away": 0.334,
-      "over25": 59.8,
-      "btts": 26.5,
-      "avg_goals": 3.13,
-      "confidence_score": 95,
+      "xg_away": 0.388,
+      "over25": 60.9,
+      "btts": 29.9,
+      "avg_goals": 3.19,
+      "confidence_score": 75,
       "confidence_level": "high",
       "top_scores": [
         {
           "score": "2-0",
-          "prob": 17.06
+          "prob": 16.17
         },
         {
           "score": "3-0",
-          "prob": 15.93
+          "prob": 15.09
         },
         {
           "score": "1-0",
-          "prob": 12.19
+          "prob": 11.55
         },
         {
           "score": "4-0",
-          "prob": 11.15
+          "prob": 10.57
         }
       ],
-      "bayesian_blend": true,
+      "bayesian_blend": false,
       "signals": {
         "elo": true,
         "dixon_coles": true,
         "form_a": true,
         "form_b": true,
-        "odds": true,
+        "odds": false,
         "xg_a": true,
         "xg_b": true,
         "h2h": false,
@@ -5236,10 +5236,10 @@
       "opta_qual_home": 94.2,
       "opta_qual_away": 38.7,
       "consensus": true,
-      "odds_home": 1.307,
-      "odds_draw": 5.003,
-      "odds_away": 9.13,
-      "odds_ok": true,
+      "odds_home": null,
+      "odds_draw": null,
+      "odds_away": null,
+      "odds_ok": false,
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
@@ -5254,43 +5254,43 @@
       "date": "2026-06-23",
       "stadium": "BMO Field",
       "group": "L",
-      "p_home": 12.2,
-      "p_draw": 22.5,
-      "p_away": 65.3,
+      "p_home": 14.5,
+      "p_draw": 23.5,
+      "p_away": 62.0,
       "winner": "Croatia",
       "score": "0-1",
-      "xg_home": 0.582,
-      "xg_away": 1.813,
-      "over25": 42.8,
-      "btts": 36.9,
-      "avg_goals": 2.39,
-      "confidence_score": 75,
-      "confidence_level": "high",
+      "xg_home": 0.677,
+      "xg_away": 1.696,
+      "over25": 42.3,
+      "btts": 40.2,
+      "avg_goals": 2.37,
+      "confidence_score": 55,
+      "confidence_level": "medium",
       "top_scores": [
         {
           "score": "0-1",
-          "prob": 16.53
+          "prob": 15.8
         },
         {
           "score": "0-2",
-          "prob": 14.98
+          "prob": 13.4
         },
         {
           "score": "1-1",
-          "prob": 9.62
+          "prob": 10.7
         },
         {
           "score": "0-0",
-          "prob": 9.12
+          "prob": 9.32
         }
       ],
-      "bayesian_blend": true,
+      "bayesian_blend": false,
       "signals": {
         "elo": true,
         "dixon_coles": true,
         "form_a": true,
         "form_b": false,
-        "odds": true,
+        "odds": false,
         "xg_a": true,
         "xg_b": true,
         "h2h": false,
@@ -5312,10 +5312,10 @@
       "opta_qual_home": 37.8,
       "opta_qual_away": 79.3,
       "consensus": true,
-      "odds_home": 6.78,
-      "odds_draw": 3.87,
-      "odds_away": 1.477,
-      "odds_ok": true,
+      "odds_home": null,
+      "odds_draw": null,
+      "odds_away": null,
+      "odds_ok": false,
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
@@ -5330,43 +5330,43 @@
       "date": "2026-06-27",
       "stadium": "MetLife Stadium",
       "group": "L",
-      "p_home": 7.9,
-      "p_draw": 14.7,
-      "p_away": 77.4,
+      "p_home": 6.5,
+      "p_draw": 14.8,
+      "p_away": 78.8,
       "winner": "England",
       "score": "0-2",
-      "xg_home": 0.453,
-      "xg_away": 2.4,
-      "over25": 54.0,
-      "btts": 33.0,
-      "avg_goals": 2.85,
-      "confidence_score": 85,
-      "confidence_level": "high",
+      "xg_home": 0.529,
+      "xg_away": 2.383,
+      "over25": 55.4,
+      "btts": 37.2,
+      "avg_goals": 2.91,
+      "confidence_score": 65,
+      "confidence_level": "medium",
       "top_scores": [
         {
           "score": "0-2",
-          "prob": 16.62
+          "prob": 15.44
         },
         {
           "score": "0-1",
-          "prob": 13.85
+          "prob": 12.96
         },
         {
           "score": "0-3",
-          "prob": 13.29
+          "prob": 12.26
         },
         {
-          "score": "0-4",
-          "prob": 7.98
+          "score": "1-2",
+          "prob": 8.17
         }
       ],
-      "bayesian_blend": true,
+      "bayesian_blend": false,
       "signals": {
         "elo": true,
         "dixon_coles": true,
         "form_a": true,
         "form_b": true,
-        "odds": true,
+        "odds": false,
         "xg_a": true,
         "xg_b": true,
         "h2h": true,
@@ -5388,10 +5388,10 @@
       "opta_qual_home": 37.8,
       "opta_qual_away": 94.2,
       "consensus": true,
-      "odds_home": 7.747,
-      "odds_draw": 5.897,
-      "odds_away": 1.28,
-      "odds_ok": true,
+      "odds_home": null,
+      "odds_draw": null,
+      "odds_away": null,
+      "odds_ok": false,
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
@@ -5406,43 +5406,43 @@
       "date": "2026-06-27",
       "stadium": "Lincoln Financial Field",
       "group": "L",
-      "p_home": 68.7,
-      "p_draw": 20.3,
-      "p_away": 11.0,
+      "p_home": 77.2,
+      "p_draw": 16.0,
+      "p_away": 6.7,
       "winner": "Croatia",
       "score": "2-0",
-      "xg_home": 2.157,
-      "xg_away": 0.469,
-      "over25": 48.6,
-      "btts": 33.0,
-      "avg_goals": 2.63,
-      "confidence_score": 81,
-      "confidence_level": "high",
+      "xg_home": 2.231,
+      "xg_away": 0.494,
+      "over25": 51.0,
+      "btts": 34.7,
+      "avg_goals": 2.72,
+      "confidence_score": 61,
+      "confidence_level": "medium",
       "top_scores": [
         {
           "score": "2-0",
-          "prob": 16.84
+          "prob": 16.32
         },
         {
           "score": "1-0",
-          "prob": 15.61
+          "prob": 14.63
         },
         {
           "score": "3-0",
-          "prob": 12.11
+          "prob": 12.13
         },
         {
           "score": "2-1",
-          "prob": 7.89
+          "prob": 8.06
         }
       ],
-      "bayesian_blend": true,
+      "bayesian_blend": false,
       "signals": {
         "elo": true,
         "dixon_coles": true,
         "form_a": false,
         "form_b": true,
-        "odds": true,
+        "odds": false,
         "xg_a": true,
         "xg_b": true,
         "h2h": false,
@@ -5464,10 +5464,10 @@
       "opta_qual_home": 79.3,
       "opta_qual_away": 38.7,
       "consensus": true,
-      "odds_home": 1.637,
-      "odds_draw": 3.59,
-      "odds_away": 5.287,
-      "odds_ok": true,
+      "odds_home": null,
+      "odds_draw": null,
+      "odds_away": null,
+      "odds_ok": false,
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
