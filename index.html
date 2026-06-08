@@ -753,30 +753,30 @@ nav{
 <script>
 // =============== ELO DATA (World Football ELO Ratings) ===============
 var ELO = {
-  // Groupe A
-  "Mexico":1900,"South Africa":1650,"South Korea":1760,"Czechia":1790,
+  // Groupe A — ELO World Football (mis à jour juin 2026)
+  "Mexico":1875,"South Africa":1650,"South Korea":1758,"Czechia":1740,
   // Groupe B
-  "Canada":1793,"Bosnia-Herzegovina":1720,"Qatar":1423,"Switzerland":1820,
+  "Canada":1788,"Bosnia-Herzegovina":1720,"Qatar":1423,"Switzerland":1894,
   // Groupe C
   "Brazil":1988,"Morocco":1824,"Haiti":1420,"Scotland":1790,
   // Groupe D
-  "USA":1733,"Paraguay":1720,"Australia":1774,"Turkey":1855,
+  "USA":1733,"Paraguay":1697,"Australia":1774,"Turkey":1855,
   // Groupe E
   "Germany":1925,"Curaçao":1400,"Ivory Coast":1780,"Ecuador":1935,
   // Groupe F
-  "Netherlands":1960,"Japan":1906,"Sweden":1840,"Tunisia":1620,
+  "Netherlands":1944,"Japan":1906,"Sweden":1840,"Tunisia":1620,
   // Groupe G
-  "Belgium":1888,"Egypt":1720,"Iran":1772,"New Zealand":1450,
+  "Belgium":1888,"Egypt":1699,"Iran":1772,"New Zealand":1450,
   // Groupe H
-  "Spain":2165,"Cape Verde":1580,"Saudi Arabia":1566,"Uruguay":1870,
+  "Spain":2155,"Cape Verde":1580,"Saudi Arabia":1569,"Uruguay":1892,
   // Groupe I
-  "France":2081,"Senegal":1867,"Iraq":1550,"Norway":1870,
+  "France":2062,"Senegal":1867,"Iraq":1550,"Norway":1917,
   // Groupe J
-  "Argentina":2113,"Algeria":1750,"Austria":1820,"Jordan":1560,
+  "Argentina":2113,"Algeria":1750,"Austria":1820,"Jordan":1685,
   // Groupe K
-  "Portugal":1984,"DR Congo":1680,"Uzbekistan":1620,"Colombia":1930,
+  "Portugal":1984,"DR Congo":1680,"Uzbekistan":1718,"Colombia":1977,
   // Groupe L
-  "England":2020,"Croatia":1940,"Ghana":1680,"Panama":1710
+  "England":2020,"Croatia":1908,"Ghana":1510,"Panama":1734
 };
 
 var FLAGS = {
@@ -1041,6 +1041,13 @@ function renderGroups(){
     var ps=pairs(g.teams);
     for(var pi=0;pi<ps.length;pi++){
       var a=ps[pi][0],b=ps[pi][1],pr=predict(a,b);
+      // Override avec V2 si disponible (même logique que openModal)
+      var v2g=V2_PREDS[a+"|"+b]||V2_PREDS[b+"|"+a];
+      var v2rg=(v2g&&V2_PREDS[b+"|"+a]&&!V2_PREDS[a+"|"+b]);
+      if(v2g&&!v2g.error){
+        if(v2rg){pr.pW=v2g.p_away;pr.pD=v2g.p_draw;pr.pL=v2g.p_home;if(v2g.score){var sp=v2g.score.split("-");pr.best=(sp[1]||"?")+"-"+(sp[0]||"?");}}
+        else{pr.pW=v2g.p_home;pr.pD=v2g.p_draw;pr.pL=v2g.p_away;if(v2g.score)pr.best=v2g.score;}
+      }
       html+='<div class="match-row" onclick="openModal(\''+a.replace(/'/g,"\\'")+'\',\''+b.replace(/'/g,"\\'")+'\')">'+
         '<div class="mt">'+fl(a)+' '+a+'</div>'+
         '<div class="mc"><div class="mc-pct">'+pr.pW.toFixed(0)+'%</div><div class="mc-score">'+pr.best+'</div><div class="mc-lbl">vs</div><div class="mc-pct" style="color:var(--gold)">'+pr.pL.toFixed(0)+'%</div></div>'+
@@ -1105,6 +1112,15 @@ function renderCalendar(){
     if(!days[m.d]){days[m.d]=[];dayOrder.push(m.d);}
     days[m.d].push(m);
   }
+  // Trier les dates chronologiquement
+  dayOrder.sort();
+  // Trier les matchs au sein de chaque jour par heure
+  for(var dk in days){
+    days[dk].sort(function(x,y){
+      var tx=x.t&&x.t!=="TBD"?x.t:"99:99",ty=y.t&&y.t!=="TBD"?y.t:"99:99";
+      return tx.localeCompare(ty);
+    });
+  }
 
   var html="";
   for(var di=0;di<dayOrder.length;di++){
@@ -1121,6 +1137,13 @@ function renderCalendar(){
       var pred=null,predStr="";
       if(ELO[m.a]&&ELO[m.b]){
         pred=predict(m.a,m.b);
+        // Override avec V2 si disponible
+        var v2c=V2_PREDS[m.a+"|"+m.b]||V2_PREDS[m.b+"|"+m.a];
+        var v2rc=(v2c&&V2_PREDS[m.b+"|"+m.a]&&!V2_PREDS[m.a+"|"+m.b]);
+        if(v2c&&!v2c.error){
+          if(v2rc){pred.pW=v2c.p_away;pred.pL=v2c.p_home;if(v2c.score){var spc=v2c.score.split("-");pred.best=(spc[1]||"?")+"-"+(spc[0]||"?");}}
+          else{pred.pW=v2c.p_home;pred.pL=v2c.p_away;if(v2c.score)pred.best=v2c.score;}
+        }
         predStr=pred.best+" · "+pred.pW.toFixed(0)+"% – "+pred.pL.toFixed(0)+"%";
       }
       var da=pred?' data-a="'+m.a+'" data-b="'+m.b+'"':'';
@@ -1541,8 +1564,9 @@ var V2_PREDS = {};
       d.matches.forEach(function(m){
         if(!m.error) V2_PREDS[m.home+"|"+m.away] = m;
       });
-      // Re-render groups so match cards show V2 scores
+      // Re-render pour afficher les scores V2 partout
       renderGroups();
+      if(document.getElementById("page-calendar").classList.contains("on")) renderCalendar();
     })
     .catch(function(){});
 })();
