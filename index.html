@@ -493,29 +493,93 @@ nav{
 .phase-ko{background:rgba(116,89,69,.1);color:var(--secondary)}
 .phase-final{background:rgba(86,98,70,.1);color:var(--tertiary)}
 
-/* ── EXPERT REDDIT FEED ────────────────────────────────────── */
-.expert-feed{margin-top:14px;border-top:1px solid var(--border);padding-top:12px;display:flex;flex-direction:column;gap:6px}
+/* ── EXPERT ARTICLE CARDS ───────────────────────────────────── */
+.expert-feed{margin-top:14px;border-top:1px solid var(--border);padding-top:12px;display:flex;flex-direction:column;gap:8px}
 .expert-feed-title{font-family:'Space Mono',monospace;font-size:.55rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:5px}
-.epost{background:var(--s2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .12s;margin:0 -2px}
-.epost:hover{border-color:var(--border-hi)}
-.epost-head{display:flex;align-items:center;gap:7px;padding:8px 10px 5px}
-.epost-avatar{width:24px;height:24px;border-radius:50%;background:var(--s3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
+.epost{background:var(--s2);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;text-decoration:none;display:block;color:inherit;transition:transform .14s,border-color .14s,box-shadow .14s}
+.epost:hover{transform:translateY(-2px);border-color:var(--border-hi);box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.epost-stripe{height:3px;width:100%}
+.epost-stripe-opta{background:linear-gradient(90deg,#00a651,#4eca8a)}
+.epost-stripe-espn{background:linear-gradient(90deg,#cc0000,#ff4433)}
+.epost-stripe-bbc{background:linear-gradient(90deg,#bb1919,#e03030)}
+.epost-stripe-forebet{background:linear-gradient(90deg,#1565c0,#42a5f5)}
+.epost-head{display:flex;align-items:center;gap:7px;padding:9px 12px 4px}
+.epost-avatar{width:26px;height:26px;border-radius:6px;background:var(--s3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0}
 .epost-meta{flex:1;min-width:0}
-.epost-source{font-size:.68rem;font-weight:700;color:var(--text)}
+.epost-source{font-size:.7rem;font-weight:700;color:var(--text)}
 .epost-sub{font-size:.54rem;color:var(--muted);font-family:'Space Mono',monospace}
 .epost-badge{font-size:.5rem;padding:1px 5px;border-radius:9999px;font-weight:700;letter-spacing:.04em}
 .badge-model{background:rgba(78,202,138,.12);color:var(--primary);border:1px solid rgba(78,202,138,.2)}
 .badge-expert{background:rgba(96,165,250,.12);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
 .badge-ai{background:rgba(167,139,250,.12);color:var(--purple);border:1px solid rgba(167,139,250,.2)}
-.epost-body{padding:0 10px 6px;font-size:.7rem;color:var(--text-2);line-height:1.45}
-.epost-pick{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;background:var(--s3);border-radius:5px;margin:4px 10px 8px;font-size:.68rem;font-weight:700}
+.epost-title{font-family:'Bricolage Grotesque',sans-serif;font-size:.82rem;font-weight:700;color:var(--text);line-height:1.35;padding:4px 12px 3px}
+.epost-body{padding:0 12px 5px;font-size:.69rem;color:var(--text-2);line-height:1.45}
+.epost-pick{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;background:var(--s3);border:1px solid var(--border);border-radius:5px;margin:4px 12px 6px;font-size:.68rem;font-weight:700}
 .epost-pick-win{color:var(--primary)}
 .epost-pick-draw{color:var(--muted)}
 .epost-pick-lose{color:var(--secondary)}
-.epost-foot{display:flex;align-items:center;gap:8px;padding:5px 10px 8px;border-top:1px solid var(--border)}
+.epost-foot{display:flex;align-items:center;gap:8px;padding:6px 12px 9px;border-top:1px solid var(--border)}
+.epost-read{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;color:var(--primary);font-family:'Space Mono',monospace;letter-spacing:.05em;text-transform:uppercase;margin-left:auto;background:rgba(78,202,138,.07);padding:3px 9px;border-radius:5px;border:1px solid rgba(78,202,138,.18);transition:background .1s}
+.epost:hover .epost-read{background:rgba(78,202,138,.14)}
 .epost-votes{display:flex;align-items:center;gap:3px;font-size:.6rem;font-family:'Space Mono',monospace;color:var(--muted)}
 .epost-upvote{font-size:.62rem;color:var(--primary)}
-.epost-conf{font-size:.55rem;color:var(--muted);margin-left:auto;font-family:'Space Mono',monospace}
+.epost-conf{font-size:.55rem;color:var(--muted);font-family:'Space Mono',monospace}
+
+/* ── NEWS FEED ──────────────────────────────────────────────── */
+.news-controls{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.news-filter{background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:5px 12px;font-size:.72rem;color:var(--text-2);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;transition:background .1s,border-color .1s,color .1s}
+.news-filter:hover,.news-filter.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.news-refresh{background:var(--s3);border:1px solid var(--border);border-radius:8px;padding:5px 12px;font-size:.72rem;color:var(--muted);cursor:pointer;font-family:'Space Mono',monospace;margin-left:auto;transition:color .1s,border-color .1s}
+.news-refresh:hover{color:var(--text);border-color:var(--border-hi)}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.news-card{background:var(--s1);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;text-decoration:none;display:flex;flex-direction:column;transition:transform .14s,box-shadow .14s,border-color .14s;color:inherit}
+.news-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.4);border-color:var(--border-hi)}
+.news-card-img{width:100%;height:160px;object-fit:cover;background:var(--s2);display:block}
+.news-card-img-ph{width:100%;height:120px;background:linear-gradient(135deg,var(--s2),var(--s3));display:flex;align-items:center;justify-content:center;font-size:2.5rem}
+.news-card-body{padding:13px 14px;flex:1;display:flex;flex-direction:column;gap:6px}
+.news-card-source{display:flex;align-items:center;gap:6px}
+.news-card-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.news-card-src-name{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.news-card-date{font-family:'Space Mono',monospace;font-size:.56rem;color:var(--muted);margin-left:auto}
+.news-card-title{font-family:'Bricolage Grotesque',sans-serif;font-size:.88rem;font-weight:700;color:var(--text);line-height:1.35;flex:1}
+.news-card-excerpt{font-size:.7rem;color:var(--text-2);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.news-card-footer{display:flex;align-items:center;justify-content:flex-end;padding:7px 14px 10px;border-top:1px solid var(--border)}
+.news-card-read{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:4px}
+.news-skeleton{background:var(--s1);border:1px solid var(--border);border-radius:12px;overflow:hidden;animation:pulse 1.4s ease-in-out infinite}
+.news-sk-img{height:120px;background:var(--s2)}
+.news-sk-body{padding:13px 14px}
+.news-sk-line{height:10px;border-radius:5px;background:var(--s2);margin-bottom:8px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+
+/* ── BETTING MARKETS ────────────────────────────────────────── */
+.bm-tabs{display:flex;gap:3px;flex-wrap:nowrap;overflow-x:auto;margin:12px 0 8px;scrollbar-width:none}
+.bm-tabs::-webkit-scrollbar{display:none}
+.bm-tab{flex-shrink:0;background:var(--s3);border:1px solid var(--border);border-radius:7px;padding:4px 10px;font-size:.6rem;font-weight:700;color:var(--text-2);cursor:pointer;font-family:'Space Mono',monospace;letter-spacing:.04em;text-transform:uppercase;transition:background .1s,color .1s,border-color .1s;white-space:nowrap}
+.bm-tab:hover{background:var(--s4);color:var(--text)}
+.bm-tab.on{background:rgba(78,202,138,.12);border-color:var(--primary);color:var(--primary)}
+.bm-sec{display:none}
+.bm-sec.on{display:block}
+.bm{display:flex;align-items:center;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.05);gap:8px}
+.bm:last-child{border-bottom:none}
+.bm-n{font-family:'Space Mono',monospace;font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;flex:1;line-height:1.35}
+.bm-v{font-size:.75rem;color:var(--text);font-weight:600;white-space:nowrap;text-align:right}
+.bmr{font-size:.58rem;font-weight:700;padding:2px 7px;border-radius:9999px;white-space:nowrap;flex-shrink:0;font-family:'Space Mono',monospace}
+.bmr-h{background:rgba(78,202,138,.15);color:var(--primary)}
+.bmr-m{background:rgba(226,169,106,.12);color:var(--secondary)}
+.bmr-l{background:rgba(240,106,106,.1);color:var(--red)}
+.bmr-n{background:rgba(255,255,255,.05);color:var(--muted)}
+.bm-g{font-family:'Space Mono',monospace;font-size:.52rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:11px 0 4px;padding-bottom:3px;border-bottom:1px solid var(--border)}
+.bm-plr{background:var(--s2);border:1px solid var(--border);border-radius:8px;padding:9px 12px;margin-bottom:5px;display:flex;align-items:center;gap:10px}
+.bm-plr-n{font-weight:700;font-size:.77rem;color:var(--text);flex:1}
+.bm-plr-p{font-size:.6rem;color:var(--muted);background:var(--s3);padding:1px 6px;border-radius:4px;font-family:'Space Mono',monospace}
+.bm-plr-s{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted)}
+.bm-plr-bar{width:50px;height:4px;border-radius:2px;background:var(--border);overflow:hidden}
+.bm-plr-fill{height:100%;border-radius:2px;background:var(--primary)}
+.bm-ouline{display:flex;gap:4px;flex-wrap:wrap;margin:4px 0 8px}
+.bm-ou{background:var(--s3);border:1px solid var(--border);border-radius:6px;padding:4px 9px;font-size:.65rem;font-weight:700;font-family:'Space Mono',monospace;text-align:center;min-width:50px}
+.bm-ou.hi{border-color:var(--primary);color:var(--primary);background:rgba(78,202,138,.08)}
+.bm-ou.lo{border-color:var(--secondary);color:var(--secondary);background:rgba(226,169,106,.06)}
+.bm-ou span{display:block;font-size:.5rem;color:var(--muted);font-weight:400}
 
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 /* ── BOTTOM NAV (mobile) ────────────────────────────────────── */
@@ -578,6 +642,12 @@ nav{
   .cm-team{font-size:.72rem}
   .cm-time{font-size:.58rem}
   .cm-pred{font-size:.58rem}
+
+  /* News grid */
+  .news-grid{grid-template-columns:1fr}
+  .news-card-img,.news-card-img-ph{height:140px}
+  .news-controls{gap:5px}
+  .news-refresh{margin-left:0}
 
   /* Bracket scroll */
   .bk{min-width:600px}
@@ -643,6 +713,7 @@ nav{
       <button class="tab" onclick="goTo('rankings',this)">ELO</button>
       <button class="tab" onclick="goTo('simulator',this)">Simulateur</button>
       <button class="tab" onclick="goTo('weather',this)">Météo</button>
+      <button class="tab" onclick="goTo('news',this)">📰 Actu</button>
     </div>
     <div class="countdown">
       <div class="cd-unit"><span class="cd-num" id="cd-d">—</span>j</div>
@@ -726,6 +797,22 @@ nav{
   <div class="wgrid" id="w-grid"></div>
 </div>
 
+<!-- ACTUALITÉS -->
+<div class="page" id="page-news">
+  <div class="sec">Actualités FIFA World Cup 2026 — flux en direct</div>
+  <div class="news-controls">
+    <button class="news-filter on" onclick="filterNews('all',this)">Tous</button>
+    <button class="news-filter" onclick="filterNews('BBC Sport',this)">🎙 BBC Sport</button>
+    <button class="news-filter" onclick="filterNews('ESPN FC',this)">🏈 ESPN FC</button>
+    <button class="news-filter" onclick="filterNews('The Guardian',this)">📰 Guardian</button>
+    <button class="news-filter" onclick="filterNews('Sky Sports',this)">📡 Sky Sports</button>
+    <button class="news-filter" onclick="filterNews('Goal.com',this)">⚽ Goal.com</button>
+    <button class="news-refresh" onclick="loadNews(true)">↻ Actualiser</button>
+  </div>
+  <p id="news-status" style="color:var(--muted);font-size:.76rem;margin-bottom:12px">Chargement des flux RSS…</p>
+  <div id="news-grid" class="news-grid"></div>
+</div>
+
 <!-- MODAL -->
 <div class="overlay" id="overlay" onclick="overlayClick(event)">
   <div class="modal" id="modal"></div>
@@ -747,6 +834,9 @@ nav{
   </button>
   <button class="bn-item" id="bn-weather" onclick="goToMobile('weather',this)">
     <span class="bn-icon">🌤</span>Météo
+  </button>
+  <button class="bn-item" id="bn-news" onclick="goToMobile('news',this)">
+    <span class="bn-icon">📰</span>Actu
   </button>
 </nav>
 
@@ -953,6 +1043,108 @@ var OPTA_WIN = {"Spain": 16.1, "France": 13.0, "England": 11.2, "Argentina": 10.
 var OPTA_QUAL = {"Mexico": {"qualify_pct": 87.2, "win_group_pct": 55.1}, "South Korea": {"qualify_pct": 70.1, "win_group_pct": 22.3}, "Czechia": {"qualify_pct": 64.2, "win_group_pct": 18.5}, "Czech Republic": {"qualify_pct": 64.2, "win_group_pct": 18.5}, "South Africa": {"qualify_pct": 48.9, "win_group_pct": 4.1}, "Switzerland": {"qualify_pct": 85.4, "win_group_pct": 42.1}, "Canada": {"qualify_pct": 79.8, "win_group_pct": 35.3}, "Bosnia-Herzegovina": {"qualify_pct": 38.2, "win_group_pct": 14.6}, "Qatar": {"qualify_pct": 18.6, "win_group_pct": 8.0}, "Brazil": {"qualify_pct": 96.9, "win_group_pct": 60.2}, "Morocco": {"qualify_pct": 81.4, "win_group_pct": 28.7}, "Scotland": {"qualify_pct": 51.2, "win_group_pct": 9.8}, "Haiti": {"qualify_pct": 21.3, "win_group_pct": 1.3}, "USA": {"qualify_pct": 77.0, "win_group_pct": 32.4}, "Turkey": {"qualify_pct": 71.4, "win_group_pct": 28.9}, "Australia": {"qualify_pct": 65.3, "win_group_pct": 24.2}, "Paraguay": {"qualify_pct": 36.2, "win_group_pct": 14.5}, "Germany": {"qualify_pct": 96.1, "win_group_pct": 59.9}, "Ecuador": {"qualify_pct": 81.2, "win_group_pct": 30.7}, "Ivory Coast": {"qualify_pct": 38.6, "win_group_pct": 7.9}, "Cura\u00e7ao": {"qualify_pct": 4.1, "win_group_pct": 1.5}, "Netherlands": {"qualify_pct": 88.2, "win_group_pct": 48.2}, "Japan": {"qualify_pct": 74.3, "win_group_pct": 26.4}, "Sweden": {"qualify_pct": 54.7, "win_group_pct": 18.9}, "Tunisia": {"qualify_pct": 32.8, "win_group_pct": 6.5}, "Belgium": {"qualify_pct": 89.6, "win_group_pct": 51.9}, "Egypt": {"qualify_pct": 68.2, "win_group_pct": 20.3}, "Iran": {"qualify_pct": 64.3, "win_group_pct": 18.1}, "New Zealand": {"qualify_pct": 47.8, "win_group_pct": 9.7}, "Spain": {"qualify_pct": 98.5, "win_group_pct": 74.3}, "Uruguay": {"qualify_pct": 84.3, "win_group_pct": 18.9}, "Cape Verde": {"qualify_pct": 22.1, "win_group_pct": 4.8}, "Saudi Arabia": {"qualify_pct": 15.1, "win_group_pct": 2.0}, "France": {"qualify_pct": 95.3, "win_group_pct": 60.3}, "Norway": {"qualify_pct": 82.3, "win_group_pct": 25.2}, "Senegal": {"qualify_pct": 62.0, "win_group_pct": 11.4}, "Iraq": {"qualify_pct": 27.1, "win_group_pct": 3.1}, "Argentina": {"qualify_pct": 95.8, "win_group_pct": 73.0}, "Austria": {"qualify_pct": 75.4, "win_group_pct": 17.8}, "Algeria": {"qualify_pct": 49.3, "win_group_pct": 7.4}, "Jordan": {"qualify_pct": 29.5, "win_group_pct": 1.8}, "Portugal": {"qualify_pct": 94.9, "win_group_pct": 59.0}, "Colombia": {"qualify_pct": 84.9, "win_group_pct": 28.7}, "DR Congo": {"qualify_pct": 34.1, "win_group_pct": 8.4}, "Uzbekistan": {"qualify_pct": 26.1, "win_group_pct": 3.9}, "England": {"qualify_pct": 94.2, "win_group_pct": 67.5}, "Croatia": {"qualify_pct": 79.3, "win_group_pct": 20.8}, "Ghana": {"qualify_pct": 38.7, "win_group_pct": 8.2}, "Panama": {"qualify_pct": 37.8, "win_group_pct": 3.5}};
 var OPTA_INSIGHTS = {"France": {"key_player": "Kylian Mbapp\u00e9", "key_stat": "12 buts sur WC 2018+2022, 14 contributions directes", "risk": "Groupe difficile avec Norway (Haaland) \u2014 seul favori dans cette situation", "strength": "Profondeur d'effectif exceptionnelle, champion du monde 2018", "opta_note": "13% de chance de gagner le tournoi \u2014 2e favori"}, "Spain": {"key_player": "Lamine Yamal", "key_stat": "16% de chances de victoire finale \u2014 favori absolu Opta", "risk": "D\u00e9pendance au pressing haut \u2014 fatigue en tournoi long", "strength": "Tiki-taka nouvelle g\u00e9n\u00e9ration, vainqueurs Euro 2024", "opta_note": "52% de chances d'atteindre les quarts"}, "England": {"key_player": "Jude Bellingham", "key_stat": "11.2% de chances \u2014 3e favori Opta, 67.9% de topper le groupe L", "risk": "Croatia dangereux en phase de groupes (ESPN pr\u00e9dit nul 1-1)", "strength": "Attaque redoutable, Bellingham + Kane", "opta_note": "47.7% de chances d'atteindre les quarts"}, "Argentina": {"key_player": "Lionel Messi", "key_stat": "Champions du monde en titre, forme excellente (WWWWW)", "risk": "Messi vieillissant (38 ans), dernier tournoi probable", "strength": "Meilleure forme du tournoi, 3 titres WC historiques", "opta_note": "10.4% \u2014 4e favori, 73% de topper le groupe J"}, "Brazil": {"key_player": "Vin\u00edcius Jr.", "key_stat": "6.6% de chances \u2014 5e favori Opta", "risk": "ESPN surprenant : pr\u00e9dit Morocco 1-0 Brazil au 1er match", "strength": "Record 5 titres WC, s\u00e9lecteur Ancelotti", "opta_note": "22.1% de chances d'atteindre les demi-finales"}, "Germany": {"key_player": "Florian Wirtz", "key_stat": "96.1% de chances de qualification selon Opta", "risk": "ESPN pr\u00e9dit Japon 2-1 Netherlands (choc possible en R32)", "strength": "Reconstruction r\u00e9ussie post-2022, football offensif", "opta_note": "5.1% de victoire finale \u2014 6e favori"}, "Norway": {"key_player": "Erling Haaland", "key_stat": "16 buts en 8 matchs qualifs \u2014 record europ\u00e9en absolu", "risk": "Premi\u00e8re participation WC, manque d'exp\u00e9rience tournoi", "strength": "Haaland = meilleur finisseur mondial, 4.6 buts/match qualifs", "opta_note": "3.5% de victoire finale \u2014 dark horse cr\u00e9dible"}, "Portugal": {"key_player": "Rafael Le\u00e3o", "key_stat": "94.9% de qualification, ESPN surprenant : DR Congo 2-1 Portugal J1", "risk": "Post-Ronaldo, leadership en question", "strength": "G\u00e9n\u00e9ration talentueuse, Bernardo Silva cr\u00e9ateur", "opta_note": "7.0% \u2014 5e favori, vainqueur potentiel"}, "Netherlands": {"key_player": "Cody Gakpo", "key_stat": "88.2% de qualification, ESPN : Japan 2-1 Netherlands J1 (surprise)", "risk": "Pas de 9 de classe mondiale, d\u00e9pend de la cr\u00e9ativit\u00e9", "strength": "Meilleur r\u00e9sultat depuis 2014 (3e), Van Dijk leader d\u00e9fensif", "opta_note": "3.6% de victoire finale"}, "Morocco": {"key_player": "Achraf Hakimi", "key_stat": "1\u00e8re \u00e9quipe africaine demi-finaliste WC 2022", "risk": "ESPN : Morocco 1-0 Brazil (upset potentiel r\u00e9alis\u00e9 ?)", "strength": "D\u00e9fense compacte, coaching tactique, stade plein de supporters", "opta_note": "1.9% de victoire finale \u2014 meilleure surprise possible"}, "USA": {"key_player": "Christian Pulisic", "key_stat": "Pays h\u00f4te, 77% de qualification, ESPN : 2-0 Paraguay J1", "risk": "ESPN pr\u00e9dit Turkey 2-1 USA en J3 \u2014 \u00e9limination possible", "strength": "Avantage du pays h\u00f4te, motivation exceptionnelle", "opta_note": "1.2% de victoire finale, mais stades acquis \u00e0 leur cause"}, "Senegal": {"key_player": "Sadio Man\u00e9", "key_stat": "Vainqueurs CAN 2022, 62% de qualification Opta", "risk": "Groupe difficile (France, Norway), ESPN pr\u00e9dit nul vs Norway", "strength": "Collectif soud\u00e9, exp\u00e9rience WC 2022 (quarts de finale)", "opta_note": "0.5% de victoire finale, mais vrai outsider \u00e0 surveiller"}};
 
+// ═══ TEAM BETTING STATS ═══
+// cf=corners for, ca=corners against, yc=yellow cards/game, p=key players [{n,pos,gr(goals/game),sh(shots/game)}]
+var TB={
+  "Mexico":{cf:5.8,ca:4.1,yc:1.9,p:[{n:"Raúl Jiménez",pos:"ATT",gr:.55,sh:2.8},{n:"Santiago Giménez",pos:"ATT",gr:.48,sh:2.4},{n:"Edson Álvarez",pos:"MID",gr:.08,sh:1.1}]},
+  "South Africa":{cf:4.8,ca:5.2,yc:2.3,p:[{n:"Evidence Makgopa",pos:"ATT",gr:.28,sh:1.8},{n:"Lyle Foster",pos:"ATT",gr:.22,sh:1.6},{n:"Percy Tau",pos:"MID",gr:.18,sh:1.4}]},
+  "South Korea":{cf:5.2,ca:4.8,yc:1.8,p:[{n:"Son Heung-min",pos:"ATT",gr:.42,sh:2.6},{n:"Hwang Hee-chan",pos:"ATT",gr:.36,sh:2.1},{n:"Lee Kang-in",pos:"MID",gr:.22,sh:1.8}]},
+  "Czechia":{cf:5.4,ca:4.7,yc:2.1,p:[{n:"Patrik Schick",pos:"ATT",gr:.45,sh:2.4},{n:"Tomáš Souček",pos:"MID",gr:.15,sh:1.3},{n:"Lukáš Provod",pos:"MID",gr:.10,sh:1.1}]},
+  "Canada":{cf:5.1,ca:4.8,yc:1.7,p:[{n:"Jonathan David",pos:"ATT",gr:.52,sh:2.7},{n:"Alphonso Davies",pos:"DEF",gr:.12,sh:1.2},{n:"Tajon Buchanan",pos:"MID",gr:.20,sh:1.5}]},
+  "Bosnia-Herzegovina":{cf:5.0,ca:5.1,yc:2.4,p:[{n:"Edin Džeko",pos:"ATT",gr:.38,sh:2.1},{n:"Miralem Pjanić",pos:"MID",gr:.12,sh:1.3},{n:"Amer Gojak",pos:"MID",gr:.10,sh:1.0}]},
+  "Qatar":{cf:4.2,ca:6.1,yc:2.2,p:[{n:"Almoez Ali",pos:"ATT",gr:.40,sh:2.2},{n:"Akram Afif",pos:"MID",gr:.28,sh:1.8},{n:"Mohammed Muntari",pos:"ATT",gr:.22,sh:1.4}]},
+  "Switzerland":{cf:5.6,ca:4.4,yc:1.6,p:[{n:"Granit Xhaka",pos:"MID",gr:.15,sh:1.6},{n:"Breel Embolo",pos:"ATT",gr:.44,sh:2.4},{n:"Xherdan Shaqiri",pos:"MID",gr:.25,sh:1.9}]},
+  "Brazil":{cf:6.3,ca:3.8,yc:1.8,p:[{n:"Vinícius Júnior",pos:"ATT",gr:.52,sh:3.2},{n:"Rodrygo",pos:"ATT",gr:.40,sh:2.4},{n:"Casemiro",pos:"MID",gr:.12,sh:1.1}]},
+  "Morocco":{cf:5.1,ca:4.7,yc:2.1,p:[{n:"Youssef En-Nesyri",pos:"ATT",gr:.38,sh:2.2},{n:"Achraf Hakimi",pos:"DEF",gr:.15,sh:1.5},{n:"Hakim Ziyech",pos:"MID",gr:.22,sh:1.8}]},
+  "Haiti":{cf:4.0,ca:5.8,yc:2.5,p:[{n:"Nazon",pos:"ATT",gr:.25,sh:1.6},{n:"Jodel Dossou",pos:"MID",gr:.15,sh:1.2},{n:"Frantzdy Pierrot",pos:"ATT",gr:.18,sh:1.3}]},
+  "Scotland":{cf:5.3,ca:4.9,yc:2.0,p:[{n:"Andrew Robertson",pos:"DEF",gr:.08,sh:0.9},{n:"John McGinn",pos:"MID",gr:.18,sh:1.6},{n:"Che Adams",pos:"ATT",gr:.32,sh:1.9}]},
+  "USA":{cf:5.4,ca:4.8,yc:1.8,p:[{n:"Christian Pulisic",pos:"MID",gr:.38,sh:2.2},{n:"Gio Reyna",pos:"MID",gr:.22,sh:1.7},{n:"Folarin Balogun",pos:"ATT",gr:.35,sh:2.0}]},
+  "Paraguay":{cf:5.0,ca:5.1,yc:2.2,p:[{n:"Miguel Almirón",pos:"MID",gr:.22,sh:1.8},{n:"Antonio Sanabria",pos:"ATT",gr:.35,sh:2.0},{n:"Gustavo Gómez",pos:"DEF",gr:.06,sh:0.5}]},
+  "Australia":{cf:5.1,ca:4.9,yc:1.9,p:[{n:"Nestory Irankunda",pos:"ATT",gr:.30,sh:1.8},{n:"Mathew Leckie",pos:"MID",gr:.20,sh:1.5},{n:"Craig Goodwin",pos:"MID",gr:.15,sh:1.2}]},
+  "Turkey":{cf:5.5,ca:4.6,yc:2.4,p:[{n:"Hakan Çalhanoğlu",pos:"MID",gr:.20,sh:1.8},{n:"Arda Güler",pos:"MID",gr:.30,sh:2.0},{n:"Kerem Aktürkoğlu",pos:"ATT",gr:.28,sh:1.7}]},
+  "Germany":{cf:6.4,ca:3.7,yc:1.5,p:[{n:"Florian Wirtz",pos:"MID",gr:.35,sh:2.5},{n:"Jamal Musiala",pos:"MID",gr:.30,sh:2.2},{n:"Kai Havertz",pos:"ATT",gr:.38,sh:2.2}]},
+  "Curaçao":{cf:4.1,ca:6.2,yc:2.3,p:[{n:"Myron Boadu",pos:"ATT",gr:.30,sh:1.9},{n:"Leandro Bacuna",pos:"MID",gr:.15,sh:1.2},{n:"Cuco Martina",pos:"DEF",gr:.03,sh:0.4}]},
+  "Ivory Coast":{cf:5.2,ca:4.9,yc:2.0,p:[{n:"Sébastien Haller",pos:"ATT",gr:.40,sh:2.2},{n:"Franck Kessié",pos:"MID",gr:.15,sh:1.3},{n:"Nicolas Pépé",pos:"ATT",gr:.25,sh:1.8}]},
+  "Ecuador":{cf:5.3,ca:4.8,yc:2.1,p:[{n:"Kendry Páez",pos:"MID",gr:.22,sh:1.7},{n:"Enner Valencia",pos:"ATT",gr:.42,sh:2.3},{n:"Moisés Caicedo",pos:"MID",gr:.12,sh:1.2}]},
+  "Netherlands":{cf:6.2,ca:3.9,yc:1.7,p:[{n:"Cody Gakpo",pos:"ATT",gr:.42,sh:2.5},{n:"Memphis Depay",pos:"ATT",gr:.40,sh:2.2},{n:"Tijjani Reijnders",pos:"MID",gr:.20,sh:1.7}]},
+  "Japan":{cf:5.1,ca:4.9,yc:1.6,p:[{n:"Takefusa Kubo",pos:"MID",gr:.28,sh:2.1},{n:"Kaoru Mitoma",pos:"MID",gr:.25,sh:1.9},{n:"Ayase Ueda",pos:"ATT",gr:.40,sh:2.3}]},
+  "Sweden":{cf:5.5,ca:4.6,yc:1.9,p:[{n:"Alexander Isak",pos:"ATT",gr:.50,sh:2.6},{n:"Dejan Kulusevski",pos:"MID",gr:.30,sh:1.9},{n:"Emil Forsberg",pos:"MID",gr:.22,sh:1.6}]},
+  "Tunisia":{cf:4.9,ca:5.2,yc:2.3,p:[{n:"Wahbi Khazri",pos:"ATT",gr:.30,sh:1.8},{n:"Anis Ben Slimane",pos:"MID",gr:.15,sh:1.2},{n:"Youssef Msakni",pos:"MID",gr:.22,sh:1.6}]},
+  "Belgium":{cf:6.0,ca:4.1,yc:1.8,p:[{n:"Kevin De Bruyne",pos:"MID",gr:.22,sh:2.0},{n:"Romelu Lukaku",pos:"ATT",gr:.55,sh:2.8},{n:"Yannick Carrasco",pos:"MID",gr:.18,sh:1.6}]},
+  "Egypt":{cf:5.0,ca:5.1,yc:2.0,p:[{n:"Mohamed Salah",pos:"ATT",gr:.55,sh:3.1},{n:"Mostafa Mohamed",pos:"ATT",gr:.35,sh:1.8},{n:"Omar Marmoush",pos:"ATT",gr:.38,sh:2.2}]},
+  "Iran":{cf:5.2,ca:4.9,yc:2.2,p:[{n:"Mehdi Taremi",pos:"ATT",gr:.48,sh:2.6},{n:"Sardar Azmoun",pos:"ATT",gr:.38,sh:2.1},{n:"Ali Gholizadeh",pos:"MID",gr:.18,sh:1.4}]},
+  "New Zealand":{cf:4.5,ca:5.6,yc:1.9,p:[{n:"Chris Wood",pos:"ATT",gr:.35,sh:2.0},{n:"Liberato Cacace",pos:"DEF",gr:.08,sh:0.8},{n:"Clayton Lewis",pos:"MID",gr:.12,sh:1.1}]},
+  "Spain":{cf:7.2,ca:3.2,yc:1.6,p:[{n:"Lamine Yamal",pos:"MID",gr:.32,sh:2.8},{n:"Álvaro Morata",pos:"ATT",gr:.45,sh:2.5},{n:"Pedri",pos:"MID",gr:.20,sh:1.8}]},
+  "Cape Verde":{cf:4.3,ca:5.8,yc:2.1,p:[{n:"Júlio Tavares",pos:"ATT",gr:.32,sh:1.8},{n:"Garry Rodrigues",pos:"MID",gr:.20,sh:1.4},{n:"Ryan Mendes",pos:"MID",gr:.15,sh:1.1}]},
+  "Saudi Arabia":{cf:4.5,ca:5.6,yc:2.3,p:[{n:"Salem Al-Dawsari",pos:"MID",gr:.28,sh:1.9},{n:"Firas Al-Buraikan",pos:"ATT",gr:.30,sh:1.8},{n:"Mohammed Kanno",pos:"MID",gr:.10,sh:1.0}]},
+  "Uruguay":{cf:5.6,ca:4.5,yc:2.2,p:[{n:"Darwin Núñez",pos:"ATT",gr:.48,sh:2.7},{n:"Federico Valverde",pos:"MID",gr:.25,sh:1.8},{n:"Rodrigo Bentancur",pos:"MID",gr:.12,sh:1.2}]},
+  "France":{cf:6.8,ca:3.5,yc:1.7,p:[{n:"Kylian Mbappé",pos:"ATT",gr:.65,sh:3.5},{n:"Antoine Griezmann",pos:"ATT",gr:.42,sh:2.3},{n:"Ousmane Dembélé",pos:"MID",gr:.28,sh:2.4}]},
+  "Senegal":{cf:5.2,ca:4.9,yc:2.1,p:[{n:"Sadio Mané",pos:"ATT",gr:.45,sh:2.6},{n:"Ismaïla Sarr",pos:"MID",gr:.28,sh:2.0},{n:"Iliman Ndiaye",pos:"MID",gr:.22,sh:1.7}]},
+  "Iraq":{cf:4.4,ca:5.7,yc:2.4,p:[{n:"Mohanad Ali",pos:"ATT",gr:.35,sh:1.9},{n:"Aymen Hussein",pos:"ATT",gr:.28,sh:1.6},{n:"Ali Adnan",pos:"DEF",gr:.06,sh:0.6}]},
+  "Norway":{cf:5.8,ca:4.3,yc:1.8,p:[{n:"Erling Haaland",pos:"ATT",gr:.88,sh:4.2},{n:"Martin Ødegaard",pos:"MID",gr:.30,sh:2.4},{n:"Alexander Sørloth",pos:"ATT",gr:.42,sh:2.1}]},
+  "Argentina":{cf:6.5,ca:3.7,yc:1.9,p:[{n:"Lionel Messi",pos:"ATT",gr:.62,sh:3.0},{n:"Lautaro Martínez",pos:"ATT",gr:.55,sh:2.8},{n:"Julián Álvarez",pos:"ATT",gr:.45,sh:2.2}]},
+  "Algeria":{cf:5.1,ca:5.0,yc:2.3,p:[{n:"Riyad Mahrez",pos:"MID",gr:.38,sh:2.3},{n:"Islam Slimani",pos:"ATT",gr:.35,sh:2.0},{n:"Youcef Belaïli",pos:"MID",gr:.25,sh:1.8}]},
+  "Austria":{cf:5.5,ca:4.6,yc:2.0,p:[{n:"Marko Arnautović",pos:"ATT",gr:.40,sh:2.1},{n:"Marcel Sabitzer",pos:"MID",gr:.22,sh:1.8},{n:"Konrad Laimer",pos:"MID",gr:.15,sh:1.3}]},
+  "Jordan":{cf:4.6,ca:5.5,yc:2.3,p:[{n:"Musa Al-Taamari",pos:"MID",gr:.22,sh:1.6},{n:"Baha Faisal",pos:"ATT",gr:.30,sh:1.7},{n:"Yazan Al-Naimat",pos:"ATT",gr:.20,sh:1.4}]},
+  "Portugal":{cf:6.3,ca:3.8,yc:1.8,p:[{n:"Rafael Leão",pos:"ATT",gr:.42,sh:2.6},{n:"Bruno Fernandes",pos:"MID",gr:.38,sh:2.4},{n:"Bernardo Silva",pos:"MID",gr:.28,sh:2.1}]},
+  "DR Congo":{cf:4.8,ca:5.3,yc:2.4,p:[{n:"Cédric Bakambu",pos:"ATT",gr:.38,sh:2.0},{n:"Théo Bongonda",pos:"MID",gr:.22,sh:1.6},{n:"Chancel Mbemba",pos:"DEF",gr:.05,sh:0.5}]},
+  "Uzbekistan":{cf:5.0,ca:5.1,yc:2.0,p:[{n:"Eldor Shomurodov",pos:"ATT",gr:.40,sh:2.2},{n:"Abbosbek Fayzullayev",pos:"MID",gr:.20,sh:1.6},{n:"Jaloliddin Masharipov",pos:"MID",gr:.18,sh:1.4}]},
+  "Colombia":{cf:5.7,ca:4.4,yc:2.0,p:[{n:"Luis Díaz",pos:"ATT",gr:.42,sh:2.5},{n:"James Rodríguez",pos:"MID",gr:.28,sh:2.0},{n:"Jhon Córdoba",pos:"ATT",gr:.38,sh:2.1}]},
+  "England":{cf:6.6,ca:3.6,yc:1.7,p:[{n:"Harry Kane",pos:"ATT",gr:.62,sh:3.1},{n:"Jude Bellingham",pos:"MID",gr:.35,sh:2.5},{n:"Bukayo Saka",pos:"MID",gr:.38,sh:2.4}]},
+  "Croatia":{cf:5.4,ca:4.7,yc:1.9,p:[{n:"Luka Modrić",pos:"MID",gr:.18,sh:1.6},{n:"Andrej Kramarić",pos:"ATT",gr:.42,sh:2.3},{n:"Mateo Kovačić",pos:"MID",gr:.15,sh:1.4}]},
+  "Ghana":{cf:4.7,ca:5.4,yc:2.3,p:[{n:"Inaki Williams",pos:"ATT",gr:.30,sh:1.9},{n:"Thomas Partey",pos:"MID",gr:.12,sh:1.2},{n:"Jordan Ayew",pos:"ATT",gr:.28,sh:1.7}]},
+  "Panama":{cf:4.5,ca:5.6,yc:2.5,p:[{n:"Ismael Díaz",pos:"ATT",gr:.25,sh:1.5},{n:"Rolando Blackburn",pos:"ATT",gr:.30,sh:1.7},{n:"Adalberto Carrasquilla",pos:"MID",gr:.15,sh:1.2}]}
+};
+
+// ═══ ARTICLE URLS ═══
+var OPTA_GROUP_URLS={
+  A:"https://theanalyst.com/articles/world-cup-2026-group-a-predictions-preview",
+  B:"https://theanalyst.com/articles/world-cup-2026-group-b-predictions-preview",
+  C:"https://theanalyst.com/articles/world-cup-2026-group-c-predictions-preview",
+  D:"https://theanalyst.com/articles/world-cup-2026-group-d-predictions-preview",
+  E:"https://theanalyst.com/articles/world-cup-2026-group-e-predictions-preview",
+  F:"https://theanalyst.com/articles/world-cup-2026-group-f-predictions-preview",
+  G:"https://theanalyst.com/articles/world-cup-2026-group-g-predictions-preview",
+  H:"https://theanalyst.com/articles/world-cup-2026-group-h-predictions-preview",
+  I:"https://theanalyst.com/articles/world-cup-2026-group-i-predictions-preview",
+  J:"https://theanalyst.com/articles/world-cup-2026-group-j-predictions-preview",
+  K:"https://theanalyst.com/articles/world-cup-2026-group-k-predictions-preview",
+  L:"https://theanalyst.com/articles/world-cup-2026-group-l-predictions-preview"
+};
+var OPTA_MATCH_URLS={
+  "Mexico|South Africa":"https://theanalyst.com/articles/mexico-vs-south-africa-prediction-world-cup-2026-match-preview"
+};
+var ESPN_MATCH_URLS={
+  default:"https://www.espn.com/soccer/story/_/id/47211639/2026-world-cup-draw-groups-takeaways-predictions-see-games",
+  betting:"https://www.espn.com/espn/betting/story/_/id/48807078/fifa-world-cup-betting-preview-best-bets-picks-odds-props-futures-2026"
+};
+var FOREBET_MATCH_URLS={
+  "Mexico|South Africa":"https://www.forebet.com/en/football/matches/mexico-south-africa-2463129",
+  default:"https://www.forebet.com/en/football/competitions/group-stage/1/"
+};
+var BBC_GROUP_URLS={
+  default:"https://www.bbc.co.uk/sport/football/world-cup"
+};
+
+function getGroupForTeams(a,b){
+  for(var g in GROUPS){var t=GROUPS[g].teams;if(t.indexOf(a)!==-1&&t.indexOf(b)!==-1)return g;}
+  return null;
+}
+function getOptaUrl(a,b){
+  var k=a+"|"+b,k2=b+"|"+a;
+  if(OPTA_MATCH_URLS[k]) return OPTA_MATCH_URLS[k];
+  if(OPTA_MATCH_URLS[k2]) return OPTA_MATCH_URLS[k2];
+  var g=getGroupForTeams(a,b);
+  return(g&&OPTA_GROUP_URLS[g])||"https://theanalyst.com/articles/fifa-world-cup-2026-groups-predictions-previews";
+}
+function getForebetUrl(a,b){
+  var k=a+"|"+b,k2=b+"|"+a;
+  if(FOREBET_MATCH_URLS[k]) return FOREBET_MATCH_URLS[k];
+  if(FOREBET_MATCH_URLS[k2]) return FOREBET_MATCH_URLS[k2];
+  return FOREBET_MATCH_URLS.default;
+}
+function slugTeam(t){return t.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/-+$/,"");}
+
 function getExpert(a, b) {
   var key1 = a+'|'+b, key2 = b+'|'+a;
   var pick = ESPN_PICKS[key1] || null;
@@ -1020,6 +1212,244 @@ function tier(e){
   if(e>=1700) return{l:"Compétitif",c:"b-y"};
   return{l:"Outsider",c:"b-r"};
 }
+
+// ─── BETTING ENGINE ────────────────────────────────────────────
+function pOP(lam, thresh){
+  var k=Math.floor(thresh),p=0,term=Math.exp(-lam);
+  for(var i=0;i<=k;i++){p+=term;if(i<k)term=term*lam/(i+1);}
+  return Math.max(1,Math.min(99,Math.round((1-p)*100)));
+}
+function pWBN(la,lb,n){ // P(home wins by >= n goals)
+  var t=0;
+  for(var i=0;i<=9;i++) for(var j=0;j<=9;j++) if(i-j>=n) t+=poisson(la,i)*poisson(lb,j);
+  return Math.max(1,Math.min(99,Math.round(t*100)));
+}
+function calcBM(a,b,pr){
+  var la=pr.la,lb=pr.lb,ea=pr.ea,eb=pr.eb;
+  var pH=pr.pW/100,pA=pr.pL/100;
+  var ta=TB[a]||{cf:5.0,ca:5.0,yc:2.1,p:[]};
+  var tb=TB[b]||{cf:5.0,ca:5.0,yc:2.1,p:[]};
+  var ed=(ea-eb)/1000;
+  var cA=Math.max(2,Math.min(9,(ta.cf+tb.ca)/2+ed*1.8));
+  var cB=Math.max(2,Math.min(9,(tb.cf+ta.ca)/2-ed*1.8));
+  var tC=cA+cB;
+  var ycA=ta.yc+(pA>pH+.1?.35:0);
+  var ycB=tb.yc+(pH>pA+.1?.35:0);
+  var tYC=ycA+ycB;
+  var laH=la*.43,lbH=lb*.43,la2=la*.57,lb2=lb*.57;
+  var pAnyG=1-Math.exp(-(la+lb));
+  var pFA=la+lb>0?Math.round(la/(la+lb)*pAnyG*100):50;
+  var pFB=la+lb>0?Math.round(lb/(la+lb)*pAnyG*100):50;
+  var pFN=Math.round(Math.exp(-(la+lb))*100);
+  var allP=ta.p.map(function(p){return{n:p.n,pos:p.pos,gr:p.gr,sh:p.sh,team:a};})
+    .concat(tb.p.map(function(p){return{n:p.n,pos:p.pos,gr:p.gr,sh:p.sh,team:b};}));
+  allP.sort(function(x,y){return y.gr-x.gr;});
+  return{
+    // match
+    p1X:Math.round((pH+pr.pD/100)*100), pX2:Math.round((pr.pD/100+pA)*100), p12:Math.round((pH+pA)*100),
+    hcp1:pWBN(la,lb,2), hcpM1:pWBN(lb,la,2), hcp2:pWBN(la,lb,3), hcp3:pWBN(la,lb,4), hcp4:pWBN(la,lb,5),
+    csH:Math.round(Math.exp(-lb)*100), csA:Math.round(Math.exp(-la)*100),
+    btts:Math.round(pr.btts), bttsH1:Math.round((1-Math.exp(-laH))*(1-Math.exp(-lbH))*100),
+    bttsH2:Math.round((1-Math.exp(-la2))*(1-Math.exp(-lb2))*100),
+    // goals
+    o05:pOP(la+lb,0), o15:pOP(la+lb,1), o25:Math.round(pr.o25), o35:pOP(la+lb,3), o45:pOP(la+lb,4), o55:pOP(la+lb,5),
+    h1o05:pOP(laH+lbH,0), h1o15:pOP(laH+lbH,1), h1o25:pOP(laH+lbH,2),
+    h2o05:pOP(la2+lb2,0), h2o15:pOP(la2+lb2,1), h2o25:pOP(la2+lb2,2),
+    hG0:Math.round(Math.exp(-la)*100), hG1p:pOP(la,0), hG2p:pOP(la,1), hG3p:pOP(la,2),
+    aG0:Math.round(Math.exp(-lb)*100), aG1p:pOP(lb,0), aG2p:pOP(lb,1), aG3p:pOP(lb,2),
+    fgH:pFA, fgA:pFB, fgN:pFN,
+    // corners
+    cA:cA,cB:cB,tC:tC,
+    co75:pOP(tC,7),co85:pOP(tC,8),co95:pOP(tC,9),co105:pOP(tC,10),co115:pOP(tC,11),
+    cAW:Math.round(cA/tC*100),
+    cAo35:pOP(cA,3),cAo45:pOP(cA,4),cAo55:pOP(cA,5),
+    cBo35:pOP(cB,3),cBo45:pOP(cB,4),cBo55:pOP(cB,5),
+    ch1AW:Math.round(cA*.46/(cA*.46+cB*.46)*100),
+    ch1o45:pOP((cA+cB)*.46,4), h2o45:pOP((cA+cB)*.54,4),
+    cOdd:Math.round(50+Math.sin(tC*3.14)*8), // rough odd/even 50±8
+    // cards
+    ycA:ycA,ycB:ycB,tYC:tYC,
+    yco25:pOP(tYC,2),yco35:pOP(tYC,3),yco45:pOP(tYC,4),
+    ycAW:Math.round(ycA/tYC*100),
+    ycAo15:pOP(ycA,1),ycAo25:pOP(ycA,2),
+    ycBo15:pOP(ycB,1),ycBo25:pOP(ycB,2),
+    // players
+    pA:ta.p.map(function(p){return{n:p.n,pos:p.pos,gr:p.gr,sh:p.sh,team:a};}),
+    pB:tb.p.map(function(p){return{n:p.n,pos:p.pos,gr:p.gr,sh:p.sh,team:b};}),
+    all:allP
+  };
+}
+
+function swBT(btn){
+  var tab=btn.getAttribute('data-bt');
+  btn.closest('.bm-tabs').querySelectorAll('.bm-tab').forEach(function(t){t.classList.remove('on');});
+  btn.classList.add('on');
+  var modal=document.getElementById('modal');
+  modal.querySelectorAll('.bm-sec').forEach(function(s){s.classList.remove('on');});
+  var sec=modal.querySelector('#bm-'+tab);
+  if(sec) sec.classList.add('on');
+}
+
+function buildBM(a,b,pr){
+  var bm=calcBM(a,b,pr);
+  var fa=fl(a),fb=fl(b);
+  function rec(v,hi,me){
+    hi=hi||60;me=me||52;
+    if(v>=hi) return '<span class="bmr bmr-h">✅ '+v+'%</span>';
+    if(v>=me) return '<span class="bmr bmr-m">⚡ '+v+'%</span>';
+    return '<span class="bmr bmr-l">'+v+'%</span>';
+  }
+  function recN(v,hi,me){ // "neutral" — inverse not necessarily bad
+    hi=hi||60;me=me||52;
+    if(v>=hi||v<=100-hi) return '<span class="bmr bmr-h">'+v+'%</span>';
+    if(v>=me||v<=100-me) return '<span class="bmr bmr-m">'+v+'%</span>';
+    return '<span class="bmr bmr-n">'+v+'%</span>';
+  }
+  function m(n,v,b){return '<div class="bm"><span class="bm-n">'+n+'</span><span class="bm-v">'+v+'</span>'+b+'</div>';}
+  function g(t){return '<div class="bm-g">'+t+'</div>';}
+  function ou(lines){
+    var h='<div class="bm-ouline">';
+    lines.forEach(function(l){h+='<div class="bm-ou '+(l.v>=55?'hi':l.v<=45?'lo':'')+'">'+l.l+'<span>'+l.v+'%</span></div>';});
+    return h+'</div>';
+  }
+
+  // ── POPULAIRES ──
+  var pop='';
+  pop+=g('Meilleurs angles · tous marchés confondus');
+  var winV=Math.round(pr.pW); var winN=winV>=pr.pL?a:b; var winP=Math.max(winV,Math.round(pr.pL));
+  pop+=m('Résultat — victoire '+winN, fa+(winN===a?'':' '+a+' / '+fb+' ')+winN, rec(winP,65,55));
+  pop+=m('Total buts O/U 2.5', bm.o25>=50?'Over '+bm.o25+'%':'Under '+(100-bm.o25)+'%', rec(bm.o25>=50?bm.o25:100-bm.o25,60,53));
+  pop+=m('1ère mi-temps — au moins 1 but', 'Over 0.5 · '+bm.h1o05+'%', rec(bm.h1o05,70,58));
+  pop+=m('Les deux équipes marquent', bm.btts>=50?'Oui '+bm.btts+'%':'Non '+(100-bm.btts)+'%', rec(bm.btts>=50?bm.btts:100-bm.btts,58,50));
+  pop+=m('Corners — plus de corners', fa+' '+a+' '+bm.cAW+'% / '+fb+' '+b+' '+(100-bm.cAW)+'%', rec(Math.max(bm.cAW,100-bm.cAW),65,57));
+  pop+=m('Total corners O/U 8.5', 'Over '+bm.co85+'%', rec(bm.co85,60,52));
+  pop+=m('Cartons O/U 2.5', bm.yco25>=50?'Over '+bm.yco25+'%':'Under '+(100-bm.yco25)+'%', rec(bm.yco25>=50?bm.yco25:100-bm.yco25,60,52));
+  if(bm.all.length){var ts=bm.all[0];pop+=m('Buteur à tout moment — meilleure cote', (ts.team===a?fa:fb)+' '+ts.n, rec(Math.round(ts.gr*100),45,32));}
+  pop+=g('Score exact le plus probable');
+  if(pr.scores&&pr.scores.length){
+    var s0=pr.scores[0];
+    pop+=m('Score exact #1', s0.s+' · '+(s0.p<1?(s0.p*100).toFixed(1):(s0.p).toFixed(1))+'%', '<span class="bmr bmr-n">'+(s0.p<1?Math.round(s0.p*100):Math.round(s0.p))+'%</span>');
+    if(pr.scores[1]){var s1=pr.scores[1];pop+=m('Score exact #2', s1.s+' · '+(s1.p<1?(s1.p*100).toFixed(1):(s1.p).toFixed(1))+'%', '<span class="bmr bmr-n">'+(s1.p<1?Math.round(s1.p*100):Math.round(s1.p))+'%</span>');}
+  }
+
+  // ── MATCH ──
+  var mat='';
+  mat+=g('Résultat (temps réglementaire)');
+  mat+=m('1X2 — Victoire '+a, fa+' '+a, rec(Math.round(pr.pW),65,53));
+  mat+=m('1X2 — Nul', 'Match nul', recN(Math.round(pr.pD),30,22));
+  mat+=m('1X2 — Victoire '+b, fb+' '+b, rec(Math.round(pr.pL),65,53));
+  mat+=g('Chance double');
+  mat+=m('1X — '+a+' ou Nul', fa, rec(bm.p1X,75,63));
+  mat+=m('X2 — Nul ou '+b, fb, rec(bm.pX2,75,63));
+  mat+=m('12 — '+a+' ou '+b+' (pas de nul)', 'Match nul exclu', rec(bm.p12,75,63));
+  mat+=g('Handicap — '+a+' (domicile)');
+  mat+=m('Handicap -1 · '+a+' gagne 2+', fa, rec(bm.hcp1,50,38));
+  mat+=m('Handicap -2 · '+a+' gagne 3+', fa, rec(bm.hcp2,35,22));
+  mat+=m('Handicap -3 · '+a+' gagne 4+', fa, rec(bm.hcp3,20,12));
+  mat+=g('Handicap — +1 '+b+' (visiteur)');
+  mat+=m('Handicap -1 · '+b+' gagne 2+', fb, rec(bm.hcpM1,50,38));
+  mat+=g('Les deux équipes marquent');
+  mat+=m('BTTS — Oui', 'Les deux marquent', rec(bm.btts,58,48));
+  mat+=m('BTTS — Non', 'Au moins une équipe ne marque pas', rec(100-bm.btts,58,48));
+  mat+=m('BTTS en 1ère mi-temps', 'Les deux marquent en H1', rec(bm.bttsH1,40,28));
+  mat+=m('BTTS en 2ème mi-temps', 'Les deux marquent en H2', rec(bm.bttsH2,48,35));
+  mat+=g('Clean sheet');
+  mat+=m(a+' ne prend pas de but', fa+' clean sheet', rec(bm.csH,55,42));
+  mat+=m(b+' ne prend pas de but', fb+' clean sheet', rec(bm.csA,55,42));
+
+  // ── BUTS ──
+  var gol='';
+  gol+=g('Total buts — temps réglementaire');
+  gol+=ou([{l:'O0.5',v:bm.o05},{l:'O1.5',v:bm.o15},{l:'O2.5',v:bm.o25},{l:'O3.5',v:bm.o35},{l:'O4.5',v:bm.o45},{l:'O5.5',v:bm.o55}]);
+  gol+=g('1ère mi-temps');
+  gol+=ou([{l:'O0.5',v:bm.h1o05},{l:'O1.5',v:bm.h1o15},{l:'O2.5',v:bm.h1o25}]);
+  gol+=g('2ème mi-temps');
+  gol+=ou([{l:'O0.5',v:bm.h2o05},{l:'O1.5',v:bm.h2o15},{l:'O2.5',v:bm.h2o25}]);
+  gol+=g('Buts marqués par '+fa+' '+a);
+  gol+=m('0 but (clean sheet adverse)', bm.hG0+'%', rec(bm.hG0,50,38));
+  gol+=m('1 but ou plus (marque)', bm.hG1p+'%', rec(bm.hG1p,65,52));
+  gol+=m('2 buts ou plus', bm.hG2p+'%', rec(bm.hG2p,45,32));
+  gol+=m('3 buts ou plus', bm.hG3p+'%', rec(bm.hG3p,30,18));
+  gol+=g('Buts marqués par '+fb+' '+b);
+  gol+=m('0 but (clean sheet adverse)', bm.aG0+'%', rec(bm.aG0,50,38));
+  gol+=m('1 but ou plus (marque)', bm.aG1p+'%', rec(bm.aG1p,65,52));
+  gol+=m('2 buts ou plus', bm.aG2p+'%', rec(bm.aG2p,45,32));
+  gol+=m('3 buts ou plus', bm.aG3p+'%', rec(bm.aG3p,30,18));
+  gol+=g('1er but du match');
+  gol+=m('1er but — '+a, fa+' marque en premier', rec(bm.fgH,55,43));
+  gol+=m('1er but — '+b, fb+' marque en premier', rec(bm.fgA,45,32));
+  gol+=m('0-0 à la mi-temps + pas de but', 'Aucun but', recN(bm.fgN,20,10));
+
+  // ── CORNERS ──
+  var cor='';
+  cor+=g('Total corners (temps réglementaire)');
+  cor+=ou([{l:'O5.5',v:pOP(bm.tC,5)},{l:'O6.5',v:pOP(bm.tC,6)},{l:'O7.5',v:bm.co75},{l:'O8.5',v:bm.co85},{l:'O9.5',v:bm.co95},{l:'O10.5',v:bm.co105},{l:'O11.5',v:bm.co115}]);
+  cor+=g('Moy. corners estimés : '+bm.tC.toFixed(1)+' ('+fa+' '+a+' '+bm.cA.toFixed(1)+' — '+fb+' '+b+' '+bm.cB.toFixed(1)+')');
+  cor+=m('Tire plus de corners — '+a, fa+' '+bm.cAW+'%', rec(bm.cAW,65,55));
+  cor+=m('Tire plus de corners — '+b, fb+' '+(100-bm.cAW)+'%', rec(100-bm.cAW,65,55));
+  cor+=g('Corners '+fa+' '+a+' — par mi-temps');
+  cor+=ou([{l:'O3.5',v:bm.cAo35},{l:'O4.5',v:bm.cAo45},{l:'O5.5',v:bm.cAo55}]);
+  cor+=g('Corners '+fb+' '+b+' — par mi-temps');
+  cor+=ou([{l:'O3.5',v:bm.cBo35},{l:'O4.5',v:bm.cBo45},{l:'O5.5',v:bm.cBo55}]);
+  cor+=g('Par mi-temps');
+  cor+=m('1ère mi-temps — plus de corners', fa+' '+a+' '+bm.ch1AW+'%', rec(bm.ch1AW,65,55));
+  cor+=m('1ère mi-temps O/U 4.5', 'Over '+bm.ch1o45+'%', rec(bm.ch1o45,55,44));
+  cor+=m('2ème mi-temps O/U 4.5', 'Over '+bm.h2o45+'%', rec(bm.h2o45,55,44));
+  cor+=m('Total corners — pair/impair', 'Pair ~'+(100-bm.cOdd)+'% / Impair ~'+bm.cOdd+'%', '<span class="bmr bmr-n">~50%</span>');
+
+  // ── CARTONS ──
+  var car='';
+  car+=g('Total cartons jaunes (temps réglementaire)');
+  car+=ou([{l:'O1.5',v:pOP(bm.tYC,1)},{l:'O2.5',v:bm.yco25},{l:'O3.5',v:bm.yco35},{l:'O4.5',v:bm.yco45}]);
+  car+=g('Moy. estimée : '+bm.tYC.toFixed(1)+' ('+fa+' '+bm.ycA.toFixed(1)+' — '+fb+' '+bm.ycB.toFixed(1)+')');
+  car+=m('Reçoit plus de cartons — '+a, fa+' '+bm.ycAW+'%', rec(bm.ycAW,62,52));
+  car+=m('Reçoit plus de cartons — '+b, fb+' '+(100-bm.ycAW)+'%', rec(100-bm.ycAW,62,52));
+  car+=g('Cartons '+fa+' '+a);
+  car+=ou([{l:'O0.5',v:pOP(bm.ycA,0)},{l:'O1.5',v:bm.ycAo15},{l:'O2.5',v:bm.ycAo25}]);
+  car+=g('Cartons '+fb+' '+b);
+  car+=ou([{l:'O0.5',v:pOP(bm.ycB,0)},{l:'O1.5',v:bm.ycBo15},{l:'O2.5',v:bm.ycBo25}]);
+
+  // ── JOUEURS ──
+  var ply='';
+  ply+=g('Buteurs potentiels — classés par goals/match');
+  bm.all.forEach(function(p){
+    var grPct=Math.round(p.gr*100);
+    var barW=Math.min(100,Math.round(p.sh/5*100));
+    ply+='<div class="bm-plr">'+
+      '<div style="font-size:.9rem">'+(p.team===a?fa:fb)+'</div>'+
+      '<div style="flex:1"><div class="bm-plr-n">'+p.n+'</div>'+
+      '<div class="bm-plr-s">⚽ '+grPct+'% but/match · 🎯 '+p.sh.toFixed(1)+' tirs/match</div>'+
+      '<div class="bm-plr-bar"><div class="bm-plr-fill" style="width:'+barW+'%"></div></div></div>'+
+      '<span class="bm-plr-p">'+p.pos+'</span>'+
+      rec(grPct,45,28)+
+      '</div>';
+  });
+  ply+=g('Tirs par joueur (moyennes)');
+  var byShots=bm.all.slice().sort(function(x,y){return y.sh-x.sh;});
+  byShots.forEach(function(p){
+    var sh1p=pOP(p.sh,0),sh2p=pOP(p.sh,1),sh3p=pOP(p.sh,2);
+    ply+='<div class="bm"><span class="bm-n">'+(p.team===a?fa:fb)+' '+p.n+'</span>'+
+      '<span class="bm-v">1+: '+sh1p+'% · 2+: '+sh2p+'% · 3+: '+sh3p+'%</span>'+
+      '<span class="bmr bmr-n">'+p.sh.toFixed(1)+' moy.</span></div>';
+  });
+
+  var tabs='<div class="bm-tabs">'+
+    '<button class="bm-tab on" data-bt="popular" onclick="swBT(this)">⭐ Populaires</button>'+
+    '<button class="bm-tab" data-bt="match" onclick="swBT(this)">🏆 Match</button>'+
+    '<button class="bm-tab" data-bt="goals" onclick="swBT(this)">⚽ Buts</button>'+
+    '<button class="bm-tab" data-bt="corners" onclick="swBT(this)">🚩 Corners</button>'+
+    '<button class="bm-tab" data-bt="cards" onclick="swBT(this)">🟨 Cartons</button>'+
+    '<button class="bm-tab" data-bt="players" onclick="swBT(this)">👤 Joueurs</button>'+
+    '</div>';
+  return tabs+
+    '<div class="bm-sec on" id="bm-popular">'+pop+'</div>'+
+    '<div class="bm-sec" id="bm-match">'+mat+'</div>'+
+    '<div class="bm-sec" id="bm-goals">'+gol+'</div>'+
+    '<div class="bm-sec" id="bm-corners">'+cor+'</div>'+
+    '<div class="bm-sec" id="bm-cards">'+car+'</div>'+
+    '<div class="bm-sec" id="bm-players">'+ply+'</div>';
+}
+// ─── END BETTING ENGINE ────────────────────────────────────────
 function fl(t){return FLAGS[t]||"🏳️";}
 function pairs(arr){var o=[];for(var i=0;i<arr.length;i++)for(var j=i+1;j<arr.length;j++)o.push([arr[i],arr[j]]);return o;}
 
@@ -1269,11 +1699,14 @@ function openModal(a,b){
       expertHtml += '<div class="expert-feed-title">Avis experts · '+[ex.pick?1:0, bbcRaw?1:0, fbRaw?1:0, 1].reduce(function(a,b){return a+b},0)+' sources</div>';
 
       // ── POST 1 : Opta Supercomputer ─────────────────────
-      expertHtml += '<div class="epost">';
+      var optaUrl = getOptaUrl(a,b);
+      expertHtml += '<a class="epost" href="'+optaUrl+'" target="_blank" rel="noopener">';
+      expertHtml += '<div class="epost-stripe epost-stripe-opta"></div>';
       expertHtml += '<div class="epost-head">';
       expertHtml += '<div class="epost-avatar">📊</div>';
       expertHtml += '<div class="epost-meta"><div class="epost-source">Opta Supercomputer <span class="epost-badge badge-model">MODEL</span></div>';
       expertHtml += '<div class="epost-sub">25 000 simulations · Statistiques officielles</div></div></div>';
+      expertHtml += '<div class="epost-title">'+a+' vs '+b+' — Prédictions & Analyse Opta</div>';
       expertHtml += '<div class="epost-body">';
       var optaNote = (ex.insightA&&ex.insightA.opta_note)||'';
       expertHtml += 'Favori : <strong>'+fl(ex.optaFav)+' '+ex.optaFav+'</strong>';
@@ -1283,66 +1716,84 @@ function openModal(a,b){
       expertHtml += '<div class="epost-pick"><span class="'+pickColor(ex.optaFav,a,b)+'">'+fl(ex.optaFav)+' '+ex.optaFav+'</span>';
       expertHtml += '<span style="color:var(--muted);font-size:.62rem"> · Titre '+a+' '+ex.optaA.win+'% / '+b+' '+ex.optaB.win+'%</span></div>';
       expertHtml += '<div class="epost-foot"><span class="epost-votes"><span class="epost-upvote">▲</span> '+Math.floor(Math.random()*800+600)+'</span>';
-      expertHtml += '<span class="epost-conf">Confiance: HIGH</span></div>';
-      expertHtml += '</div>';
+      expertHtml += '<span class="epost-conf">Confiance: HIGH</span>';
+      expertHtml += '<span class="epost-read">Lire l\'article →</span></div>';
+      expertHtml += '</a>';
 
       // ── POST 2 : ESPN Expert Pick ────────────────────────
       if(ex.pick){
         var espnW = ex.pick.winner==='draw'?'Nul':ex.pick.winner;
-        expertHtml += '<div class="epost">';
+        var espnUrl = (typeof ESPN_MATCH_URLS!=='undefined'&&ESPN_MATCH_URLS[a+'_'+b])||'https://www.espn.com/soccer/scoreboard/_/league/FIFA.WORLD';
+        expertHtml += '<a class="epost" href="'+espnUrl+'" target="_blank" rel="noopener">';
+        expertHtml += '<div class="epost-stripe epost-stripe-espn"></div>';
         expertHtml += '<div class="epost-head">';
         expertHtml += '<div class="epost-avatar">🏈</div>';
         expertHtml += '<div class="epost-meta"><div class="epost-source">ESPN FC Expert '+alignBadge(ex.pick,ex.optaFav)+'</div>';
         expertHtml += '<div class="epost-sub">Expert humain · Analyse tactique</div></div></div>';
         var insA = ex.insightA, insB = ex.insightB;
         var espnNote = (insA&&insA.strength)||'';
+        expertHtml += '<div class="epost-title">'+a+' vs '+b+' — Preview ESPN FC</div>';
         expertHtml += '<div class="epost-body">'+(espnNote?espnNote+'.':"Pick basé sur l'analyse tactique du match.")+'</div>';
         expertHtml += '<div class="epost-pick"><span class="'+pickColor(ex.pick.winner,a,b)+'">'+winLabel(ex.pick,a,b)+'</span></div>';
         expertHtml += '<div class="epost-foot"><span class="epost-votes"><span class="epost-upvote">▲</span> '+Math.floor(Math.random()*600+400)+'</span>';
-        expertHtml += '<span class="epost-conf">'+(ex.aligned?'✓ CONSENSUS':'⚡ DIVERGE')+'</span></div>';
-        expertHtml += '</div>';
+        expertHtml += '<span class="epost-conf">'+(ex.aligned?'✓ CONSENSUS':'⚡ DIVERGE')+'</span>';
+        expertHtml += '<span class="epost-read">Lire l\'article →</span></div>';
+        expertHtml += '</a>';
       }
 
       // ── POST 3 : BBC Sport ───────────────────────────────
       if(bbcRaw){
-        expertHtml += '<div class="epost">';
+        var grp = getGroupForTeams(a,b);
+        var bbcUrl = (typeof BBC_GROUP_URLS!=='undefined'&&grp&&BBC_GROUP_URLS[grp])||'https://www.bbc.com/sport/football/world-cup';
+        expertHtml += '<a class="epost" href="'+bbcUrl+'" target="_blank" rel="noopener">';
+        expertHtml += '<div class="epost-stripe epost-stripe-bbc"></div>';
         expertHtml += '<div class="epost-head">';
         expertHtml += '<div class="epost-avatar">🎙</div>';
         expertHtml += '<div class="epost-meta"><div class="epost-source">BBC Sport <span class="epost-badge badge-expert">EXPERT</span></div>';
         expertHtml += '<div class="epost-sub">'+bbcRaw.analyst+' · Journaliste accrédité</div></div></div>';
+        expertHtml += '<div class="epost-title">Pronostic BBC Sport : '+a+' vs '+b+'</div>';
         expertHtml += '<div class="epost-body">"'+bbcRaw.note+'"</div>';
         expertHtml += '<div class="epost-pick"><span class="'+pickColor(bbcRaw.winner,a,b)+'">'+winLabel(bbcRaw,a,b)+'</span></div>';
         expertHtml += '<div class="epost-foot"><span class="epost-votes"><span class="epost-upvote">▲</span> '+Math.floor(Math.random()*500+300)+'</span>';
-        expertHtml += '<span class="epost-conf">BBC SPORT</span></div>';
-        expertHtml += '</div>';
+        expertHtml += '<span class="epost-conf">BBC SPORT</span>';
+        expertHtml += '<span class="epost-read">Lire l\'article →</span></div>';
+        expertHtml += '</a>';
       }
 
       // ── POST 4 : Forebet ─────────────────────────────────
       if(fbRaw){
-        expertHtml += '<div class="epost">';
+        var fbUrl = getForebetUrl(a,b);
+        expertHtml += '<a class="epost" href="'+fbUrl+'" target="_blank" rel="noopener">';
+        expertHtml += '<div class="epost-stripe epost-stripe-forebet"></div>';
         expertHtml += '<div class="epost-head">';
         expertHtml += '<div class="epost-avatar">🤖</div>';
         expertHtml += '<div class="epost-meta"><div class="epost-source">Forebet <span class="epost-badge badge-model">MODEL</span></div>';
         expertHtml += '<div class="epost-sub">'+fbRaw.model+' · Probabilité '+fbRaw.prob+'%</div></div></div>';
+        expertHtml += '<div class="epost-title">Forebet : '+a+' vs '+b+' — Analyse mathématique</div>';
         expertHtml += '<div class="epost-body">Modèle mathématique indépendant. Confiance : <strong>'+fbRaw.prob+'%</strong> en faveur de '+fl(fbRaw.winner)+' '+fbRaw.winner+'.</div>';
         expertHtml += '<div class="epost-pick"><span class="'+pickColor(fbRaw.winner,a,b)+'">'+winLabel(fbRaw,a,b)+'</span></div>';
         expertHtml += '<div class="epost-foot"><span class="epost-votes"><span class="epost-upvote">▲</span> '+Math.floor(Math.random()*400+200)+'</span>';
-        expertHtml += '<span class="epost-conf">FOREBET.COM</span></div>';
-        expertHtml += '</div>';
+        expertHtml += '<span class="epost-conf">FOREBET.COM</span>';
+        expertHtml += '<span class="epost-read">Lire l\'article →</span></div>';
+        expertHtml += '</a>';
       }
 
       // ── POST 5 : Insights clés si disponibles ────────────
       if(ex.insightA&&ex.insightA.key_player){
         var ins=ex.insightA;
-        expertHtml += '<div class="epost">';
+        expertHtml += '<a class="epost" href="'+optaUrl+'" target="_blank" rel="noopener">';
+        expertHtml += '<div class="epost-stripe epost-stripe-opta"></div>';
         expertHtml += '<div class="epost-head">';
         expertHtml += '<div class="epost-avatar">⭐</div>';
         expertHtml += '<div class="epost-meta"><div class="epost-source">Insight Opta <span class="epost-badge badge-ai">DATA</span></div>';
         expertHtml += '<div class="epost-sub">'+fl(a)+' '+a+' · Joueur clé</div></div></div>';
+        expertHtml += '<div class="epost-title">Joueur clé : '+ins.key_player+' ('+a+')</div>';
         expertHtml += '<div class="epost-body">';
         if(ins.key_stat) expertHtml += '💡 '+ins.key_stat+'<br>';
         if(ins.risk) expertHtml += '<span style="color:var(--red)">⚠ '+ins.risk+'</span>';
-        expertHtml += '</div></div>';
+        expertHtml += '</div>';
+        expertHtml += '<div class="epost-foot"><span class="epost-read">Voir sur Opta →</span></div>';
+        expertHtml += '</a>';
       }
 
       expertHtml += '</div>';
@@ -1372,8 +1823,8 @@ document.getElementById("modal").innerHTML=
       '</div>'+
       '<div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:5px">Scores les plus probables</div>'+
       '<div class="score-chips">'+scHtml+'</div>'+
-      '<div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:12px 0 4px">Angles paris</div>'+
-      betHtml+
+      '<div style="font-size:.6rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin:14px 0 4px;display:flex;align-items:center;gap:8px">Paris &amp; Marchés<span style="flex:1;height:1px;background:var(--border);display:inline-block;margin-left:4px"></span></div>'+
+      buildBM(a,b,pr)+
       '<div style="margin-top:10px;padding:10px 12px;background:var(--s3);border:1px solid var(--border);border-radius:8px;font-size:.73rem;color:var(--text-2)">'+
         fl(pr.pW>=pr.pL?a:b)+' <strong style="color:var(--text)">'+winner+'</strong>'+
         (winner!=="Équilibré"?' favori à <strong style="color:var(--green)">'+winP.toFixed(1)+'%</strong>':' — match très équilibré')+
@@ -1533,6 +1984,7 @@ function goTo(id,btn){
   if(id==="rankings") renderRankings();
   if(id==="weather") fetchWeather();
   if(id==="calendar") renderCalendar();
+  if(id==="news") loadNews();
   window.scrollTo(0,0);
 }
 function goToMobile(id,btn){
@@ -1641,6 +2093,129 @@ function analyzeWithAI(home, away, date, stadium, phase){
     btn.innerHTML = '🤖 Analyser avec Gemini';
     panel.innerHTML = '<div style="color:var(--red);font-size:.78rem">⚠ Erreur réseau : '+e.message+'</div>';
     panel.classList.add("on");
+  });
+}
+
+// =============== NEWS ===============
+var NEWS_ALL = [], NEWS_FILTER = 'all', NEWS_LOADED = false;
+var RSS2JSON = 'https://api.rss2json.com/v1/api.json?rss_url=';
+var RSS_SOURCES = [
+  {url:'https://feeds.bbci.co.uk/sport/football/rss.xml', source:'BBC Sport', color:'#bb1919', icon:'🎙'},
+  {url:'https://www.espn.com/espn/rss/soccer/news',        source:'ESPN FC',   color:'#cc0000', icon:'🏈'},
+  {url:'https://www.theguardian.com/football/worldcup/rss',source:'The Guardian',color:'#005689',icon:'📰'},
+  {url:'https://www.goal.com/feeds/en/news',               source:'Goal.com',  color:'#00a651', icon:'⚽'},
+];
+var WC_KW = ['world cup','worldcup','2026','mundial','coupe du monde','fifa','wc26',
+             'mexico','south africa','france','argentina','brazil','england','spain','germany'];
+
+function relTime(iso){
+  if(!iso) return '';
+  var d = new Date(iso), now = new Date(), diff = Math.floor((now - d) / 1000);
+  if(diff < 60) return 'À l\'instant';
+  if(diff < 3600) return Math.floor(diff/60) + ' min';
+  if(diff < 86400) return Math.floor(diff/3600) + 'h';
+  return Math.floor(diff/86400) + 'j';
+}
+
+function newsSkeletons(n){
+  var h = '';
+  for(var i = 0; i < n; i++){
+    h += '<div class="news-skeleton"><div class="news-sk-img"></div><div class="news-sk-body">'+
+         '<div class="news-sk-line" style="width:40%;margin-bottom:10px"></div>'+
+         '<div class="news-sk-line" style="width:90%"></div>'+
+         '<div class="news-sk-line" style="width:75%"></div>'+
+         '<div class="news-sk-line" style="width:55%;margin-top:10px"></div>'+
+         '</div></div>';
+  }
+  return h;
+}
+
+function renderNews(){
+  var arts = NEWS_FILTER === 'all' ? NEWS_ALL : NEWS_ALL.filter(function(a){ return a.source === NEWS_FILTER; });
+  var grid = document.getElementById('news-grid');
+  if(!arts.length){
+    grid.innerHTML = '<div style="color:var(--muted);text-align:center;padding:40px;grid-column:1/-1">Aucun article trouvé pour ce filtre.</div>';
+    return;
+  }
+  grid.innerHTML = arts.map(function(a){
+    var dot = a.color || '#4eca8a';
+    var imgH = a.image
+      ? '<img class="news-card-img" src="'+a.image+'" alt="" onerror="this.style.display=\'none\';this.nextSibling.style.display=\'flex\'">' +
+        '<div class="news-card-img-ph" style="display:none">'+a.icon+'</div>'
+      : '<div class="news-card-img-ph">'+a.icon+'</div>';
+    return '<a class="news-card" href="'+a.url+'" target="_blank" rel="noopener">'+
+      imgH+
+      '<div class="news-card-body">'+
+        '<div class="news-card-source">'+
+          '<div class="news-card-dot" style="background:'+dot+'"></div>'+
+          '<span class="news-card-src-name">'+a.source+'</span>'+
+          '<span class="news-card-date">'+relTime(a.date)+'</span>'+
+        '</div>'+
+        '<div class="news-card-title">'+a.title+'</div>'+
+        (a.summary ? '<div class="news-card-excerpt">'+a.summary+'</div>' : '')+
+      '</div>'+
+      '<div class="news-card-footer">'+
+        '<span class="news-card-read">Lire l\'article →</span>'+
+      '</div>'+
+    '</a>';
+  }).join('');
+}
+
+function filterNews(src, btn){
+  NEWS_FILTER = src;
+  document.querySelectorAll('.news-filter').forEach(function(b){ b.classList.remove('on'); });
+  btn.classList.add('on');
+  renderNews();
+}
+
+function loadNews(force){
+  if(NEWS_LOADED && !force) return;
+  var status = document.getElementById('news-status');
+  var grid   = document.getElementById('news-grid');
+  status.textContent = 'Chargement des flux RSS…';
+  grid.innerHTML = newsSkeletons(6);
+  NEWS_ALL = [];
+
+  var done = 0;
+  var total = RSS_SOURCES.length;
+
+  RSS_SOURCES.forEach(function(src){
+    fetch(RSS2JSON + encodeURIComponent(src.url))
+      .then(function(r){ return r.json(); })
+      .then(function(d){
+        var items = d.items || [];
+        items.forEach(function(item){
+          var text = ((item.title||'') + ' ' + (item.description||'')).toLowerCase();
+          if(!WC_KW.some(function(k){ return text.indexOf(k) !== -1; })) return;
+          // Check for duplicates by URL
+          if(NEWS_ALL.some(function(a){ return a.url === item.link; })) return;
+          NEWS_ALL.push({
+            title:   item.title || '',
+            url:     item.link  || '',
+            summary: (item.description||'').replace(/<[^>]+>/g,'').trim().slice(0,220),
+            source:  src.source,
+            color:   src.color,
+            icon:    src.icon,
+            date:    item.pubDate || '',
+            image:   item.thumbnail || item.enclosure && item.enclosure.link || ''
+          });
+        });
+      })
+      .catch(function(){})
+      .finally(function(){
+        done++;
+        if(done === total){
+          // Sort newest first
+          NEWS_ALL.sort(function(a,b){ return (b.date > a.date ? 1 : b.date < a.date ? -1 : 0); });
+          NEWS_LOADED = true;
+          if(NEWS_ALL.length){
+            status.textContent = NEWS_ALL.length + ' articles WC 2026 · ' + RSS_SOURCES.length + ' sources · Mis à jour ' + relTime(new Date().toISOString());
+          } else {
+            status.textContent = 'Aucun article trouvé — vérifier la connexion réseau.';
+          }
+          renderNews();
+        }
+      });
   });
 }
 

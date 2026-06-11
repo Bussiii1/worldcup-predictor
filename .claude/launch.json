@@ -4,8 +4,9 @@
     {
       "name": "worldcup-predictor",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "--directory", "/Users/victormonnoyer/Downloads/claude cdm/worldcup-predictor"],
-      "port": 8765,
+      "runtimeArgs": ["app.py"],
+      "cwd": "/Users/victormonnoyer/Downloads/claude cdm/worldcup-predictor",
+      "port": 5001,
       "autoPort": true
     }
   ]
