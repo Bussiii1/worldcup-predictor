@@ -2340,7 +2340,12 @@ var LIVE_DATA = {}; // eventId -> event object
 var LIVE_TIMER = null;
 
 function fetchLive(){
-  fetch(ESPN_API + '?limit=100')
+  // Fetch today + yesterday to catch late-finishing matches
+  var today = new Date();
+  var yesterday = new Date(today); yesterday.setDate(today.getDate()-1);
+  function fmt(d){ return d.getFullYear()+String(d.getMonth()+1).padStart(2,'0')+String(d.getDate()).padStart(2,'0'); }
+  var dateParam = '?dates='+fmt(yesterday)+'-'+fmt(today)+'&limit=50';
+  fetch(ESPN_API + dateParam)
     .then(function(r){ return r.json(); })
     .then(function(data){
       var events = data.events || [];
@@ -2517,33 +2522,75 @@ var WALL_FILTER = 'all';
 var WALL_RESULTS = {}; // keyed by "home_away"
 
 function loadPredWall(){
-  // Fetch all ESPN results (past + live) then cross with our predictions
-  fetch(ESPN_API + '?limit=100')
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      var events = data.events || [];
-      events.forEach(function(ev){
-        var comp = ev.competitions && ev.competitions[0];
-        if(!comp) return;
-        var teams = comp.competitors || [];
-        var home = teams.find(function(t){ return t.homeAway==='home'; });
-        var away = teams.find(function(t){ return t.homeAway==='away'; });
-        if(!home || !away) return;
-        var st = ev.status && ev.status.type;
-        WALL_RESULTS[ev.id] = {
-          home: home.team.displayName,
-          away: away.team.displayName,
-          homeScore: parseInt(home.score||0),
-          awayScore: parseInt(away.score||0),
-          isDone: st && st.completed,
-          isLive: st && !st.completed && st.state === 'in',
-          date: ev.date,
-          id: ev.id
-        };
+  // Build date range from tournament start to today
+  var start = new Date('2026-06-11');
+  var today = new Date();
+  today.setHours(23,59,59,0);
+  // Clamp to tournament end (July 19)
+  var end = new Date(Math.min(today.getTime(), new Date('2026-07-19').getTime()));
+
+  // Generate list of dates in YYYYMMDD format
+  var dates = [];
+  var cur = new Date(start);
+  while(cur <= end){
+    var y = cur.getFullYear();
+    var mo = String(cur.getMonth()+1).padStart(2,'0');
+    var da = String(cur.getDate()).padStart(2,'0');
+    dates.push(y+''+mo+''+da);
+    cur.setDate(cur.getDate()+1);
+  }
+
+  // Batch into groups of 7 days to reduce requests
+  var batches = [];
+  for(var i=0; i<dates.length; i+=7){
+    batches.push(dates[i] + (dates[i+6]?'-'+dates[i+6]:i+1<dates.length?'-'+dates[Math.min(i+6,dates.length-1)]:''));
+  }
+
+  var pending = batches.length;
+  if(pending === 0){ renderPredWall(); return; }
+
+  function processEvents(events){
+    events.forEach(function(ev){
+      var comp = ev.competitions && ev.competitions[0];
+      if(!comp) return;
+      var teams = comp.competitors || [];
+      var home = teams.find(function(t){ return t.homeAway==='home'; });
+      var away = teams.find(function(t){ return t.homeAway==='away'; });
+      if(!home || !away) return;
+      var st = ev.status && ev.status.type;
+      WALL_RESULTS[ev.id] = {
+        home: home.team.displayName,
+        away: away.team.displayName,
+        homeScore: parseInt(home.score||0),
+        awayScore: parseInt(away.score||0),
+        isDone: st && st.completed,
+        isLive: st && !st.completed && st.state === 'in',
+        date: ev.date,
+        id: ev.id
+      };
+      // Also store in LIVE_DATA so getLiveResult works in calendar/groups
+      LIVE_DATA[ev.id] = WALL_RESULTS[ev.id];
+    });
+  }
+
+  batches.forEach(function(dateParam){
+    fetch(ESPN_API + '?dates=' + dateParam + '&limit=50')
+      .then(function(r){ return r.json(); })
+      .then(function(data){ processEvents(data.events || []); })
+      .catch(function(){})
+      .finally(function(){
+        pending--;
+        if(pending === 0){
+          renderPredWall();
+          // Refresh calendar/groups if visible
+          if(document.getElementById('page-calendar').classList.contains('on')) renderCalendar();
+          if(document.getElementById('page-groups').classList.contains('on')){
+            updateGroupMatchRows();
+            renderTicker(Object.values(LIVE_DATA).filter(function(e){ return e.isLive; }));
+          }
+        }
       });
-      renderPredWall();
-    })
-    .catch(function(){ renderPredWall(); });
+  });
 }
 
 function matchTeamName(espnName, ourName){
