@@ -475,8 +475,17 @@ nav{
   transition:background .12s,border-color .12s;gap:8px;
 }
 .cal-match:hover{border-color:var(--border-hi);background:var(--s3)}
-.cal-match.played{opacity:.55}
+.cal-match.played{opacity:.75}
 .cal-match.today{border-color:var(--primary);background:rgba(54,103,88,.04)}
+.cm-score-live.live{color:#ef4444;animation:livepulse 1.2s ease-in-out infinite}
+.cm-score-live.final{color:var(--primary)}
+.cm-score-live.final::before{content:"FT · ";font-size:.5rem;font-weight:400;color:var(--muted);font-family:'Space Mono',monospace;vertical-align:middle;letter-spacing:.05em}
+.cm-result-badge{display:inline-block;font-family:'Space Mono',monospace;font-size:.48rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;padding:1px 6px;border-radius:9999px;margin-top:2px}
+.cm-result-badge.won{background:rgba(78,202,138,.12);color:var(--primary);border:1px solid rgba(78,202,138,.25)}
+.cm-result-badge.lost{background:rgba(240,106,106,.08);color:var(--red);border:1px solid rgba(240,106,106,.2)}
+.cm-result-badge.draw{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)}
+.mr-final{font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;color:var(--primary);background:rgba(78,202,138,.1);border:1px solid rgba(78,202,138,.2);border-radius:5px;padding:2px 8px;margin-left:4px}
+.mr-live{font-family:'Space Mono',monospace;font-size:.65rem;font-weight:700;color:#ef4444;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:5px;padding:2px 8px;margin-left:4px;animation:livepulse 1.2s ease-in-out infinite}
 .cm-team{font-size:.8rem;font-weight:700;display:flex;align-items:center;gap:6px}
 .cm-team.right{justify-content:flex-end}
 .cm-mid{text-align:center}
@@ -1658,10 +1667,26 @@ function renderCalendar(){
       var da=pred?' data-a="'+m.a+'" data-b="'+m.b+'"':'';
       html+='<div class="'+cls+'"'+da+(pred?' onclick="calClick(this)"':'')+'>';
       html+='<div class="cm-team">'+fl(m.a)+' <span>'+m.a+'</span></div>';
+      // Look up actual result from LIVE_DATA
+      var liveEv = getLiveResult(m.a, m.b);
+      var scoreDisplay, scoreClass, predDisplay;
+      if(liveEv && liveEv.isDone){
+        scoreDisplay = liveEv.homeScore + ' – ' + liveEv.awayScore;
+        scoreClass = 'final';
+        predDisplay = ''; // hide prediction when result is known
+      } else if(liveEv && liveEv.isLive){
+        scoreDisplay = liveEv.homeScore + ' – ' + liveEv.awayScore + ' <span style="font-size:.5rem;color:#ef4444">'+liveEv.minute+'</span>';
+        scoreClass = 'live';
+        predDisplay = predStr;
+      } else {
+        scoreDisplay = '–';
+        scoreClass = '';
+        predDisplay = predStr;
+      }
       html+='<div class="cm-mid">';
       html+='<div class="cm-time">'+m.t+'</div>';
-      html+='<div class="cm-score-live">–</div>';
-      if(predStr) html+='<div class="cm-pred">'+predStr+'</div>';
+      html+='<div class="cm-score-live '+scoreClass+'">'+scoreDisplay+'</div>';
+      if(predDisplay) html+='<div class="cm-pred">'+predDisplay+'</div>';
       html+='<div class="cm-venue" style="margin-top:3px">'+m.venue+'</div>';
       html+='<div><span class="cm-phase '+pl.c+'">'+pl.l+'</span></div>';
       html+='</div>';
@@ -2300,6 +2325,15 @@ function loadNews(force){
   });
 }
 
+// =============== LIVE RESULT LOOKUP ===============
+function getLiveResult(home, away){
+  // search LIVE_DATA (populated by fetchLive) for this match
+  return Object.values(LIVE_DATA).find(function(ev){
+    return (matchTeamName(ev.home, home) && matchTeamName(ev.away, away))
+        || (matchTeamName(ev.home, away) && matchTeamName(ev.away, home));
+  }) || null;
+}
+
 // =============== LIVE SCORES (ESPN public API) ===============
 var ESPN_API = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard';
 var LIVE_DATA = {}; // eventId -> event object
@@ -2340,8 +2374,15 @@ function fetchLive(){
         if(isLive) liveEvents.push(obj);
       });
       LIVE_DATA = newData;
+      // Also populate WALL_RESULTS so prediction wall works even before tab is opened
+      Object.values(newData).forEach(function(ev){ WALL_RESULTS[ev.id] = ev; });
       renderTicker(liveEvents);
       updateMatchRowBadges(liveEvents);
+      updateGroupMatchRows();
+      // Re-render calendar if visible so scores appear
+      if(document.getElementById('page-calendar').classList.contains('on')) renderCalendar();
+      // Re-render wall if visible
+      if(document.getElementById('page-wall').classList.contains('on')) renderPredWall();
       // auto-refresh every 30s if live matches running
       if(liveEvents.length > 0 && !LIVE_TIMER){
         LIVE_TIMER = setInterval(fetchLive, 30000);
@@ -2382,6 +2423,42 @@ function renderTicker(liveEvents){
       +(ev.minute ? '<span class="ticker-min">'+ev.minute+'</span>' : '')
       +'</div>';
   }).join('<span class="ticker-sep">·</span>');
+}
+
+function updateGroupMatchRows(){
+  // Update match-rows in groups view with actual scores for done/live matches
+  document.querySelectorAll('.match-row').forEach(function(row){
+    var onclick = row.getAttribute('onclick')||'';
+    var m = onclick.match(/openModal\('([^']+)','([^']+)'/);
+    if(!m) return;
+    var rHome = m[1], rAway = m[2];
+    var ev = Object.values(LIVE_DATA).find(function(e){
+      return (matchTeamName(e.home, rHome) && matchTeamName(e.away, rAway))
+          || (matchTeamName(e.home, rAway) && matchTeamName(e.away, rHome));
+    });
+    if(!ev) return;
+    // Find or create score overlay element
+    var scoreEl = row.querySelector('.mr-score-overlay');
+    if(!scoreEl){
+      scoreEl = document.createElement('div');
+      scoreEl.className = 'mr-score-overlay';
+      scoreEl.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none';
+      row.style.position = 'relative';
+      row.appendChild(scoreEl);
+    }
+    var isReversed = matchTeamName(ev.home, rAway); // ESPN home = our away
+    var hs = isReversed ? ev.awayScore : ev.homeScore;
+    var as = isReversed ? ev.homeScore : ev.awayScore;
+    if(ev.isDone){
+      // Replace score display in mc-score
+      var scoreDiv = row.querySelector('.mc-score');
+      if(scoreDiv) scoreDiv.innerHTML = '<span class="mr-final">FT '+hs+'-'+as+'</span>';
+      row.style.opacity = '0.85';
+    } else if(ev.isLive){
+      var scoreDiv = row.querySelector('.mc-score');
+      if(scoreDiv) scoreDiv.innerHTML = '<span class="mr-live">'+ev.minute+' '+hs+'-'+as+'</span>';
+    }
+  });
 }
 
 function updateMatchRowBadges(liveEvents){
