@@ -581,6 +581,58 @@ nav{
 .bm-ou.lo{border-color:var(--secondary);color:var(--secondary);background:rgba(226,169,106,.06)}
 .bm-ou span{display:block;font-size:.5rem;color:var(--muted);font-weight:400}
 
+/* ── LIVE TICKER ─────────────────────────────────────────────── */
+#live-ticker{background:linear-gradient(90deg,rgba(220,38,38,.18),rgba(220,38,38,.06));border-bottom:1px solid rgba(220,38,38,.25);padding:0;overflow:hidden;max-height:0;transition:max-height .3s ease,padding .3s ease}
+#live-ticker.visible{max-height:48px;padding:8px 0}
+.ticker-inner{display:flex;align-items:center;gap:12px;padding:0 20px;overflow-x:auto;scrollbar-width:none}
+.ticker-inner::-webkit-scrollbar{display:none}
+.ticker-live-dot{width:8px;height:8px;border-radius:50%;background:#ef4444;flex-shrink:0;animation:livepulse 1.2s ease-in-out infinite}
+@keyframes livepulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.ticker-label{font-family:'Space Mono',monospace;font-size:.58rem;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
+.ticker-sep{color:rgba(255,255,255,.15);flex-shrink:0}
+.ticker-match{display:flex;align-items:center;gap:7px;flex-shrink:0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:4px 10px;cursor:pointer;transition:background .1s}
+.ticker-match:hover{background:rgba(255,255,255,.08)}
+.ticker-teams{font-size:.72rem;font-weight:700;color:var(--text);letter-spacing:.01em}
+.ticker-score{font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;color:#fff;background:rgba(239,68,68,.2);padding:1px 7px;border-radius:5px}
+.ticker-min{font-family:'Space Mono',monospace;font-size:.55rem;color:#ef4444;font-weight:700}
+.ticker-status{font-family:'Space Mono',monospace;font-size:.55rem;color:var(--muted);text-transform:uppercase}
+/* live badge on match-row */
+.live-badge{display:inline-flex;align-items:center;gap:3px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.35);color:#ef4444;border-radius:5px;font-size:.52rem;font-weight:700;padding:1px 6px;font-family:'Space Mono',monospace;animation:livepulse 1.2s ease-in-out infinite;margin-left:4px}
+/* ── MUR DES PRÉDICTIONS ─────────────────────────────────────── */
+.pred-wall-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.pred-score-card{background:linear-gradient(135deg,var(--s2),var(--s3));border:1px solid var(--border);border-radius:14px;padding:14px 20px;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:90px}
+.pred-score-big{font-family:'Bricolage Grotesque',sans-serif;font-size:2rem;font-weight:800;color:var(--primary);line-height:1}
+.pred-score-lbl{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.pred-donut-wrap{position:relative;width:72px;height:72px;flex-shrink:0}
+.pred-donut-svg{transform:rotate(-90deg)}
+.pred-donut-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-size:.88rem;font-weight:800;color:var(--primary)}
+.pred-filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.pred-filter{background:var(--s3);border:1px solid var(--border);border-radius:7px;padding:4px 11px;font-size:.65rem;font-weight:700;color:var(--text-2);cursor:pointer;font-family:'Space Mono',monospace;transition:background .1s,color .1s}
+.pred-filter.on{background:rgba(78,202,138,.12);border-color:var(--primary);color:var(--primary)}
+.pred-grid{display:flex;flex-direction:column;gap:8px}
+.pred-row{background:var(--s1);border:1px solid var(--border);border-radius:12px;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:stretch}
+.pred-row-main{padding:11px 14px;display:flex;flex-direction:column;gap:6px}
+.pred-row-date{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pred-row-teams{font-family:'Bricolage Grotesque',sans-serif;font-size:.92rem;font-weight:700;color:var(--text)}
+.pred-row-scores{display:flex;gap:10px;flex-wrap:wrap}
+.pred-chip{display:inline-flex;flex-direction:column;align-items:flex-start;gap:1px;background:var(--s2);border:1px solid var(--border);border-radius:7px;padding:4px 9px}
+.pred-chip-lbl{font-family:'Space Mono',monospace;font-size:.48rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pred-chip-val{font-size:.72rem;font-weight:700;color:var(--text);font-family:'Space Mono',monospace}
+.pred-result-col{min-width:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:11px 14px;border-left:1px solid var(--border)}
+.pred-result-label{font-family:'Space Mono',monospace;font-size:.5rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.pred-result-score{font-family:'Bricolage Grotesque',sans-serif;font-size:1.2rem;font-weight:800;color:var(--text)}
+.pred-result-ok{background:rgba(78,202,138,.08);border-color:rgba(78,202,138,.25)}
+.pred-result-ok .pred-result-score{color:var(--primary)}
+.pred-result-nok{background:rgba(240,106,106,.06);border-color:rgba(240,106,106,.2)}
+.pred-result-nok .pred-result-score{color:var(--red)}
+.pred-result-pend{background:var(--s2)}
+.pred-row-badges{display:flex;gap:4px;flex-wrap:wrap}
+.pred-badge{font-family:'Space Mono',monospace;font-size:.5rem;font-weight:700;padding:2px 7px;border-radius:9999px;border:1px solid}
+.pred-badge-ok{background:rgba(78,202,138,.1);border-color:rgba(78,202,138,.3);color:var(--primary)}
+.pred-badge-nok{background:rgba(240,106,106,.08);border-color:rgba(240,106,106,.2);color:var(--red)}
+.pred-badge-part{background:rgba(226,169,106,.1);border-color:rgba(226,169,106,.25);color:var(--secondary)}
+.pred-empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:.8rem}
+.pred-empty-icon{font-size:2.5rem;margin-bottom:10px}
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 /* ── BOTTOM NAV (mobile) ────────────────────────────────────── */
 @media(min-width:769px){.bottom-nav{display:none !important}}
@@ -714,6 +766,7 @@ nav{
       <button class="tab" onclick="goTo('simulator',this)">Simulateur</button>
       <button class="tab" onclick="goTo('weather',this)">Météo</button>
       <button class="tab" onclick="goTo('news',this)">📰 Actu</button>
+      <button class="tab" onclick="goTo('wall',this)">🎯 Mur prédictions</button>
     </div>
     <div class="countdown">
       <div class="cd-unit"><span class="cd-num" id="cd-d">—</span>j</div>
@@ -722,6 +775,16 @@ nav{
     </div>
   </div>
 </nav>
+
+<!-- LIVE TICKER -->
+<div id="live-ticker">
+  <div class="ticker-inner" id="ticker-inner">
+    <div class="ticker-live-dot"></div>
+    <span class="ticker-label">Live</span>
+    <span class="ticker-sep">|</span>
+    <span id="ticker-matches" style="display:flex;gap:8px;align-items:center"></span>
+  </div>
+</div>
 
 <div class="hero">
   <h1>FIFA World Cup <span>2026</span></h1>
@@ -818,6 +881,19 @@ nav{
   <div class="modal" id="modal"></div>
 </div>
 
+<!-- MUR DES PRÉDICTIONS -->
+<div class="page" id="page-wall">
+  <div class="sec">Mur des prédictions — résultats réels vs prédictions IA</div>
+  <div class="pred-wall-header" id="pred-header"></div>
+  <div class="pred-filters" id="pred-filters">
+    <button class="pred-filter on" onclick="filterWall('all',this)">Tous</button>
+    <button class="pred-filter" onclick="filterWall('ok',this)">✅ Réussies</button>
+    <button class="pred-filter" onclick="filterWall('nok',this)">❌ Ratées</button>
+    <button class="pred-filter" onclick="filterWall('live',this)">🔴 En cours</button>
+  </div>
+  <div id="pred-grid" class="pred-grid"></div>
+</div>
+
 <!-- BOTTOM NAV (mobile only) -->
 <nav class="bottom-nav" id="bottom-nav">
   <button class="bn-item on" id="bn-groups" onclick="goToMobile('groups',this)">
@@ -837,6 +913,9 @@ nav{
   </button>
   <button class="bn-item" id="bn-news" onclick="goToMobile('news',this)">
     <span class="bn-icon">📰</span>Actu
+  </button>
+  <button class="bn-item" id="bn-wall" onclick="goToMobile('wall',this)">
+    <span class="bn-icon">🎯</span>Mur
   </button>
 </nav>
 
@@ -1809,6 +1888,7 @@ document.getElementById("modal").innerHTML=
       '</div>'+
     '</div>'+
     '<div class="modal-bd">'+
+      injectLiveStatsIfOpen(a,b)+
       '<div class="prob-wrap">'+
         '<div class="prob-labels"><span style="color:var(--accent)">'+a+' '+pr.pW.toFixed(1)+'%</span><span style="color:var(--muted)">Nul '+pr.pD.toFixed(1)+'%</span><span style="color:var(--gold)">'+pr.pL.toFixed(1)+'% '+b+'</span></div>'+
         '<div class="prob-bar"><div class="pb-h" style="width:'+pr.pW+'%"></div><div class="pb-d" style="width:'+pr.pD+'%"></div><div class="pb-a" style="width:'+pr.pL+'%"></div></div>'+
@@ -1985,6 +2065,7 @@ function goTo(id,btn){
   if(id==="weather") fetchWeather();
   if(id==="calendar") renderCalendar();
   if(id==="news") loadNews();
+  if(id==="wall") loadPredWall();
   window.scrollTo(0,0);
 }
 function goToMobile(id,btn){
@@ -2219,10 +2300,367 @@ function loadNews(force){
   });
 }
 
+// =============== LIVE SCORES (ESPN public API) ===============
+var ESPN_API = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard';
+var LIVE_DATA = {}; // eventId -> event object
+var LIVE_TIMER = null;
+
+function fetchLive(){
+  fetch(ESPN_API + '?limit=100')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var events = data.events || [];
+      var liveEvents = [];
+      var newData = {};
+      events.forEach(function(ev){
+        var st = ev.status && ev.status.type;
+        var isLive = st && !st.completed && st.state === 'in';
+        var isDone = st && st.completed;
+        var comp = ev.competitions && ev.competitions[0];
+        if(!comp) return;
+        var teams = comp.competitors || [];
+        var home = teams.find(function(t){ return t.homeAway==='home'; });
+        var away = teams.find(function(t){ return t.homeAway==='away'; });
+        if(!home || !away) return;
+        var obj = {
+          id: ev.id,
+          home: home.team.displayName,
+          away: away.team.displayName,
+          homeScore: parseInt(home.score||0),
+          awayScore: parseInt(away.score||0),
+          minute: (ev.status.displayClock||'').replace("'","'"),
+          period: ev.status.period||0,
+          isLive: isLive,
+          isDone: isDone,
+          date: ev.date,
+          // live stats if available
+          stats: parseESPNStats(comp)
+        };
+        newData[ev.id] = obj;
+        if(isLive) liveEvents.push(obj);
+      });
+      LIVE_DATA = newData;
+      renderTicker(liveEvents);
+      updateMatchRowBadges(liveEvents);
+      // auto-refresh every 30s if live matches running
+      if(liveEvents.length > 0 && !LIVE_TIMER){
+        LIVE_TIMER = setInterval(fetchLive, 30000);
+      } else if(liveEvents.length === 0 && LIVE_TIMER){
+        clearInterval(LIVE_TIMER); LIVE_TIMER = null;
+      }
+    })
+    .catch(function(){});
+}
+
+function parseESPNStats(comp){
+  // Try to extract possession, shots from competition details
+  var stats = {};
+  var details = comp.details || [];
+  details.forEach(function(d){
+    if(d.type && d.type.text) stats[d.type.text] = d;
+  });
+  // Try leaders
+  var leaders = comp.leaders || [];
+  stats._leaders = leaders;
+  return stats;
+}
+
+function renderTicker(liveEvents){
+  var ticker = document.getElementById('live-ticker');
+  var container = document.getElementById('ticker-matches');
+  if(!ticker || !container) return;
+  if(!liveEvents.length){
+    ticker.classList.remove('visible');
+    return;
+  }
+  ticker.classList.add('visible');
+  container.innerHTML = liveEvents.map(function(ev){
+    return '<div class="ticker-match" onclick="openLiveModal(\''+ev.id+'\')">'
+      +'<span class="ticker-teams">'+fl(ev.home)+' '+ev.home+'</span>'
+      +'<span class="ticker-score">'+ev.homeScore+' – '+ev.awayScore+'</span>'
+      +'<span class="ticker-teams">'+ev.away+' '+fl(ev.away)+'</span>'
+      +(ev.minute ? '<span class="ticker-min">'+ev.minute+'</span>' : '')
+      +'</div>';
+  }).join('<span class="ticker-sep">·</span>');
+}
+
+function updateMatchRowBadges(liveEvents){
+  // Add LIVE badges to match-row elements that match
+  document.querySelectorAll('.match-row').forEach(function(row){
+    var onclick = row.getAttribute('onclick')||'';
+    // Extract home/away from onclick string openModal('Home','Away',...)
+    var m = onclick.match(/openModal\('([^']+)','([^']+)'/);
+    if(!m) return;
+    var rHome = m[1], rAway = m[2];
+    var live = liveEvents.find(function(ev){
+      return ev.home.toLowerCase().includes(rHome.toLowerCase()) ||
+             rHome.toLowerCase().includes(ev.home.toLowerCase().split(' ')[0]) ||
+             ev.away.toLowerCase().includes(rAway.toLowerCase()) ||
+             rAway.toLowerCase().includes(ev.away.toLowerCase().split(' ')[0]);
+    });
+    // Remove old badge
+    var old = row.querySelector('.live-badge');
+    if(old) old.remove();
+    if(live){
+      var badge = document.createElement('span');
+      badge.className = 'live-badge';
+      badge.innerHTML = '🔴 LIVE ' + live.minute;
+      row.appendChild(badge);
+    }
+  });
+}
+
+function openLiveModal(eventId){
+  var ev = LIVE_DATA[eventId];
+  if(!ev) return;
+  // Try to open via our existing openModal if we can match teams
+  // Otherwise show a quick live overlay
+  var all = Object.values(PREDICTIONS||{}).concat(Object.values(V2||{}));
+}
+
+// Inject live stats into modal if open
+function injectLiveStatsIfOpen(a, b){
+  var ev = Object.values(LIVE_DATA).find(function(e){
+    return (e.home===a||e.away===a||e.home===b||e.away===b);
+  });
+  if(!ev || (!ev.isLive && !ev.isDone)) return '';
+  var scoreColor = ev.isLive ? '#ef4444' : 'var(--primary)';
+  var label = ev.isLive ? '🔴 LIVE '+ev.minute : '✅ FINAL';
+  return '<div style="background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-radius:10px;padding:12px 14px;margin:10px 0;display:flex;align-items:center;justify-content:space-between;gap:10px">'
+    +'<div style="display:flex;flex-direction:column;gap:3px">'
+    +'<span style="font-family:\'Space Mono\',monospace;font-size:.52rem;color:'+scoreColor+';text-transform:uppercase;font-weight:700;letter-spacing:.08em">'+label+'</span>'
+    +'<span style="font-size:.7rem;color:var(--text-2)">'+fl(ev.home)+' '+ev.home+' vs '+ev.away+' '+fl(ev.away)+'</span>'
+    +'</div>'
+    +'<div style="font-family:\'Bricolage Grotesque\',sans-serif;font-size:2rem;font-weight:800;color:'+scoreColor+';line-height:1">'+ev.homeScore+' – '+ev.awayScore+'</div>'
+    +'</div>';
+}
+
+// =============== MUR DES PRÉDICTIONS ===============
+var WALL_FILTER = 'all';
+var WALL_RESULTS = {}; // keyed by "home_away"
+
+function loadPredWall(){
+  // Fetch all ESPN results (past + live) then cross with our predictions
+  fetch(ESPN_API + '?limit=100')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var events = data.events || [];
+      events.forEach(function(ev){
+        var comp = ev.competitions && ev.competitions[0];
+        if(!comp) return;
+        var teams = comp.competitors || [];
+        var home = teams.find(function(t){ return t.homeAway==='home'; });
+        var away = teams.find(function(t){ return t.homeAway==='away'; });
+        if(!home || !away) return;
+        var st = ev.status && ev.status.type;
+        WALL_RESULTS[ev.id] = {
+          home: home.team.displayName,
+          away: away.team.displayName,
+          homeScore: parseInt(home.score||0),
+          awayScore: parseInt(away.score||0),
+          isDone: st && st.completed,
+          isLive: st && !st.completed && st.state === 'in',
+          date: ev.date,
+          id: ev.id
+        };
+      });
+      renderPredWall();
+    })
+    .catch(function(){ renderPredWall(); });
+}
+
+function matchTeamName(espnName, ourName){
+  // fuzzy match team names between ESPN and our data
+  var e = espnName.toLowerCase().replace(/[^a-z]/g,'');
+  var o = ourName.toLowerCase().replace(/[^a-z]/g,'');
+  if(e === o) return true;
+  // check if one contains the other (for names like "Bosnia and Herzegovina" vs "Bosnia-Herzegovina")
+  if(e.includes(o.slice(0,5)) || o.includes(e.slice(0,5))) return true;
+  // common aliases
+  var aliases = {
+    'unitedstates':'usa','unitedstatesofamerica':'usa',
+    'korearepublic':'southkorea','republicofkorea':'southkorea',
+    'drcongo':'drcongo','congodr':'drcongo',
+    'bosniaherzegovina':'bosniaherzegovina',
+    'czechrepublic':'czechia'
+  };
+  return (aliases[e]||e) === (aliases[o]||o);
+}
+
+function findESPNResult(ourHome, ourAway){
+  return Object.values(WALL_RESULTS).find(function(r){
+    return (matchTeamName(r.home, ourHome) && matchTeamName(r.away, ourAway))
+        || (matchTeamName(r.home, ourAway) && matchTeamName(r.away, ourHome));
+  }) || null;
+}
+
+function predWinner(home, away, res){
+  // who won based on actual score
+  if(!res || (!res.isDone && !res.isLive)) return null;
+  if(res.homeScore > res.awayScore) return matchTeamName(res.home, home) ? home : away;
+  if(res.awayScore > res.homeScore) return matchTeamName(res.away, away) ? away : home;
+  return 'draw';
+}
+
+function renderPredWall(){
+  var grid = document.getElementById('pred-grid');
+  var headerEl = document.getElementById('pred-header');
+  if(!grid) return;
+
+  // Collect all predictions (V2 + PREDICTIONS)
+  var allPreds = [];
+  // From V2
+  if(typeof V2 !== 'undefined'){
+    Object.values(V2).forEach(function(p){
+      allPreds.push({
+        home: p.home, away: p.away, date: p.date,
+        predWinner: p.winner==='draw'?'draw':p.winner,
+        predScore: p.score,
+        xgHome: p.xg_home, xgAway: p.xg_away,
+        over25: p.over25, btts: p.btts,
+        conf: p.confidence_score, source:'V2'
+      });
+    });
+  }
+  // From PREDICTIONS (V1 fallback)
+  if(typeof PREDICTIONS !== 'undefined'){
+    Object.entries(PREDICTIONS).forEach(function(entry){
+      var key = entry[0], p = entry[1];
+      var parts = key.split('_vs_');
+      if(parts.length < 2) return;
+      var home = parts[0].replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
+      var away = parts[1].replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();});
+      // Skip if already in V2
+      if(allPreds.find(function(q){ return q.home===home && q.away===away; })) return;
+      allPreds.push({
+        home: home, away: away, date: p.date||'',
+        predWinner: p.winner==='draw'?'draw':p.winner,
+        predScore: p.score||p.best||'?',
+        xgHome: p.la, xgAway: p.lb,
+        over25: p.o25, btts: p.btts,
+        conf: null, source:'V1'
+      });
+    });
+  }
+
+  // Sort by date descending
+  allPreds.sort(function(a,b){ return (a.date > b.date ? -1 : 1); });
+
+  // Cross with ESPN results
+  var rows = allPreds.map(function(p){
+    var res = findESPNResult(p.home, p.away);
+    var actualWinner = predWinner(p.home, p.away, res);
+    var status = !res ? 'upcoming'
+                : res.isLive ? 'live'
+                : res.isDone ? 'done'
+                : 'upcoming';
+    var correct = null;
+    if(status === 'done' || status === 'live'){
+      correct = actualWinner === p.predWinner;
+    }
+    return { pred: p, res: res, actualWinner: actualWinner, status: status, correct: correct };
+  });
+
+  // Filter
+  var filtered = rows.filter(function(r){
+    if(WALL_FILTER === 'ok') return r.correct === true;
+    if(WALL_FILTER === 'nok') return r.correct === false;
+    if(WALL_FILTER === 'live') return r.status === 'live';
+    return true;
+  });
+
+  // Stats
+  var done = rows.filter(function(r){ return r.status === 'done' || r.status === 'live'; });
+  var correct = done.filter(function(r){ return r.correct === true; });
+  var pct = done.length ? Math.round(correct.length / done.length * 100) : 0;
+
+  // Render header
+  var radius = 28, circ = 2*Math.PI*radius;
+  var dash = circ * pct/100;
+  headerEl.innerHTML =
+    '<div class="pred-score-card"><div class="pred-score-big">'+correct.length+'/'+done.length+'</div><div class="pred-score-lbl">Prédictions vérifiées</div></div>'
+    +'<div class="pred-donut-wrap"><svg class="pred-donut-svg" width="72" height="72" viewBox="0 0 72 72"><circle cx="36" cy="36" r="'+radius+'" fill="none" stroke="var(--border)" stroke-width="7"/><circle cx="36" cy="36" r="'+radius+'" fill="none" stroke="var(--primary)" stroke-width="7" stroke-dasharray="'+dash.toFixed(1)+' '+circ.toFixed(1)+'" stroke-linecap="round"/></svg><div class="pred-donut-pct">'+pct+'%</div></div>'
+    +'<div style="flex:1"><div style="font-family:\'Bricolage Grotesque\',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:3px">Taux de réussite</div>'
+    +'<div style="font-size:.72rem;color:var(--text-2)">'+done.length+' match'+(done.length>1?'s':'')+" analysé"+(done.length>1?'s':'')+' · '+(rows.length-done.length)+' à venir</div>'
+    +(done.length===0?'<div style="font-size:.65rem;color:var(--muted);margin-top:4px">Les résultats apparaîtront au fur et à mesure des matchs</div>':'')
+    +'</div>';
+
+  if(!filtered.length){
+    grid.innerHTML = '<div class="pred-empty"><div class="pred-empty-icon">🎯</div>Aucun match trouvé pour ce filtre.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(function(r){
+    var p = r.pred, res = r.res;
+    var statusHtml = '';
+    var resultColClass = 'pred-result-pend';
+    var resultContent = '<span class="pred-result-label">Résultat</span><span class="pred-result-score" style="font-size:.8rem;color:var(--muted)">À venir</span>';
+    if(r.status === 'live' && res){
+      resultColClass = '';
+      resultContent = '<span class="pred-result-label" style="color:#ef4444">🔴 LIVE</span>'
+        +'<span class="pred-result-score" style="color:#ef4444">'+res.homeScore+' – '+res.awayScore+'</span>';
+    } else if(r.status === 'done' && res){
+      resultColClass = r.correct ? 'pred-result-ok' : 'pred-result-nok';
+      resultContent = '<span class="pred-result-label">'+(r.correct?'✅ Réussi':'❌ Raté')+'</span>'
+        +'<span class="pred-result-score">'+res.homeScore+' – '+res.awayScore+'</span>';
+    }
+
+    // Badges
+    var badges = [];
+    if(r.status === 'done' && res){
+      badges.push('<span class="pred-badge '+(r.correct?'pred-badge-ok':'pred-badge-nok')+'">'+(r.correct?'✅ Vainqueur correct':'❌ Vainqueur raté')+'</span>');
+      // Check O/U 2.5
+      if(p.over25 != null && res){
+        var totalGoals = res.homeScore + res.awayScore;
+        var predOver = p.over25 >= 50;
+        var actualOver = totalGoals > 2;
+        var ouOk = predOver === actualOver;
+        badges.push('<span class="pred-badge '+(ouOk?'pred-badge-ok':'pred-badge-nok')+'">'+(ouOk?'✅':'❌')+' O/U 2.5</span>');
+      }
+      // Check BTTS
+      if(p.btts != null && res){
+        var predBtts = p.btts >= 50;
+        var actualBtts = res.homeScore > 0 && res.awayScore > 0;
+        var bttsOk = predBtts === actualBtts;
+        badges.push('<span class="pred-badge '+(bttsOk?'pred-badge-ok':'pred-badge-nok')+'">'+(bttsOk?'✅':'❌')+' BTTS</span>');
+      }
+    } else if(r.status === 'live'){
+      badges.push('<span class="pred-badge" style="background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:#ef4444">🔴 En cours</span>');
+    }
+
+    var dateStr = p.date ? new Date(p.date).toLocaleDateString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
+
+    return '<div class="pred-row">'
+      +'<div class="pred-row-main">'
+        +'<div class="pred-row-date">'+dateStr+(p.source==='V2'?' · <span style="color:var(--primary)">V2 AI</span>':'')+'</div>'
+        +'<div class="pred-row-teams">'+fl(p.home)+' '+p.home+' <span style="color:var(--muted);font-weight:400">vs</span> '+p.away+' '+fl(p.away)+'</div>'
+        +'<div class="pred-row-scores">'
+          +'<div class="pred-chip"><span class="pred-chip-lbl">Prédiction</span><span class="pred-chip-val">'+fl(p.predWinner==='draw'?'⚖️':p.predWinner)+' '+(p.predWinner==='draw'?'Nul':p.predWinner)+'</span></div>'
+          +'<div class="pred-chip"><span class="pred-chip-lbl">Score prédit</span><span class="pred-chip-val">'+p.predScore+'</span></div>'
+          +(p.over25!=null?'<div class="pred-chip"><span class="pred-chip-lbl">Over 2.5</span><span class="pred-chip-val" style="color:'+(p.over25>=50?'var(--primary)':'var(--muted)')+'">'+p.over25.toFixed(0)+'%</span></div>':'')
+          +(p.btts!=null?'<div class="pred-chip"><span class="pred-chip-lbl">BTTS</span><span class="pred-chip-val" style="color:'+(p.btts>=50?'var(--primary)':'var(--muted)')+'">'+p.btts.toFixed(0)+'%</span></div>':'')
+        +'</div>'
+        +'<div class="pred-row-badges">'+badges.join('')+'</div>'
+      +'</div>'
+      +'<div class="pred-result-col '+resultColClass+'">'+resultContent+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function filterWall(f, btn){
+  WALL_FILTER = f;
+  document.querySelectorAll('.pred-filter').forEach(function(b){ b.classList.remove('on'); });
+  if(btn) btn.classList.add('on');
+  renderPredWall();
+}
+
 // =============== INIT ===============
 renderGroups();
 tick();
 setInterval(tick,30000);
+// Fetch live scores on load + every 60s (passive polling)
+fetchLive();
+setInterval(fetchLive, 60000);
 </script>
 </body>
 </html>
