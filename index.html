@@ -115,7 +115,7 @@ nav{
 /* ── MOBILE APP HEADER ──────────────────────────────────────── */
 .mobile-header{
   display:none;
-  position:sticky;top:0;z-index:200;
+  position:sticky;top:0;z-index:199997;
   height:52px;
   background:rgba(8,11,15,.96);
   backdrop-filter:blur(20px);
@@ -668,11 +668,13 @@ nav{
 .pred-empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:.8rem}
 .pred-empty-icon{font-size:2.5rem;margin-bottom:10px}
 /* ── INSTALL POPUP ──────────────────────────────────────── */
-#install-popup{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);z-index:9999;
-  background:var(--s2);border:1px solid var(--primary);border-radius:16px;padding:18px 20px;
-  width:min(340px,90vw);box-shadow:0 8px 40px rgba(0,0,0,.6);
+#install-popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199998;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(2px)}
+#install-popup-overlay.show{opacity:1;pointer-events:auto}
+#install-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-40%);z-index:199999;
+  background:var(--s2);border:1px solid var(--primary);border-radius:16px;padding:20px 22px;
+  width:min(340px,88vw);box-shadow:0 12px 50px rgba(0,0,0,.7);
   opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
-#install-popup.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+#install-popup.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
 .ip-title{font-family:'Work Sans',sans-serif;font-weight:800;font-size:.9rem;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
 .ip-body{font-size:.75rem;color:var(--muted);line-height:1.5;margin-bottom:12px}
 .ip-step{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;font-size:.73rem;color:var(--text)}
@@ -937,6 +939,7 @@ nav{
 </div>
 
 <!-- INSTALL POPUP -->
+<div id="install-popup-overlay" onclick="closeInstallPopup()"></div>
 <div id="install-popup">
   <button class="ip-close" onclick="closeInstallPopup()">✕</button>
   <div class="ip-title">📲 Ajouter à l'écran d'accueil</div>
@@ -3258,11 +3261,15 @@ function filterWall(f, btn){
   // Show after 1.5s
   setTimeout(function(){
     document.getElementById('install-popup').classList.add('show');
+    var ov=document.getElementById('install-popup-overlay');
+    if(ov) ov.classList.add('show');
   }, 1500);
 })();
 
 function closeInstallPopup(){
   document.getElementById('install-popup').classList.remove('show');
+  var ov=document.getElementById('install-popup-overlay');
+  if(ov) ov.classList.remove('show');
 }
 function dismissInstallPopup(){
   localStorage.setItem('tactiq_install_count','3');
