@@ -109,16 +109,30 @@ nav{
 /* ── HERO ───────────────────────────────────────────────────── */
 .hero{
   background:linear-gradient(180deg,#050D14 0%,var(--bg) 100%);
-  padding:36px 20px 28px;text-align:center;position:relative;overflow:hidden;
+  padding:44px 20px 32px;text-align:center;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(0,229,204,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,204,.03) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
 }
 .hero h1{
   font-family:'Work Sans',sans-serif;
-  font-size:clamp(1.5rem,3.5vw,2.6rem);
-  font-weight:800;letter-spacing:-.02em;color:var(--text);
+  font-size:clamp(1.6rem,4vw,3rem);
+  font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--text);
+  position:relative;
 }
 .hero h1 span{color:var(--primary)}
-.hero-sub{color:var(--text-2);font-size:.8rem;margin-top:6px}
-.hero-pills{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px}
+.hero-sub{
+  color:var(--text-2);font-size:.75rem;margin-top:8px;
+  font-family:'IBM Plex Mono',monospace;letter-spacing:.06em;
+  position:relative;
+}
+.hero-pills{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:18px;position:relative}
 .pill{
   background:transparent;border:1px solid var(--border);
   border-radius:3px;padding:3px 10px;
@@ -652,6 +666,46 @@ nav{
 .pred-badge-part{background:rgba(57,255,106,.1);border-color:rgba(57,255,106,.25);color:var(--secondary)}
 .pred-empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:.8rem}
 .pred-empty-icon{font-size:2.5rem;margin-bottom:10px}
+/* ── PRED CARD redesign ─────────────────────────────────── */
+.pred-card{background:var(--s1);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:10px;transition:border-color .15s}
+.pred-card.ok{border-color:rgba(78,202,138,.3)}
+.pred-card.nok{border-color:rgba(240,106,106,.2)}
+.pred-card.live{border-color:rgba(239,68,68,.35)}
+.pred-card-top{display:flex;align-items:center;justify-content:space-between;padding:9px 14px 0;gap:8px}
+.pred-card-meta{font-family:'Space Mono',monospace;font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:6px}
+.pred-card-conf{font-family:'Space Mono',monospace;font-size:.52rem;font-weight:700;padding:1px 7px;border-radius:9999px}
+.pred-card-conf.hi{background:rgba(78,202,138,.12);color:var(--primary);border:1px solid rgba(78,202,138,.25)}
+.pred-card-conf.med{background:rgba(226,169,106,.1);color:var(--secondary);border:1px solid rgba(226,169,106,.2)}
+.pred-card-conf.lo{background:rgba(240,106,106,.08);color:var(--red);border:1px solid rgba(240,106,106,.15)}
+.pred-card-teams{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;padding:10px 14px 8px}
+.pred-card-team{font-family:'Bricolage Grotesque',sans-serif;font-size:.92rem;font-weight:700;color:var(--text);display:flex;align-items:center;gap:5px}
+.pred-card-team.right{justify-content:flex-end;text-align:right}
+.pred-score-vs{display:flex;flex-direction:column;align-items:center;gap:3px}
+.pred-score-row{display:flex;align-items:center;gap:8px}
+.pred-score-box{font-family:'Bricolage Grotesque',sans-serif;font-size:1.5rem;font-weight:800;min-width:36px;text-align:center;border-radius:8px;padding:3px 8px;line-height:1}
+.pred-score-box.predicted{background:var(--s3);color:var(--text-2);border:1px solid var(--border)}
+.pred-score-box.actual.ok{background:rgba(78,202,138,.12);color:var(--primary);border:1px solid rgba(78,202,138,.3)}
+.pred-score-box.actual.nok{background:rgba(240,106,106,.08);color:var(--red);border:1px solid rgba(240,106,106,.2)}
+.pred-score-box.actual.live{background:rgba(239,68,68,.1);color:#ef4444;border:1px solid rgba(239,68,68,.3)}
+.pred-score-box.actual.pend{background:var(--s2);color:var(--muted);border:1px solid var(--border)}
+.pred-score-lbl-sm{font-family:'Space Mono',monospace;font-size:.44rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);text-align:center}
+.pred-score-arrow{color:var(--muted);font-size:.7rem}
+.pred-prob-bar-wrap{padding:0 14px 6px;display:flex;flex-direction:column;gap:2px}
+.pred-prob-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;background:var(--border)}
+.pred-prob-h{background:var(--accent);transition:width .3s}
+.pred-prob-d{background:var(--muted)}
+.pred-prob-a{background:var(--gold)}
+.pred-prob-labels{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.52rem;color:var(--muted)}
+.pred-prob-lbl-win{color:var(--accent)}
+.pred-prob-lbl-away{color:var(--gold)}
+.pred-markets{display:flex;flex-wrap:wrap;gap:4px;padding:6px 14px 10px;border-top:1px solid rgba(255,255,255,.04)}
+.pred-mkt{display:flex;align-items:center;gap:3px;font-family:'Space Mono',monospace;font-size:.52rem;font-weight:700;padding:3px 8px;border-radius:9999px;border:1px solid}
+.pred-mkt.ok{background:rgba(78,202,138,.08);border-color:rgba(78,202,138,.25);color:var(--primary)}
+.pred-mkt.nok{background:rgba(240,106,106,.06);border-color:rgba(240,106,106,.18);color:var(--red)}
+.pred-mkt.pend{background:var(--s2);border-color:var(--border);color:var(--muted)}
+.pred-mkt.live{background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25);color:#ef4444}
+.pred-xg{padding:0 14px 8px;display:flex;gap:6px;align-items:center;font-size:.65rem;color:var(--text-2)}
+.pred-xg-val{font-family:'Space Mono',monospace;font-weight:700;color:var(--text)}
 /* ── RESPONSIVE ─────────────────────────────────────────────── */
 /* ── BOTTOM NAV (mobile) ────────────────────────────────────── */
 @media(min-width:769px){.bottom-nav{display:none !important}}
@@ -785,12 +839,12 @@ nav{
     </div>
     <div class="nav-tabs">
       <button class="tab on" onclick="goTo('groups',this)">Groupes</button>
-      <button class="tab" onclick="goTo('calendar',this)">📅 Calendrier</button>
+      <button class="tab" onclick="goTo('calendar',this)">Calendrier</button>
       <button class="tab" onclick="goTo('rankings',this)">ELO</button>
       <button class="tab" onclick="goTo('simulator',this)">Simulateur</button>
       <button class="tab" onclick="goTo('weather',this)">Météo</button>
-      <button class="tab" onclick="goTo('news',this)">📰 Actu</button>
-      <button class="tab" onclick="goTo('wall',this)">🎯 Mur prédictions</button>
+      <button class="tab" onclick="goTo('news',this)">Actu</button>
+      <button class="tab" onclick="goTo('wall',this)">Mur prédictions</button>
     </div>
     <div class="countdown">
       <div class="cd-unit"><span class="cd-num" id="cd-d">—</span>j</div>
@@ -865,7 +919,7 @@ nav{
   <div class="sec">Simulateur Monte Carlo</div>
   <div class="card" style="margin-bottom:16px">
     <p style="color:var(--muted);font-size:.8rem;margin-bottom:12px">Simule les 72 matchs de groupes + toute la phase KO via probabilités ELO + Poisson. Résultat différent à chaque run.</p>
-    <button class="sim-btn" id="sim-btn" onclick="simulate()">⚡ Lancer la simulation</button>
+    <button class="sim-btn" id="sim-btn" onclick="simulate()">Lancer la simulation</button>
     <span id="sim-spin" style="display:none"><span class="spin"></span></span>
   </div>
   <div id="sim-out" style="display:none">
@@ -2682,11 +2736,13 @@ function renderPredWall(){
   if(typeof V2_PREDS !== 'undefined'){
     Object.values(V2_PREDS).forEach(function(p){
       allPreds.push({
-        home: p.home, away: p.away, date: p.date,
+        home: p.home, away: p.away, date: p.date, group: p.group,
         predWinner: p.winner==='draw'?'draw':p.winner,
         predScore: p.score,
         xgHome: p.xg_home, xgAway: p.xg_away,
-        over25: p.over25, btts: p.btts,
+        pHome: p.p_home, pDraw: p.p_draw, pAway: p.p_away,
+        over15: p.over15||null, over25: p.over25, over35: p.over35||null,
+        btts: p.btts,
         conf: p.confidence_score, source:'V2'
       });
     });
@@ -2761,57 +2817,149 @@ function renderPredWall(){
 
   grid.innerHTML = filtered.map(function(r){
     var p = r.pred, res = r.res;
-    var statusHtml = '';
-    var resultColClass = 'pred-result-pend';
-    var resultContent = '<span class="pred-result-label">Résultat</span><span class="pred-result-score" style="font-size:.8rem;color:var(--muted)">À venir</span>';
-    if(r.status === 'live' && res){
-      resultColClass = '';
-      resultContent = '<span class="pred-result-label" style="color:#ef4444">🔴 LIVE</span>'
-        +'<span class="pred-result-score" style="color:#ef4444">'+res.homeScore+' – '+res.awayScore+'</span>';
-    } else if(r.status === 'done' && res){
-      resultColClass = r.correct ? 'pred-result-ok' : 'pred-result-nok';
-      resultContent = '<span class="pred-result-label">'+(r.correct?'✅ Réussi':'❌ Raté')+'</span>'
-        +'<span class="pred-result-score">'+res.homeScore+' – '+res.awayScore+'</span>';
+    var isDone = r.status === 'done', isLive = r.status === 'live', isPend = r.status === 'upcoming';
+
+    // ── Card class
+    var cardCls = 'pred-card' + (isDone?(r.correct?' ok':' nok'):(isLive?' live':''));
+
+    // ── Confidence badge
+    var conf = p.conf||0;
+    var confCls = conf>=70?'hi':conf>=55?'med':'lo';
+    var confLbl = conf>=70?'HIGH':conf>=55?'MED':'LOW';
+
+    // ── Scores
+    var predParts = (p.predScore||'?-?').split('-');
+    var predH = predParts[0]||'?', predA = predParts[1]||'?';
+    // For reversed predictions (away win shown as 0-1 means home scored 0)
+    var actualH = res ? res.homeScore : '–';
+    var actualA = res ? res.awayScore : '–';
+    // Detect if ESPN home/away is swapped vs our home/away
+    var isSwapped = res && matchTeamName(res.home, p.away);
+    if(isSwapped){ var tmp=actualH; actualH=actualA; actualA=tmp; }
+    var scoreExact = isDone && res && parseInt(predH)===parseInt(actualH) && parseInt(predA)===parseInt(actualA);
+    var actualBoxCls = isPend?'pend':isLive?'live':(r.correct?'ok':'nok');
+
+    // ── Markets check
+    function mkt(label, predVal, ok){
+      var cls = isPend?'pend':isLive?'live':(ok?'ok':'nok');
+      var icon = isPend?'·':isLive?'🔴':(ok?'✅':'❌');
+      return '<span class="pred-mkt '+cls+'">'+icon+' '+label+(isPend?'':'')+': '+(isPend?predVal:(ok?predVal:predVal))+'</span>';
     }
 
-    // Badges
-    var badges = [];
-    if(r.status === 'done' && res){
-      badges.push('<span class="pred-badge '+(r.correct?'pred-badge-ok':'pred-badge-nok')+'">'+(r.correct?'✅ Vainqueur correct':'❌ Vainqueur raté')+'</span>');
-      // Check O/U 2.5
-      if(p.over25 != null && res){
-        var totalGoals = res.homeScore + res.awayScore;
-        var predOver = p.over25 >= 50;
-        var actualOver = totalGoals > 2;
-        var ouOk = predOver === actualOver;
-        badges.push('<span class="pred-badge '+(ouOk?'pred-badge-ok':'pred-badge-nok')+'">'+(ouOk?'✅':'❌')+' O/U 2.5</span>');
+    // Winner
+    var winnerOk = isDone && r.correct;
+    var winnerLabel = p.predWinner==='draw'?'Nul':p.predWinner;
+    var actualWinnerLabel = !res?'–':isLive?'En cours':(r.actualWinner==='draw'?'Nul':r.actualWinner||'Nul');
+    var winnerMkt = '<span class="pred-mkt '+(isPend?'pend':isLive?'live':(winnerOk?'ok':'nok'))+'">'+
+      (isPend?'·':isLive?'🔴':(winnerOk?'✅':'❌'))+' Vainqueur: '+winnerLabel+((!isPend&&!isLive)?' → '+actualWinnerLabel:'')+
+      '</span>';
+
+    // Score exact
+    var scoreMkt = '<span class="pred-mkt '+(isPend?'pend':isLive?'live':(scoreExact?'ok':'nok'))+'">'+
+      (isPend?'·':isLive?'🔴':(scoreExact?'✅':'❌'))+' Score: '+predH+'-'+predA+((!isPend&&!isLive&&res)?' → '+actualH+'-'+actualA:'')+
+      '</span>';
+
+    // O/U 1.5
+    var ou15Mkt='', ou25Mkt='', ou35Mkt='', bttsMkt='';
+    if(p.over15 != null || p.over25 != null){
+      var total = res ? (parseInt(actualH)+parseInt(actualA)) : null;
+      if(p.over25 != null){
+        var predOver25 = p.over25 >= 50;
+        var actOver25 = total !== null ? total > 2 : null;
+        var ou25Ok = actOver25 !== null ? predOver25 === actOver25 : null;
+        ou25Mkt = '<span class="pred-mkt '+(isPend?'pend':isLive?'live':(ou25Ok?'ok':'nok'))+'">'+
+          (isPend?'·':isLive?'🔴':(ou25Ok?'✅':'❌'))+' O/U 2.5: '+(predOver25?'Over':'Under')+' ('+p.over25.toFixed(0)+'%)'+
+          ((!isPend&&!isLive&&total!==null)?' → '+total+' buts':'')+
+          '</span>';
       }
-      // Check BTTS
-      if(p.btts != null && res){
-        var predBtts = p.btts >= 50;
-        var actualBtts = res.homeScore > 0 && res.awayScore > 0;
-        var bttsOk = predBtts === actualBtts;
-        badges.push('<span class="pred-badge '+(bttsOk?'pred-badge-ok':'pred-badge-nok')+'">'+(bttsOk?'✅':'❌')+' BTTS</span>');
+      if(p.over15 != null){
+        var predOver15 = p.over15 >= 50;
+        var actOver15 = total !== null ? total > 1 : null;
+        var ou15Ok = actOver15 !== null ? predOver15 === actOver15 : null;
+        ou15Mkt = '<span class="pred-mkt '+(isPend?'pend':isLive?'live':(ou15Ok?'ok':'nok'))+'">'+
+          (isPend?'·':isLive?'🔴':(ou15Ok?'✅':'❌'))+' O/U 1.5: '+(predOver15?'Over':'Under')+' ('+p.over15.toFixed(0)+'%)'+
+          '</span>';
       }
-    } else if(r.status === 'live'){
-      badges.push('<span class="pred-badge" style="background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:#ef4444">🔴 En cours</span>');
+      if(p.over35 != null){
+        var predOver35 = p.over35 >= 50;
+        var actOver35 = total !== null ? total > 3 : null;
+        var ou35Ok = actOver35 !== null ? predOver35 === actOver35 : null;
+        ou35Mkt = '<span class="pred-mkt '+(isPend?'pend':isLive?'live':(ou35Ok?'ok':'nok'))+'">'+
+          (isPend?'·':isLive?'🔴':(ou35Ok?'✅':'❌'))+' O/U 3.5: '+(predOver35?'Over':'Under')+' ('+p.over35.toFixed(0)+'%)'+
+          '</span>';
+      }
+    }
+    if(p.btts != null){
+      var predBtts = p.btts >= 50;
+      var actBtts = res ? (parseInt(actualH)>0 && parseInt(actualA)>0) : null;
+      var bttsOk = actBtts !== null ? predBtts === actBtts : null;
+      bttsMkt = '<span class="pred-mkt '+(isPend?'pend':isLive?'live':(bttsOk?'ok':'nok'))+'">'+
+        (isPend?'·':isLive?'🔴':(bttsOk?'✅':'❌'))+' BTTS: '+(predBtts?'Oui':'Non')+' ('+p.btts.toFixed(0)+'%)'+
+        ((!isPend&&!isLive&&actBtts!==null)?' → '+(actBtts?'Oui':'Non'):'')+
+        '</span>';
     }
 
-    var dateStr = p.date ? new Date(p.date).toLocaleDateString('fr-FR',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '';
+    // ── Prob bar
+    var pW = p.pHome||0, pD = p.pDraw||0, pA = p.pAway||0;
+    var probBar = (pW||pD||pA) ?
+      '<div class="pred-prob-bar-wrap">'+
+        '<div class="pred-prob-labels">'+
+          '<span class="pred-prob-lbl-win">'+fl(p.home)+' '+p.home+' '+pW.toFixed(0)+'%</span>'+
+          '<span>Nul '+pD.toFixed(0)+'%</span>'+
+          '<span class="pred-prob-lbl-away">'+pA.toFixed(0)+'% '+p.away+' '+fl(p.away)+'</span>'+
+        '</div>'+
+        '<div class="pred-prob-bar">'+
+          '<div class="pred-prob-h" style="width:'+pW+'%"></div>'+
+          '<div class="pred-prob-d" style="width:'+pD+'%"></div>'+
+          '<div class="pred-prob-a" style="width:'+pA+'%"></div>'+
+        '</div>'+
+      '</div>' : '';
 
-    return '<div class="pred-row">'
-      +'<div class="pred-row-main">'
-        +'<div class="pred-row-date">'+dateStr+(p.source==='V2'?' · <span style="color:var(--primary)">V2 AI</span>':'')+'</div>'
-        +'<div class="pred-row-teams">'+fl(p.home)+' '+p.home+' <span style="color:var(--muted);font-weight:400">vs</span> '+p.away+' '+fl(p.away)+'</div>'
-        +'<div class="pred-row-scores">'
-          +'<div class="pred-chip"><span class="pred-chip-lbl">Prédiction</span><span class="pred-chip-val">'+fl(p.predWinner==='draw'?'⚖️':p.predWinner)+' '+(p.predWinner==='draw'?'Nul':p.predWinner)+'</span></div>'
-          +'<div class="pred-chip"><span class="pred-chip-lbl">Score prédit</span><span class="pred-chip-val">'+p.predScore+'</span></div>'
-          +(p.over25!=null?'<div class="pred-chip"><span class="pred-chip-lbl">Over 2.5</span><span class="pred-chip-val" style="color:'+(p.over25>=50?'var(--primary)':'var(--muted)')+'">'+p.over25.toFixed(0)+'%</span></div>':'')
-          +(p.btts!=null?'<div class="pred-chip"><span class="pred-chip-lbl">BTTS</span><span class="pred-chip-val" style="color:'+(p.btts>=50?'var(--primary)':'var(--muted)')+'">'+p.btts.toFixed(0)+'%</span></div>':'')
-        +'</div>'
-        +'<div class="pred-row-badges">'+badges.join('')+'</div>'
+    // ── xG line
+    var xgLine = (p.xgHome||p.xgAway) ?
+      '<div class="pred-xg">'+
+        '<span style="color:var(--muted)">xG prédit:</span>'+
+        '<span class="pred-xg-val">'+fl(p.home)+' '+(p.xgHome!=null?p.xgHome.toFixed(2):'?')+'</span>'+
+        '<span style="color:var(--muted)">vs</span>'+
+        '<span class="pred-xg-val">'+(p.xgAway!=null?p.xgAway.toFixed(2):'?')+' '+fl(p.away)+'</span>'+
+        (res&&!isPend?'<span style="margin-left:8px;color:var(--muted)">Buts réels: <strong style="color:var(--text)">'+actualH+' – '+actualA+'</strong></span>':'')+
+      '</div>' : '';
+
+    // ── Date + meta
+    var dateStr = p.date ? new Date(p.date).toLocaleDateString('fr-FR',{weekday:'short',day:'numeric',month:'short'}) : '';
+    var statusTag = isLive
+      ? '<span style="color:#ef4444;font-weight:700">🔴 LIVE '+((res&&res.minute)||'')+' · '+actualH+'-'+actualA+'</span>'
+      : isDone ? (r.correct?'<span style="color:var(--primary);font-weight:700">✅ Prédiction réussie</span>':'<span style="color:var(--red);font-weight:700">❌ Prédiction ratée</span>')
+      : '<span style="color:var(--muted)">⏳ À venir</span>';
+
+    return '<div class="'+cardCls+'">'
+      // Top bar
+      +'<div class="pred-card-top">'
+        +'<div class="pred-card-meta">'+dateStr+' · Groupe '+(p.group||'?')+' · '+(p.source||'V2')+
+          (conf?'</div><span class="pred-card-conf '+confCls+'">'+confLbl+' '+conf+'%</span>':'</div>')
+        +statusTag
       +'</div>'
-      +'<div class="pred-result-col '+resultColClass+'">'+resultContent+'</div>'
+      // Teams + scores
+      +'<div class="pred-card-teams">'
+        +'<div class="pred-card-team">'+fl(p.home)+' '+p.home+'</div>'
+        +'<div class="pred-score-vs">'
+          +'<div class="pred-score-row">'
+            +'<div style="text-align:center"><div class="pred-score-lbl-sm">Prédit</div><div class="pred-score-box predicted">'+predH+'-'+predA+'</div></div>'
+            +'<div class="pred-score-arrow">→</div>'
+            +'<div style="text-align:center"><div class="pred-score-lbl-sm">'+(isPend?'Résultat':isLive?'Live':'Final')+'</div>'
+              +'<div class="pred-score-box actual '+actualBoxCls+'">'+(isPend?'?-?':actualH+'-'+actualA)+'</div></div>'
+          +'</div>'
+        +'</div>'
+        +'<div class="pred-card-team right">'+p.away+' '+fl(p.away)+'</div>'
+      +'</div>'
+      // Prob bar
+      + probBar
+      // xG
+      + xgLine
+      // Markets
+      +'<div class="pred-markets">'
+        + winnerMkt + scoreMkt + ou15Mkt + ou25Mkt + ou35Mkt + bttsMkt
+      +'</div>'
       +'</div>';
   }).join('');
 }
