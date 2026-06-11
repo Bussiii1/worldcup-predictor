@@ -70,22 +70,26 @@ nav{
 .nav-inner{
   max-width:1280px;margin:0 auto;
   display:flex;align-items:center;
-  height:52px;gap:0;
+  height:60px;gap:0;
 }
-.brand{display:flex;align-items:center;gap:10px;margin-right:28px;flex-shrink:0}
-.brand-ball{
-  width:30px;height:30px;
-  background:rgba(0,229,204,.08);
-  border:1px solid rgba(0,229,204,.2);
-  border-radius:7px;
+.brand{display:flex;align-items:center;gap:0;margin-right:36px;flex-shrink:0;text-decoration:none;cursor:default}
+.brand-mark{
   display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
+  width:42px;height:42px;flex-shrink:0;
+  margin-right:12px;
 }
+.brand-mark svg{display:block;overflow:visible}
+.brand-wordmark{display:flex;align-items:center}
 .brand-name{
   font-family:'Work Sans',sans-serif;
-  font-weight:800;font-size:.88rem;
-  letter-spacing:.16em;text-transform:uppercase;
+  font-weight:800;font-size:1.05rem;
+  letter-spacing:.2em;text-transform:uppercase;
   color:var(--text);line-height:1;
+}
+.brand-sub{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:.42rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);line-height:1;
 }
 .brand-tag{display:none}
 .nav-tabs{display:flex;gap:0;flex:1;height:100%}
@@ -121,17 +125,10 @@ nav{
   align-items:center;
   justify-content:space-between;
 }
-.mh-brand{display:flex;align-items:center;gap:8px}
-.mh-logo{
-  width:28px;height:28px;
-  background:rgba(0,229,204,.08);
-  border:1px solid rgba(0,229,204,.2);
-  border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-}
+.mh-brand{display:flex;align-items:center;gap:9px}
 .mh-name{
   font-family:'Work Sans',sans-serif;
-  font-weight:800;font-size:.84rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text);
+  font-weight:800;font-size:.9rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text);
 }
 .mh-right{display:flex;align-items:center;gap:12px}
 .mh-countdown{
@@ -796,19 +793,23 @@ nav{
   .ai-val{font-size:.74rem}
   .sec{font-size:.52rem;margin:16px 0 10px}
 
-  /* ── BOTTOM NAV natif ───────────────────────────────────────── */
+  /* ── BOTTOM NAV flottant ────────────────────────────────────── */
   .bottom-nav{
     display:flex !important;
     position:fixed;
-    bottom:0;left:0;right:0;
-    height:64px;
-    padding-bottom:env(safe-area-inset-bottom,0px);
+    bottom:calc(16px + env(safe-area-inset-bottom,0px));
+    left:50%;transform:translateX(-50%);
+    width:calc(100% - 32px);
+    max-width:420px;
+    height:58px;
     z-index:99999;
-    background:rgba(8,11,15,.97);
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
-    border-top:1px solid var(--border);
+    background:rgba(12,17,24,.92);
+    backdrop-filter:blur(28px);
+    -webkit-backdrop-filter:blur(28px);
+    border:1px solid rgba(0,229,204,.18);
+    border-radius:18px;
     justify-content:stretch;align-items:stretch;
+    box-shadow:0 8px 32px rgba(0,0,0,.5), 0 0 0 .5px rgba(0,229,204,.08) inset;
   }
   .bn-item{
     flex:1;
@@ -816,16 +817,15 @@ nav{
     gap:3px;padding:0 4px;
     cursor:pointer;border:none;background:none;
     font-family:'IBM Plex Mono',monospace;
-    font-size:.46rem;color:var(--muted);letter-spacing:.04em;
+    font-size:.44rem;color:var(--muted);letter-spacing:.04em;
     text-transform:uppercase;
-    transition:color .12s;
+    transition:color .15s;
     min-width:0;position:relative;
   }
+  .bn-item:first-child{border-radius:18px 0 0 18px}
+  .bn-item:last-child{border-radius:0 18px 18px 0}
   .bn-item.on{color:var(--primary)}
-  .bn-item.on::after{
-    content:'';position:absolute;top:0;left:20%;right:20%;height:1.5px;
-    background:var(--primary);border-radius:0 0 2px 2px;
-  }
+  .bn-item.on .bn-icon svg{filter:drop-shadow(0 0 4px rgba(0,229,204,.5))}
   .bn-icon{
     font-size:0;width:20px;height:20px;
     display:flex;align-items:center;justify-content:center;
@@ -841,13 +841,24 @@ nav{
 <nav>
   <div class="nav-inner">
     <div class="brand">
-      <div class="brand-ball">
-        <svg width="14" height="13" viewBox="0 0 14 13" fill="none">
-          <path d="M1 11 L7 1 L13 11" stroke="#00E5CC" stroke-width="1.6" stroke-linecap="square" fill="none"/>
-          <line x1="7" y1="1" x2="7" y2="13" stroke="#00E5CC" stroke-width="1"/>
+      <div class="brand-mark">
+        <!-- Logomark: hexagone tactique avec cible centrale -->
+        <svg width="42" height="42" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Hexagone extérieur -->
+          <path d="M18 3 L32.5 11.25 L32.5 27.75 L18 36 L3.5 27.75 L3.5 11.25 Z"
+            stroke="#00E5CC" stroke-width="1.2" fill="rgba(0,229,204,.05)" stroke-linejoin="round"/>
+          <!-- Grille interne : lignes de terrain -->
+          <line x1="18" y1="9" x2="18" y2="27" stroke="#00E5CC" stroke-width=".8" opacity=".3"/>
+          <line x1="9" y1="18" x2="27" y2="18" stroke="#00E5CC" stroke-width=".8" opacity=".3"/>
+          <!-- Cercle central plein -->
+          <circle cx="18" cy="18" r="3" fill="#00E5CC"/>
+          <!-- Arc tactique subtil -->
+          <path d="M13 13 Q18 10 23 13" stroke="#00E5CC" stroke-width=".8" fill="none" opacity=".4"/>
         </svg>
       </div>
-      <div class="brand-name">TACTIQ</div>
+      <div class="brand-wordmark">
+        <div class="brand-name">TACTIQ</div>
+      </div>
     </div>
     <div class="nav-tabs">
       <button class="tab on" onclick="goTo('groups',this)">Groupes</button>
@@ -869,12 +880,13 @@ nav{
 <!-- HEADER MOBILE -->
 <div class="mobile-header">
   <div class="mh-brand">
-    <div class="mh-logo">
-      <svg width="13" height="12" viewBox="0 0 14 13" fill="none">
-        <path d="M1 11 L7 1 L13 11" stroke="#00E5CC" stroke-width="1.6" stroke-linecap="square" fill="none"/>
-        <line x1="7" y1="1" x2="7" y2="13" stroke="#00E5CC" stroke-width="1"/>
-      </svg>
-    </div>
+    <svg width="26" height="26" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 3 L32.5 11.25 L32.5 27.75 L18 36 L3.5 27.75 L3.5 11.25 Z"
+        stroke="#00E5CC" stroke-width="1.4" fill="rgba(0,229,204,.05)" stroke-linejoin="round"/>
+      <line x1="18" y1="9" x2="18" y2="27" stroke="#00E5CC" stroke-width="1" opacity=".3"/>
+      <line x1="9" y1="18" x2="27" y2="18" stroke="#00E5CC" stroke-width="1" opacity=".3"/>
+      <circle cx="18" cy="18" r="3.5" fill="#00E5CC"/>
+    </svg>
     <div class="mh-name">TACTIQ</div>
   </div>
   <div class="mh-right">
