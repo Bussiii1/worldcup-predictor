@@ -252,11 +252,16 @@ nav{
   transition:transform .2s,box-shadow .2s;
 }
 .group-wrap:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.group-wrap.collapsed .group-body{display:none}
 .group-head{
   background:var(--s2);padding:10px 14px;
   display:flex;align-items:center;justify-content:space-between;
   border-bottom:2px solid var(--border);
+  cursor:pointer;user-select:none;
 }
+.group-head:hover{background:var(--s3)}
+.group-chevron{font-size:.75rem;color:var(--muted);transition:transform .2s;margin-left:6px}
+.group-wrap.collapsed .group-chevron{transform:rotate(-90deg)}
 .group-letter{
   font-family:'Work Sans',sans-serif;
   font-size:1rem;font-weight:800;color:var(--primary);
@@ -662,6 +667,29 @@ nav{
 .pred-badge-part{background:rgba(57,255,106,.1);border-color:rgba(57,255,106,.25);color:var(--secondary)}
 .pred-empty{text-align:center;padding:60px 20px;color:var(--muted);font-size:.8rem}
 .pred-empty-icon{font-size:2.5rem;margin-bottom:10px}
+/* ── INSTALL POPUP ──────────────────────────────────────── */
+#install-popup{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);z-index:9999;
+  background:var(--s2);border:1px solid var(--primary);border-radius:16px;padding:18px 20px;
+  width:min(340px,90vw);box-shadow:0 8px 40px rgba(0,0,0,.6);
+  opacity:0;pointer-events:none;transition:opacity .3s,transform .3s}
+#install-popup.show{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.ip-title{font-family:'Work Sans',sans-serif;font-weight:800;font-size:.9rem;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.ip-body{font-size:.75rem;color:var(--muted);line-height:1.5;margin-bottom:12px}
+.ip-step{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;font-size:.73rem;color:var(--text)}
+.ip-step-num{background:var(--primary);color:#000;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.ip-close{position:absolute;top:10px;right:12px;background:none;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer;padding:4px}
+.ip-dismiss{font-size:.65rem;color:var(--muted);text-align:center;margin-top:8px;cursor:pointer;text-decoration:underline}
+/* ── NEXT MATCHES WIDGET ────────────────────────────────── */
+.next-matches-bar{background:var(--s2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-bottom:14px}
+.nmb-title{font-family:'Space Mono',monospace;font-size:.5rem;text-transform:uppercase;letter-spacing:.1em;color:var(--primary);margin-bottom:10px}
+.next-match-item{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--s1);border-radius:9px;margin-bottom:6px;border:1px solid var(--border)}
+.next-match-item:last-child{margin-bottom:0}
+.nmi-teams{flex:1;font-size:.78rem;font-weight:700;color:var(--text)}
+.nmi-time{text-align:right;flex-shrink:0}
+.nmi-bel{font-size:.8rem;font-weight:800;color:var(--primary);font-family:'Space Mono',monospace}
+.nmi-et{font-size:.6rem;color:var(--muted);margin-top:1px}
+.nmi-badge{font-size:.55rem;font-weight:700;font-family:'Space Mono',monospace;padding:2px 6px;border-radius:5px;background:rgba(0,229,204,.12);color:var(--primary);border:1px solid rgba(0,229,204,.2)}
+.nmi-badge.live{background:rgba(239,68,68,.15);color:#ef4444;border-color:rgba(239,68,68,.3)}
 /* ── PRED CARD redesign ─────────────────────────────────── */
 .pred-card{background:var(--s1);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:10px;transition:border-color .15s,box-shadow .15s}
 .pred-card:hover{box-shadow:0 4px 18px rgba(0,0,0,.3)}
@@ -861,8 +889,8 @@ nav{
       </div>
     </div>
     <div class="nav-tabs">
-      <button class="tab on" onclick="goTo('groups',this)">Groupes</button>
-      <button class="tab" onclick="goTo('calendar',this)">Calendrier</button>
+      <button class="tab" onclick="goTo('groups',this)">Groupes</button>
+      <button class="tab on" onclick="goTo('calendar',this)">Calendrier</button>
       <button class="tab" onclick="goTo('rankings',this)">ELO</button>
       <button class="tab" onclick="goTo('simulator',this)">Simulateur</button>
       <button class="tab" onclick="goTo('weather',this)">Météo</button>
@@ -908,15 +936,25 @@ nav{
   </div>
 </div>
 
+<!-- INSTALL POPUP -->
+<div id="install-popup">
+  <button class="ip-close" onclick="closeInstallPopup()">✕</button>
+  <div class="ip-title">📲 Ajouter à l'écran d'accueil</div>
+  <div class="ip-body">Accède à Tactiq CDM 2026 comme une vraie appli, sans navigateur.</div>
+  <div id="ip-steps"></div>
+  <div class="ip-dismiss" onclick="dismissInstallPopup()">Ne plus afficher</div>
+</div>
+
 <!-- GROUPES -->
-<div class="page on" id="page-groups">
+<div class="page" id="page-groups">
   <div class="sec">Phase de groupes</div>
   <div class="g2" id="groups-root"></div>
 </div>
 
 <!-- CALENDRIER -->
-<div class="page" id="page-calendar">
+<div class="page on" id="page-calendar">
   <div class="sec">Calendrier</div>
+  <div id="next-matches-container"></div>
   <div class="cal-controls">
     <button class="cal-filter on" onclick="filterPhase('all',this)">Tous</button>
     <button class="cal-filter" onclick="filterPhase('group',this)">Phase de groupes</button>
@@ -1011,11 +1049,11 @@ nav{
 
 <!-- BOTTOM NAV (mobile only) -->
 <nav class="bottom-nav" id="bottom-nav">
-  <button class="bn-item on" id="bn-groups" onclick="goToMobile('groups',this)">
+  <button class="bn-item" id="bn-groups" onclick="goToMobile('groups',this)">
     <span class="bn-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18M6.5 5.5l11 13M17.5 5.5l-11 13"/></svg></span>
     Groupes
   </button>
-  <button class="bn-item" id="bn-calendar" onclick="goToMobile('calendar',this)">
+  <button class="bn-item on" id="bn-calendar" onclick="goToMobile('calendar',this)">
     <span class="bn-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 9h18"/></svg></span>
     Calendrier
   </button>
@@ -1655,13 +1693,29 @@ function fl(t){return FLAGS[t]||"🏳️";}
 function pairs(arr){var o=[];for(var i=0;i<arr.length;i++)for(var j=i+1;j<arr.length;j++)o.push([arr[i],arr[j]]);return o;}
 
 // =============== GROUPS ===============
+function toggleGroup(letter){
+  var el = document.getElementById('gw-'+letter);
+  if(el) el.classList.toggle('collapsed');
+}
+
 function renderGroups(){
   var root=document.getElementById("groups-root"),html="";
   for(var letter in GROUPS){
     var g=GROUPS[letter];
     var sorted=g.teams.slice().sort(function(a,b){return(ELO[b]||1600)-(ELO[a]||1600);});
-    html+='<div class="group-wrap">';
-    html+='<div class="group-head"><span class="group-letter">Groupe '+letter+'</span><span class="group-venue">🏟 '+g.venue+'</span></div>';
+    html+='<div class="group-wrap collapsed" id="gw-'+letter+'">';
+    html+='<div class="group-head" onclick="toggleGroup(\''+letter+'\')">';
+    html+='<div style="display:flex;align-items:center;gap:10px">';
+    html+='<span class="group-letter">Groupe '+letter+'</span>';
+    html+='<span style="display:flex;gap:4px">';
+    for(var ti2=0;ti2<sorted.length;ti2++) html+='<span style="font-size:.85rem">'+fl(sorted[ti2])+'</span>';
+    html+='</span>';
+    html+='</div>';
+    html+='<div style="display:flex;align-items:center;gap:8px">';
+    html+='<span class="group-venue">🏟 '+g.venue+'</span>';
+    html+='<span class="group-chevron">▼</span>';
+    html+='</div></div>';
+    html+='<div class="group-body">';
     for(var ti=0;ti<sorted.length;ti++){
       var t=sorted[ti];
       html+='<div class="team-row"><div class="t-flag">'+fl(t)+'</div><div class="t-name">'+t+'</div>';
@@ -1672,7 +1726,6 @@ function renderGroups(){
     var ps=pairs(g.teams);
     for(var pi=0;pi<ps.length;pi++){
       var a=ps[pi][0],b=ps[pi][1],pr=predict(a,b);
-      // Override avec V2 si disponible (même logique que openModal)
       var v2g=V2_PREDS[a+"|"+b]||V2_PREDS[b+"|"+a];
       var v2rg=(v2g&&V2_PREDS[b+"|"+a]&&!V2_PREDS[a+"|"+b]);
       if(v2g&&!v2g.error){
@@ -1684,9 +1737,74 @@ function renderGroups(){
         '<div class="mc"><div class="mc-pct">'+pr.pW.toFixed(0)+'%</div><div class="mc-score">'+pr.best+'</div><div class="mc-lbl">vs</div><div class="mc-pct" style="color:var(--gold)">'+pr.pL.toFixed(0)+'%</div></div>'+
         '<div class="mt mt-r">'+b+' '+fl(b)+'</div></div>';
     }
-    html+='</div></div>';
+    html+='</div></div></div>';
   }
   root.innerHTML=html;
+}
+
+// =============== TIME UTILS (ET → Belgian) ===============
+// Match times in SCHEDULE are in ET (EDT = UTC-4 in summer)
+// Belgian summer = CEST = UTC+2 → ET + 6h
+function etToBelgian(timeStr){
+  if(!timeStr||timeStr==="TBD") return {bel:"TBD",et:timeStr||"TBD"};
+  var m = timeStr.match(/^(\d{1,2}):(\d{2})/);
+  if(!m) return {bel:timeStr,et:timeStr};
+  var h=parseInt(m[1]),min=parseInt(m[2]);
+  var belH=(h+6)%24;
+  var nextDay=(h+6)>=24;
+  var pad=function(n){return n<10?"0"+n:String(n);};
+  return {bel:pad(belH)+":"+pad(min)+(nextDay?" +1j":""),et:pad(h)+":"+pad(min)+" ET"};
+}
+
+function renderNextMatches(){
+  var cont = document.getElementById('next-matches-container');
+  if(!cont) return;
+  var now = new Date();
+  // Collect upcoming matches (not past, sorted by date+time)
+  var upcoming = [];
+  for(var i=0;i<SCHEDULE.length;i++){
+    var m=SCHEDULE[i];
+    if(!m.t||m.t==="TBD") continue;
+    // Build datetime: parse ET time, convert to UTC
+    var parts=m.t.match(/^(\d{1,2}):(\d{2})/);
+    if(!parts) continue;
+    var etH=parseInt(parts[1]),etMin=parseInt(parts[2]);
+    // EDT = UTC-4, so UTC = ET+4
+    var utcH=etH+4; var dayOff=utcH>=24?1:0; utcH=utcH%24;
+    var matchDate=new Date(m.d+"T"+("0"+utcH).slice(-2)+":"+("0"+etMin).slice(-2)+":00Z");
+    if(dayOff) matchDate.setDate(matchDate.getDate()+dayOff);
+    // Show live + future matches (within next 48h window for "prochains")
+    var diffMs = matchDate-now;
+    var liveEv = getLiveResult(m.a,m.b);
+    if(liveEv&&liveEv.isLive){ upcoming.push({m:m,matchDate:matchDate,diffMs:-1,live:true}); }
+    else if(diffMs>0) upcoming.push({m:m,matchDate:matchDate,diffMs:diffMs,live:false});
+  }
+  upcoming.sort(function(a,b){return a.diffMs-b.diffMs;});
+  var next=upcoming.slice(0,4);
+  if(!next.length){ cont.innerHTML=''; return; }
+  var html='<div class="next-matches-bar"><div class="nmb-title">⚡ Prochains matchs</div>';
+  next.forEach(function(item){
+    var m=item.m, times=etToBelgian(m.t);
+    var grpBadge = m.g?'Gr. '+m.g:(m.phase||'');
+    var isLiveNow = item.live;
+    var diffH = Math.floor(item.diffMs/3600000);
+    var diffMin = Math.floor((item.diffMs%3600000)/60000);
+    var countdown = isLiveNow?'':
+      diffH>0?(diffH+"h"+("0"+diffMin).slice(-2)):(diffMin+"min");
+    html+='<div class="next-match-item">'
+      +'<div class="nmi-teams">'+fl(m.a)+' '+m.a+' <span style="color:var(--muted);font-weight:400">vs</span> '+m.b+' '+fl(m.b)+'</div>'
+      +'<div class="nmi-time">'
+        +'<div class="nmi-bel">'+times.bel+'</div>'
+        +'<div class="nmi-et">'+times.et+'</div>'
+      +'</div>'
+      +'<div>'
+        +(isLiveNow?'<div class="nmi-badge live">🔴 LIVE</div>':'<div class="nmi-badge">'+countdown+'</div>')
+        +'<div style="font-size:.55rem;color:var(--muted);margin-top:2px;text-align:center">'+grpBadge+'</div>'
+      +'</div>'
+    +'</div>';
+  });
+  html+='</div>';
+  cont.innerHTML=html;
 }
 
 // =============== CALENDAR ===============
@@ -1796,8 +1914,12 @@ function renderCalendar(){
         scoreClass = '';
         predDisplay = predStr;
       }
+      var timeFmt = etToBelgian(m.t);
       html+='<div class="cm-mid">';
-      html+='<div class="cm-time">'+m.t+'</div>';
+      html+='<div class="cm-time" style="display:flex;flex-direction:column;align-items:center;line-height:1.2">'
+        +'<span style="font-size:.82rem;font-weight:700;color:var(--text)">'+timeFmt.bel+'</span>'
+        +'<span style="font-size:.58rem;color:var(--muted)">'+timeFmt.et+'</span>'
+      +'</div>';
       html+='<div class="cm-score-live '+scoreClass+'">'+scoreDisplay+'</div>';
       if(predDisplay) html+='<div class="cm-pred">'+predDisplay+'</div>';
       html+='<div class="cm-venue" style="margin-top:3px">'+m.venue+'</div>';
@@ -2201,7 +2323,7 @@ function goTo(id,btn){
   if(bn) bn.classList.add("on");
   if(id==="rankings") renderRankings();
   if(id==="weather") fetchWeather();
-  if(id==="calendar") renderCalendar();
+  if(id==="calendar"){ renderCalendar(); renderNextMatches(); }
   if(id==="news") loadNews();
   if(id==="wall") loadPredWall();
   window.scrollTo(0,0);
@@ -3092,8 +3214,65 @@ function filterWall(f, btn){
   renderPredWall();
 }
 
+// =============== INSTALL POPUP ===============
+(function initInstallPopup(){
+  var key = 'tactiq_install_count';
+  var count = parseInt(localStorage.getItem(key)||'0');
+  if(count >= 3) return;
+  localStorage.setItem(key, count+1);
+
+  var ua = navigator.userAgent;
+  var isIOS = /iphone|ipad|ipod/i.test(ua);
+  var isAndroid = /android/i.test(ua);
+  var isMac = /macintosh/i.test(ua) && !isIOS;
+
+  var steps = '';
+  if(isIOS){
+    steps = [
+      ['1', '📤 Appuie sur le bouton Partager en bas de Safari'],
+      ['2', '🏠 Sélectionne « Sur l\'écran d\'accueil »'],
+      ['3', '✅ Appuie sur « Ajouter » — c\'est fait !']
+    ];
+  } else if(isAndroid){
+    steps = [
+      ['1', '⋮ Ouvre le menu Chrome (3 points en haut à droite)'],
+      ['2', '🏠 Appuie sur « Ajouter à l\'écran d\'accueil »'],
+      ['3', '✅ Confirme — Tactiq apparaît sur ton bureau !']
+    ];
+  } else {
+    steps = [
+      ['1', '🌐 Dans Chrome/Edge, clique sur l\'icône ⊕ dans la barre d\'adresse'],
+      ['2', '🏠 Sélectionne « Installer Tactiq CDM 2026 »'],
+      ['3', '✅ L\'app s\'ouvre en fenêtre dédiée !']
+    ];
+  }
+
+  var stepsHtml = '';
+  if(Array.isArray(steps)){
+    steps.forEach(function(s){
+      stepsHtml += '<div class="ip-step"><div class="ip-step-num">'+s[0]+'</div><div>'+s[1]+'</div></div>';
+    });
+  }
+  document.getElementById('ip-steps').innerHTML = stepsHtml;
+
+  // Show after 1.5s
+  setTimeout(function(){
+    document.getElementById('install-popup').classList.add('show');
+  }, 1500);
+})();
+
+function closeInstallPopup(){
+  document.getElementById('install-popup').classList.remove('show');
+}
+function dismissInstallPopup(){
+  localStorage.setItem('tactiq_install_count','3');
+  closeInstallPopup();
+}
+
 // =============== INIT ===============
 renderGroups();
+renderCalendar();
+renderNextMatches();
 tick();
 setInterval(tick,30000);
 // Fetch live scores on load + every 60s (passive polling)
