@@ -2470,19 +2470,29 @@ function loadPredWall(){
 }
 
 function matchTeamName(espnName, ourName){
-  // fuzzy match team names between ESPN and our data
-  var e = espnName.toLowerCase().replace(/[^a-z]/g,'');
-  var o = ourName.toLowerCase().replace(/[^a-z]/g,'');
+  // normalise: lowercase, remove accents, remove non-alpha
+  function norm(s){
+    return (s||'').toLowerCase()
+      .replace(/[àáâã]/g,'a').replace(/[èéêë]/g,'e').replace(/[ìíîï]/g,'i')
+      .replace(/[òóôõö]/g,'o').replace(/[ùúûü]/g,'u').replace(/ç/g,'c')
+      .replace(/[^a-z]/g,'');
+  }
+  var e = norm(espnName), o = norm(ourName);
   if(e === o) return true;
-  // check if one contains the other (for names like "Bosnia and Herzegovina" vs "Bosnia-Herzegovina")
-  if(e.includes(o.slice(0,5)) || o.includes(e.slice(0,5))) return true;
-  // common aliases
+  // explicit alias table (ESPN name → our name, both normalised)
   var aliases = {
-    'unitedstates':'usa','unitedstatesofamerica':'usa',
-    'korearepublic':'southkorea','republicofkorea':'southkorea',
-    'drcongo':'drcongo','congodr':'drcongo',
+    'unitedstates':'usa',
+    'unitedstatesofamerica':'usa',
+    'turkiye':'turkey',
+    'curacao':'curacao',
+    'congodr':'drcongo',
+    'republicofcongo':'drcongo',
     'bosniaherzegovina':'bosniaherzegovina',
-    'czechrepublic':'czechia'
+    'korearepublic':'southkorea',
+    'republicofkorea':'southkorea',
+    'czechrepublic':'czechia',
+    'ivorycoast':'ivorycoast',
+    'cotedivoire':'ivorycoast'
   };
   return (aliases[e]||e) === (aliases[o]||o);
 }

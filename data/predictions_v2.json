@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-06T14:45:22.454792",
+  "generated_at": "2026-06-11T23:00:00",
   "version": "v2",
   "total_matches": 72,
   "matches_with_odds": 67,
@@ -76,9 +76,9 @@
       "weather_rain": 14.5,
       "weather_cond": "affected by: heavy rain",
       "form_home": "WWWDD",
-      "form_away": null,
+      "form_away": "LWDWL",
       "elo_home": 1875.0,
-      "elo_away": null
+      "elo_away": 1650.0
     },
     {
       "home": "South Korea",
@@ -151,8 +151,8 @@
       "weather_temp": 26.6,
       "weather_rain": 17.6,
       "weather_cond": "affected by: heavy rain",
-      "form_home": null,
-      "form_away": null,
+      "form_home": "WDWLW",
+      "form_away": "DWWDW",
       "elo_home": 1758.0,
       "elo_away": 1740.0
     },
@@ -227,10 +227,10 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
-      "form_away": null,
+      "form_home": "DWWDW",
+      "form_away": "LWDWL",
       "elo_home": 1740.0,
-      "elo_away": null
+      "elo_away": 1650.0
     },
     {
       "home": "Mexico",
@@ -304,7 +304,7 @@
       "weather_rain": 9.7,
       "weather_cond": "affected by: light rain",
       "form_home": "WWWDD",
-      "form_away": null,
+      "form_away": "WDWLW",
       "elo_home": 1875.0,
       "elo_away": 1758.0
     },
@@ -379,7 +379,7 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
+      "form_home": "DWWDW",
       "form_away": "WWWDD",
       "elo_home": 1740.0,
       "elo_away": 1875.0
@@ -455,9 +455,9 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
-      "form_away": null,
-      "elo_home": null,
+      "form_home": "LWDWL",
+      "form_away": "WDWLW",
+      "elo_home": 1650.0,
       "elo_away": 1758.0
     },
     {
@@ -532,9 +532,9 @@
       "weather_rain": 0.6,
       "weather_cond": "affected by: extreme heat",
       "form_home": "DWDDW",
-      "form_away": null,
+      "form_away": "DLWWL",
       "elo_home": 1788.0,
-      "elo_away": null
+      "elo_away": 1720.0
     },
     {
       "home": "Qatar",
@@ -608,7 +608,7 @@
       "weather_rain": 0.0,
       "weather_cond": "affected by: extreme heat",
       "form_home": "LLDLL",
-      "form_away": null,
+      "form_away": "WWWDW",
       "elo_home": 1423.0,
       "elo_away": 1894.0
     },
@@ -683,10 +683,10 @@
       "weather_temp": 22.4,
       "weather_rain": 0.0,
       "weather_cond": "ideal",
-      "form_home": null,
-      "form_away": null,
+      "form_home": "WWWDW",
+      "form_away": "DLWWL",
       "elo_home": 1894.0,
-      "elo_away": null
+      "elo_away": 1720.0
     },
     {
       "home": "Canada",
@@ -835,7 +835,7 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
+      "form_home": "WWWDW",
       "form_away": "DWDDW",
       "elo_home": 1894.0,
       "elo_away": 1788.0
@@ -911,9 +911,9 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
+      "form_home": "DLWWL",
       "form_away": "LLDLL",
-      "elo_home": null,
+      "elo_home": 1720.0,
       "elo_away": 1423.0
     },
     {
@@ -1063,10 +1063,10 @@
       "weather_temp": 30.6,
       "weather_rain": 0.0,
       "weather_cond": "affected by: high heat",
-      "form_home": null,
-      "form_away": null,
-      "elo_home": null,
-      "elo_away": null
+      "form_home": "LLLDD",
+      "form_away": "DWDWL",
+      "elo_home": 1420.0,
+      "elo_away": 1790.0
     },
     {
       "home": "Scotland",
@@ -1139,9 +1139,9 @@
       "weather_temp": 29.4,
       "weather_rain": 0.0,
       "weather_cond": "affected by: high heat",
-      "form_home": null,
+      "form_home": "DWDWL",
       "form_away": "WWWDL",
-      "elo_home": null,
+      "elo_home": 1790.0,
       "elo_away": 1824.0
     },
     {
@@ -1216,9 +1216,9 @@
       "weather_rain": 0.0,
       "weather_cond": "affected by: extreme heat",
       "form_home": "WWLDW",
-      "form_away": null,
+      "form_away": "LLLDD",
       "elo_home": 1988.0,
-      "elo_away": null
+      "elo_away": 1420.0
     },
     {
       "home": "Scotland",
@@ -1291,9 +1291,9 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
+      "form_home": "DWDWL",
       "form_away": "WWLDW",
-      "elo_home": null,
+      "elo_home": 1790.0,
       "elo_away": 1988.0
     },
     {
@@ -1368,9 +1368,9 @@
       "weather_rain": null,
       "weather_cond": null,
       "form_home": "WWWDL",
-      "form_away": null,
+      "form_away": "LLLDD",
       "elo_home": 1824.0,
-      "elo_away": null
+      "elo_away": 1420.0
     },
     {
       "home": "USA",
@@ -1443,7 +1443,7 @@
       "weather_temp": 23.3,
       "weather_rain": 0.0,
       "weather_cond": "ideal",
-      "form_home": null,
+      "form_home": "WDWWW",
       "form_away": "WLWWL",
       "elo_home": 1733.0,
       "elo_away": 1697.0
@@ -1519,10 +1519,10 @@
       "weather_temp": 26.0,
       "weather_rain": 0.0,
       "weather_cond": "ideal",
-      "form_home": null,
-      "form_away": null,
+      "form_home": "WWDWL",
+      "form_away": "WWDWW",
       "elo_home": 1774.0,
-      "elo_away": null
+      "elo_away": 1855.0
     },
     {
       "home": "USA",
@@ -1595,8 +1595,8 @@
       "weather_temp": 19.7,
       "weather_rain": 0.6,
       "weather_cond": "ideal",
-      "form_home": null,
-      "form_away": null,
+      "form_home": "WDWWW",
+      "form_away": "WWDWL",
       "elo_home": 1733.0,
       "elo_away": 1774.0
     },
@@ -1671,9 +1671,9 @@
       "weather_temp": 27.5,
       "weather_rain": 0.0,
       "weather_cond": "ideal",
-      "form_home": null,
+      "form_home": "WWDWW",
       "form_away": "WLWWL",
-      "elo_home": null,
+      "elo_home": 1855.0,
       "elo_away": 1697.0
     },
     {
@@ -1747,9 +1747,9 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
-      "form_away": null,
-      "elo_home": null,
+      "form_home": "WWDWW",
+      "form_away": "WDWWW",
+      "elo_home": 1855.0,
       "elo_away": 1733.0
     },
     {
@@ -1824,7 +1824,7 @@
       "weather_rain": null,
       "weather_cond": null,
       "form_home": "WLWWL",
-      "form_away": null,
+      "form_away": "WWDWL",
       "elo_home": 1697.0,
       "elo_away": 1774.0
     },
@@ -1902,7 +1902,7 @@
       "form_home": "WWWWW",
       "form_away": "LLLDW",
       "elo_home": 1925.0,
-      "elo_away": null
+      "elo_away": 1400.0
     },
     {
       "home": "Ivory Coast",
@@ -1977,7 +1977,7 @@
       "weather_cond": "affected by: light rain",
       "form_home": "WWWLW",
       "form_away": "WDDWD",
-      "elo_home": null,
+      "elo_home": 1780.0,
       "elo_away": 1935.0
     },
     {
@@ -2054,7 +2054,7 @@
       "form_home": "WWWWW",
       "form_away": "WWWLW",
       "elo_home": 1925.0,
-      "elo_away": null
+      "elo_away": 1780.0
     },
     {
       "home": "Ecuador",
@@ -2130,7 +2130,7 @@
       "form_home": "WDDWD",
       "form_away": "LLLDW",
       "elo_home": 1935.0,
-      "elo_away": null
+      "elo_away": 1400.0
     },
     {
       "home": "Ecuador",
@@ -2281,8 +2281,8 @@
       "weather_cond": null,
       "form_home": "LLLDW",
       "form_away": "WWWLW",
-      "elo_home": null,
-      "elo_away": null
+      "elo_home": 1400.0,
+      "elo_away": 1780.0
     },
     {
       "home": "Netherlands",
@@ -2355,7 +2355,7 @@
       "weather_temp": 35.4,
       "weather_rain": 2.1,
       "weather_cond": "affected by: extreme heat",
-      "form_home": null,
+      "form_home": "WWWWW",
       "form_away": "WWWWW",
       "elo_home": 1944.0,
       "elo_away": 1906.0
@@ -2432,9 +2432,9 @@
       "weather_rain": null,
       "weather_cond": null,
       "form_home": "DLWWD",
-      "form_away": null,
-      "elo_home": null,
-      "elo_away": null
+      "form_away": "DLLWD",
+      "elo_home": 1840.0,
+      "elo_away": 1620.0
     },
     {
       "home": "Netherlands",
@@ -2507,10 +2507,10 @@
       "weather_temp": 35.4,
       "weather_rain": 0.0,
       "weather_cond": "affected by: extreme heat",
-      "form_home": null,
+      "form_home": "WWWWW",
       "form_away": "DLWWD",
       "elo_home": 1944.0,
-      "elo_away": null
+      "elo_away": 1840.0
     },
     {
       "home": "Tunisia",
@@ -2583,9 +2583,9 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
+      "form_home": "DLLWD",
       "form_away": "WWWWW",
-      "elo_home": null,
+      "elo_home": 1620.0,
       "elo_away": 1906.0
     },
     {
@@ -2662,7 +2662,7 @@
       "form_home": "WWWWW",
       "form_away": "DLWWD",
       "elo_home": 1906.0,
-      "elo_away": null
+      "elo_away": 1840.0
     },
     {
       "home": "Tunisia",
@@ -2735,9 +2735,9 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
-      "form_away": null,
-      "elo_home": null,
+      "form_home": "DLLWD",
+      "form_away": "WWWWW",
+      "elo_home": 1620.0,
       "elo_away": 1944.0
     },
     {
@@ -2890,7 +2890,7 @@
       "form_home": "WWWLD",
       "form_away": "LWLLL",
       "elo_home": 1772.0,
-      "elo_away": null
+      "elo_away": 1590.0
     },
     {
       "home": "Belgium",
@@ -3041,7 +3041,7 @@
       "weather_cond": "ideal",
       "form_home": "LWLLL",
       "form_away": "WDWDL",
-      "elo_home": null,
+      "elo_home": 1590.0,
       "elo_away": 1699.0
     },
     {
@@ -3193,7 +3193,7 @@
       "weather_cond": null,
       "form_home": "LWLLL",
       "form_away": "WDWWD",
-      "elo_home": null,
+      "elo_home": 1590.0,
       "elo_away": 1888.0
     },
     {
@@ -3270,7 +3270,7 @@
       "form_home": "DDWDW",
       "form_away": "WDLDD",
       "elo_home": 2155.0,
-      "elo_away": null
+      "elo_away": 1673.0
     },
     {
       "home": "Saudi Arabia",
@@ -3344,7 +3344,7 @@
       "weather_rain": 1.2,
       "weather_cond": "affected by: high heat, moderate wind",
       "form_home": "WLLLD",
-      "form_away": null,
+      "form_away": "WWDWW",
       "elo_home": 1569.0,
       "elo_away": 1892.0
     },
@@ -3495,10 +3495,10 @@
       "weather_temp": 32.4,
       "weather_rain": 0.0,
       "weather_cond": "affected by: extreme heat",
-      "form_home": null,
+      "form_home": "WWDWW",
       "form_away": "WDLDD",
       "elo_home": 1892.0,
-      "elo_away": null
+      "elo_away": 1673.0
     },
     {
       "home": "Cape Verde",
@@ -3573,7 +3573,7 @@
       "weather_cond": null,
       "form_home": "WDLDD",
       "form_away": "WLLLD",
-      "elo_home": null,
+      "elo_home": 1673.0,
       "elo_away": 1569.0
     },
     {
@@ -3647,7 +3647,7 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
+      "form_home": "WWDWW",
       "form_away": "DDWDW",
       "elo_home": 1892.0,
       "elo_away": 2155.0
@@ -4255,9 +4255,9 @@
       "weather_temp": 29.4,
       "weather_rain": 0.0,
       "weather_cond": "affected by: high heat",
-      "form_home": null,
+      "form_home": "WWWDW",
       "form_away": "LDDLW",
-      "elo_home": null,
+      "elo_home": 1827.0,
       "elo_away": 1685.0
     },
     {
@@ -4332,9 +4332,9 @@
       "weather_rain": null,
       "weather_cond": null,
       "form_home": "WWWWW",
-      "form_away": null,
+      "form_away": "WWWDW",
       "elo_home": 2113.0,
-      "elo_away": null
+      "elo_away": 1827.0
     },
     {
       "home": "Jordan",
@@ -4484,9 +4484,9 @@
       "weather_rain": null,
       "weather_cond": null,
       "form_home": "WDWLW",
-      "form_away": null,
+      "form_away": "WWWDW",
       "elo_home": 1472.0,
-      "elo_away": null
+      "elo_away": 1827.0
     },
     {
       "home": "Jordan",
@@ -4638,7 +4638,7 @@
       "form_home": "WDWLD",
       "form_away": "DWDLW",
       "elo_home": 1984.0,
-      "elo_away": null
+      "elo_away": 1642.0
     },
     {
       "home": "Uzbekistan",
@@ -4866,7 +4866,7 @@
       "form_home": "WLLWW",
       "form_away": "DWDLW",
       "elo_home": 1977.0,
-      "elo_away": null
+      "elo_away": 1642.0
     },
     {
       "home": "Colombia",
@@ -5017,7 +5017,7 @@
       "weather_cond": null,
       "form_home": "DWDLW",
       "form_away": "LDWDD",
-      "elo_home": null,
+      "elo_home": 1642.0,
       "elo_away": 1718.0
     },
     {
@@ -5092,7 +5092,7 @@
       "weather_rain": 0.6,
       "weather_cond": "affected by: high heat",
       "form_home": "LDWWW",
-      "form_away": null,
+      "form_away": "WDWWL",
       "elo_home": 2020.0,
       "elo_away": 1908.0
     },
@@ -5320,7 +5320,7 @@
       "weather_rain": null,
       "weather_cond": null,
       "form_home": "WLWDL",
-      "form_away": null,
+      "form_away": "WDWWL",
       "elo_home": 1734.0,
       "elo_away": 1908.0
     },
@@ -5471,10 +5471,11 @@
       "weather_temp": null,
       "weather_rain": null,
       "weather_cond": null,
-      "form_home": null,
+      "form_home": "WDWWL",
       "form_away": "DLLLL",
       "elo_home": 1908.0,
       "elo_away": 1510.0
     }
-  ]
+  ],
+  "updated_at": "2026-06-11T23:00:00"
 }
